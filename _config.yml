@@ -102,3 +102,21 @@ pangu: true
 fancybox: true
 bookmark:
     enable: true
+
+quicklink:
+    enable: true
+    home: true
+    archive: true
+    delay: true
+    timeout: 3000
+    priority: true
+    ignores:
+
+
+reading_progress:
+    enable: true
+    color: "#37c6c0"
+    height: 2px
+
+pace:
+    enable: true
