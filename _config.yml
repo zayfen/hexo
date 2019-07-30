@@ -93,9 +93,9 @@ deploy:
   branch: master
 
 algolia:
-    applicationID: 'M3PLLO9TMX'
-    apiKey: 'a6accc6480b4a9053d9905fa81d61d9c'
-    indexName: 'zayfen.com'
+    applicationID: M3PLLO9TMX
+    apiKey: a6accc6480b4a9053d9905fa81d61d9c
+    indexName: zayfen.com
     chunkSize: 5000
 
 pangu: true
