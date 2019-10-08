@@ -603,6 +603,31 @@ reading_progress:
 # See: https://theme-next.org/docs/third-party-services/comments-and-widgets
 # ---------------------------------------------------------------
 
+
+# ---------------------------------------------------------------
+# # Comments Settings
+# # See: https://theme-next.org/docs/third-party-services/comments
+# # ---------------------------------------------------------------
+
+ # Multiple Comment System Support
+ comments:
+         # Available values: tabs | buttons
+         style: tabs
+         # Choose a comment system to be displayed by default.
+         # Available values: changyan | disqus | disqusjs | facebook_comments_plugin | gitalk | livere | valine | vkontakte
+         active:
+                 # Setting `true` means remembering the comment system selected by the visitor.
+                 storage: true
+                 # Modify texts or order for any navs, here are some examples.
+                 nav:
+                         disqus:
+                           text: Load Disqus
+                           order: -1
+                         #facebook_comments_plugin:
+                         #  text: <i class="fa fa-facebook-official" aria-hidden="true"></i> facebook
+                                           #gitalk:
+                                               #  order: -2
+
 # Disqus
 disqus:
   enable: false 
