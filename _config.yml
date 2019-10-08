@@ -75,8 +75,6 @@ pagination_dir: page
 plugins: hexo-generate-feed
 ## Themes: https://hexo.io/themes/
 theme: next 
-themes:
-        comments: ''
 menu:
     home: / 
     about: /about/ 
