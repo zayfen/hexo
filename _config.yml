@@ -6,10 +6,11 @@
 title: Z . A . Y . F . E . N 
 subtitle: CODING...
 description: For Better Life...
-keywords:
+keywords: programming git  web linux rust python algorithm c++
 author: zayfen
 language: zh-CN
-timezone: Asia/Shanghai 
+#timezone: Asia/Shanghai 
+timezone: America/New_York
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
