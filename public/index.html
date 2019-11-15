@@ -151,11 +151,6 @@
     <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
 
   </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
-
-  </li>
         <li class="menu-item menu-item-tags">
 
     <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
@@ -171,9 +166,9 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
-        <li class="menu-item menu-item-commonweal">
+        <li class="menu-item menu-item-about">
 
-    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -295,7 +290,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><img src="https://res.cloudinary.com/zayfen/image/upload/v1568171685/img/l8yeyxvtfw6kplg1ci67.png" alt="git flow"></p><h3 id="漂亮打印git-log"><a href="#漂亮打印git-log" class="headerlink" title="漂亮打印git log"></a>漂亮打印git log</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --graph --pretty=format:<span class="string">'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset'</span> --abbrev-commit --date=relative</span><br></pre></td></tr></table></figure><h3 id="添加修改或者新文件到待commit队列"><a href="#添加修改或者新文件到待commit队列" class="headerlink" title="添加修改或者新文件到待commit队列"></a>添加修改或者新文件到待commit队列</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### add 的文件是支持正则匹配的</span></span><br><span class="line">git add &lt;file(s)&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">### add all changes to commiter queue</span></span><br><span class="line">git add .</span><br><span class="line"></span><br><span class="line"><span class="comment">### 查看某个commit的修改内容</span></span><br><span class="line">git show &lt;commit-id&gt;</span><br><span class="line">git diff &lt;commit-id&gt;^!</span><br><span class="line"><span class="comment">##### e.g. git show d34ff657f5   git diff d34ff657f5^!</span></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line"><span class="comment">### 提交已添加的文件到本地仓库并创建一个新的版本</span></span><br><span class="line">```sh</span><br><span class="line">git commit -m <span class="string">"commit message"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### also can combine git add &amp; git commit in one command</span></span><br><span class="line">git commit -m <span class="string">"commit message"</span> -a</span><br></pre></td></tr></table></figure>
+          <p><img src="https://res.cloudinary.com/zayfen/image/upload/v1568171685/img/l8yeyxvtfw6kplg1ci67.png" alt="git flow"></p><h3 id="漂亮打印git-log"><a href="#漂亮打印git-log" class="headerlink" title="漂亮打印git log"></a>漂亮打印git log</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">log</span> --graph --pretty=format:<span class="string">'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset'</span> --abbrev-commit --date=relative</span><br></pre></td></tr></table></figure><h3 id="添加修改或者新文件到待commit队列"><a href="#添加修改或者新文件到待commit队列" class="headerlink" title="添加修改或者新文件到待commit队列"></a>添加修改或者新文件到待commit队列</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment">### add 的文件是支持正则匹配的</span></span><br><span class="line">git add &lt;file(s)&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">### add all changes to commiter queue</span></span><br><span class="line">git add .</span><br><span class="line"></span><br><span class="line"><span class="comment">### 查看某个commit的修改内容</span></span><br><span class="line">git show &lt;commit-id&gt;</span><br><span class="line">git diff &lt;commit-id&gt;^!</span><br><span class="line"><span class="comment">##### e.g. git show d34ff657f5   git diff d34ff657f5^!</span></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line"><span class="comment">### 提交已添加的文件到本地仓库并创建一个新的版本</span></span><br><span class="line">```sh</span><br><span class="line">git commit -m <span class="string">"commit message"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### also can combine git add &amp; git commit in one command</span></span><br><span class="line">git commit -m <span class="string">"commit message"</span> -a</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/11/13/a43fd1c509d10e4d08fc1f789d58cb23/#more" rel="contents">

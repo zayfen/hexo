@@ -40,7 +40,7 @@ relative_link: false
 future: true
 highlight:
   enable: true
-  line_number: true
+  line_number: false 
   auto_detect: false
   tab_replace:
   
@@ -54,7 +54,7 @@ index_generator:
   order_by: -date
   
 # Category & Tag
-default_category: jottings
+default_category: web 
 category_map:
 tag_map:
 
