@@ -11,6 +11,15 @@ if [ -d "./public" ]; then
   cp -r Assets ./public/Assets
 fi
 
+if [ -d "./public" ];
+then
+  rm -r public-backup
+else
+    mv public-backup public
+    exit 0
+fi
+
+
 git add .
 git commit -m "chore: upload repo"
 git push
@@ -19,10 +28,4 @@ git push
 export HEXO_ALGOLIA_INDEXING_KEY='a6accc6480b4a9053d9905fa81d61d9c'
 hexo algolia
 
-if [ -d "./public" ];
-then
-  rm -r public-backup
-else
-  mv public-backup public
-fi
 
