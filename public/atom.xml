@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zayfen.com/"/>
-  <updated>2019-11-18T10:10:53.353Z</updated>
+  <updated>2019-11-18T10:11:21.237Z</updated>
   <id>https://zayfen.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://zayfen.com/2019/11/18/bbc765cf2f120d4208792bc259324906/"/>
     <id>https://zayfen.com/2019/11/18/bbc765cf2f120d4208792bc259324906/</id>
     <published>2019-11-18T09:44:34.735Z</published>
-    <updated>2019-11-18T10:10:53.353Z</updated>
+    <updated>2019-11-18T10:11:21.237Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Bloom-Filter"><a href="#Bloom-Filter" class="headerlink" title="Bloom Filter"></a>Bloom Filter</h1><h1 id="1-什么是布隆过滤？"><a href="#1-什么是布隆过滤？" class="headerlink" title="1. 什么是布隆过滤？"></a>1. 什么是布隆过滤？</h1><p>布隆过滤是应用于大数据中检测一个数据是否在一个集合中的搜索过滤算法。</p><h1 id="2-应用场景"><a href="#2-应用场景" class="headerlink" title="2. 应用场景"></a>2. 应用场景</h1><p>比如如何在成千上万的网址中快速地识别出恶意的网址，在成千上万的邮件中快速识别出恶意的邮件等</p><h1 id="3-算法简单描述"><a href="#3-算法简单描述" class="headerlink" title="3. 算法简单描述"></a>3. 算法简单描述</h1><p>布隆过滤是在一个bitmap中预先通过k个hash函数插入一些目标数据标记，表示为下图：<br>假设这里的bitmap(所有的位都初始化为0)是有10个bits，有3个hash 函数，有一个目标数据“cat”，那么将cat映射标记到bitmap就是通过3个hash函数分别计算cat的hash值，将hash值转换成bitmap的索引，并将对应索引位置的bit置为1，至此，我们就标记了一个目标数据，目前cat就是我们要过滤的数据，当在很多的数据中要识别出“cat”的时候，就可以通过建立好的这个bitmap来识别了。</p><a id="more"></a><p><img src="http://cdncontribute.geeksforgeeks.org/wp-content/uploads/cat-300x109.png" alt="cat"></p><p>比如，现在有3个数据来了，分别是 “dog”，“cat”，“pig”，我们需要从中识别出“cat”，怎么样识别呢？<br>“dog” =&gt; 映射到 bitmap[1], bitmap[2], bitmap[3], 发现都不是1，则‘dog‘就不是目标数据<br>“cat” =&gt; 映射到 bitmap[1], bitmap[3], bitmap[7],发现所有的都是1， 则 ‘cat’就是目标数据<br>“pig” =&gt; 映射到 bitmap[8], bitmap[9], bitmap[10]，发现都不是1， 则‘pig’就不是目标数据<br>这样通过重新计算hash来和bitmap中的对比就能过滤掉一些目标数据了。<br>但是这里其实还有一个问题，存在一个不同的目标,比如“bird”，这个通过hash函数计算出来的结果可能在bitmap中都为1, 这种情况是无法避免的，我们称之为“误判”，这种识别错误的概率和目标数据，bitmap大小和hash函数的数据是相关联的。</p><h1 id="4-算法推导"><a href="#4-算法推导" class="headerlink" title="4. 算法推导"></a>4. 算法推导</h1><p>布隆过滤的原理大概了解了，但是这里有个问题是，如何确定bitmap的大小已经hash function的多少<br>。。。<br>我们可以通过指定一个错误概率的大小和初始的目标数据来确定 bitmap的大小和hash function 的数量。</p><p>假设有 K个hash函数，M bits的bitmap， N个初始数据, 对于bitmap中的一个特定点，K个hash函数映射到此点的·概率相等，即一个点被函数命中的概率为：</p><script type="math/tex; mode=display">p_1=\frac{1}{M}</script><h1 id="5-代码实现"><a href="#5-代码实现" class="headerlink" title="5. 代码实现"></a>5. 代码实现</h1><p><a href="https://github.com/zhangyunfeng/BloomFilter/tree/master/src" target="_blank" rel="noopener">https://github.com/zhangyunfeng/BloomFilter/tree/master/src</a></p>]]></content>
     
