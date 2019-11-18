@@ -63,7 +63,7 @@
 <meta property="og:description" content="Bloom Filter1. 什么是布隆过滤？布隆过滤是应用于大数据中检测一个数据是否在一个集合中的搜索过滤算法。2. 应用场景比如如何在成千上万的网址中快速地识别出恶意的网址，在成千上万的邮件中快速识别出恶意的邮件等3. 算法简单描述布隆过滤是在一个bitmap中预先通过k个hash函数插入一些目标数据标记，表示为下图：假设这里的bitmap(所有的位都初始化为0)是有10个bits，有3个ha">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://cdncontribute.geeksforgeeks.org/wp-content/uploads/cat-300x109.png">
-<meta property="og:updated_time" content="2019-11-18T11:19:59.054Z">
+<meta property="og:updated_time" content="2019-11-18T11:53:00.226Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="布隆过滤（Bloom Filter）">
 <meta name="twitter:description" content="Bloom Filter1. 什么是布隆过滤？布隆过滤是应用于大数据中检测一个数据是否在一个集合中的搜索过滤算法。2. 应用场景比如如何在成千上万的网址中快速地识别出恶意的网址，在成千上万的邮件中快速识别出恶意的邮件等3. 算法简单描述布隆过滤是在一个bitmap中预先通过k个hash函数插入一些目标数据标记，表示为下图：假设这里的bitmap(所有的位都初始化为0)是有10个bits，有3个ha">
@@ -255,7 +255,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2019-11-18 04:44:34 / 修改时间：06:19:59" itemprop="dateCreated datePublished" datetime="2019-11-18T04:44:34-05:00">2019-11-18</time>
+              <time title="创建时间：2019-11-18 04:44:34 / 修改时间：06:53:00" itemprop="dateCreated datePublished" datetime="2019-11-18T04:44:34-05:00">2019-11-18</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -309,7 +309,7 @@
 <script type="math/tex; mode=display">p_6=\left(1-\left(1-\frac{1}{M}\right)^{KN}\right)^K</script><p>因为目标数据命中的概率为1，所以当<script type="math/tex">p_6</script>越小的时候，也就表示别的数据被命中的概率越低。<br>根据 <script type="math/tex">1-\frac{1}{m}\approx\ell^{-\frac{1}{m}}</script>可以将<script type="math/tex">p_6</script>简化为：<script type="math/tex">\ell^{-\frac{KN}{M}}</script></p>
 <script type="math/tex; mode=display">p_6\approx\left(1-\ell^{-\frac{KN}{M}}\right)^K</script><p>因为<script type="math/tex">K</script>为正数，取其值为<script type="math/tex">\frac{M}{N}\ln2</script>， 则</p>
 <script type="math/tex; mode=display">p_6\approx\left(1-\ell^{-\frac{\left(\frac{M}{N}\ln2\right)N}{M}}\right)^{\frac{M}{N}\ln2}</script><script type="math/tex; mode=display">\ln{p_6}\approx{\frac{M}{N}\ln2}\times\ln\left(1-\ell^{-\frac{\left(\frac{M}{N}\ln2\right)N}{M}}\right)</script><script type="math/tex; mode=display">\ln{p_6}\approx{\frac{M}{N}\ln2}\times\ln\left(1-\ell^{-\ln2}\right)</script><script type="math/tex; mode=display">\ln{p_6}\approx{\frac{M}{N}\ln2}\times\ln\left(1-\frac{1}{\ell^{\ln2}}\right)</script><script type="math/tex; mode=display">\ln{p_6}\approx\frac{M}{N}\ln2\times\ln\frac{1}{2}</script><script type="math/tex; mode=display">\ln{p_6}\approx\frac{M}{N}\ln2\times{\left(-\ln2\right)}</script><script type="math/tex; mode=display">\ln{p_6}\approx{-\frac{M}{N}{\left(\ln2\right)}^2}</script><p>所以最终</p>
-<script type="math/tex; mode=display">M = -\frac{\ln{p_6} \times N}{ \left(\ln2\right)^2 }</script><p>所以当我们希望命中的概率是  0.001,  初始化插入了 10000 条数据， 那么<script type="math/tex">M</script> 就等于 </p>
+<script type="math/tex; mode=display">M = -\frac{\ln{p_6} \times N}{ \left(\ln2\right)^2 }</script><p>所以当我们希望误判命中的概率是  0.001,  初始化插入了 10000 条数据， 那么<script type="math/tex">M</script> 就等于 </p>
 <pre><code>Math.log(0.001)*10000 / Math.pow(Math.log(2), 2) * -1 // output: 143775.87566051158
 </code></pre><p>那么 <script type="math/tex">K</script>就等于</p>
 <pre><code>143776 / 10000 * Math.log(2) // output: 9.965... 也就是需要10个hash函数
