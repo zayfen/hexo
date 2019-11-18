@@ -2,6 +2,8 @@
 ./node_modules/.bin/hexo g
 ./node_modules/.bin/hexo d
 
+cp -r Assets ./public/Assets
+
 git add .
 git commit -m "chore: upload repo"
 git push
