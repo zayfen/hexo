@@ -54,22 +54,23 @@
   };
 </script>
 
-  <meta name="description" content="漂亮打印git loggit log --graph --pretty=format:&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset&apos; --abbrev-commit --date=relative添加修改或者新文件到待commit队列### add 的文件是支持正则匹配的git add &amp;lt;file(s)&amp;gt;###">
-<meta name="keywords" content="git">
+  <meta name="description" content="背景： 一些jpeg图片，在pc中用图片查看器打开是正的，但是放到浏览器中，就横着了；有一个上传人脸的需求，用手机拍完人脸照片，在应用中显示所拍的照片总是横着的。今天，我们就来解决这个问题。为什么JEPG图片会横着显示？首先，我们看一个github上的一个关于此问题的issue：https://github.com/GoogleChromeLabs/squoosh/issues/299这个问题讨论">
+<meta name="keywords" content="jpg,image">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git 常用操作">
-<meta property="og:url" content="https://zayfen.com/2019/11/13/a43fd1c509d10e4d08fc1f789d58cb23/index.html">
+<meta property="og:title" content="解决JPEG图片显示方向不正确的问题">
+<meta property="og:url" content="https://zayfen.com/2019/11/17/d3c4828a43569ce3ca593dc66b1eb668/index.html">
 <meta property="og:site_name" content="Z . A . Y . F . E . N">
-<meta property="og:description" content="漂亮打印git loggit log --graph --pretty=format:&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset&apos; --abbrev-commit --date=relative添加修改或者新文件到待commit队列### add 的文件是支持正则匹配的git add &amp;lt;file(s)&amp;gt;###">
+<meta property="og:description" content="背景： 一些jpeg图片，在pc中用图片查看器打开是正的，但是放到浏览器中，就横着了；有一个上传人脸的需求，用手机拍完人脸照片，在应用中显示所拍的照片总是横着的。今天，我们就来解决这个问题。为什么JEPG图片会横着显示？首先，我们看一个github上的一个关于此问题的issue：https://github.com/GoogleChromeLabs/squoosh/issues/299这个问题讨论">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://res.cloudinary.com/zayfen/image/upload/v1568171685/img/l8yeyxvtfw6kplg1ci67.png">
-<meta property="og:updated_time" content="2019-11-15T06:54:20.351Z">
+<meta property="og:image" content="https://res.cloudinary.com/zayfen/image/upload/v1570695926/img/ibvnab25sqxnz4ahapu6.png">
+<meta property="og:image" content="https://res.cloudinary.com/zayfen/image/upload/v1571232577/img/y8zxcjibljhul5nr1cab.png">
+<meta property="og:updated_time" content="2019-11-18T07:34:38.739Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git 常用操作">
-<meta name="twitter:description" content="漂亮打印git loggit log --graph --pretty=format:&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset&apos; --abbrev-commit --date=relative添加修改或者新文件到待commit队列### add 的文件是支持正则匹配的git add &amp;lt;file(s)&amp;gt;###">
-<meta name="twitter:image" content="https://res.cloudinary.com/zayfen/image/upload/v1568171685/img/l8yeyxvtfw6kplg1ci67.png">
+<meta name="twitter:title" content="解决JPEG图片显示方向不正确的问题">
+<meta name="twitter:description" content="背景： 一些jpeg图片，在pc中用图片查看器打开是正的，但是放到浏览器中，就横着了；有一个上传人脸的需求，用手机拍完人脸照片，在应用中显示所拍的照片总是横着的。今天，我们就来解决这个问题。为什么JEPG图片会横着显示？首先，我们看一个github上的一个关于此问题的issue：https://github.com/GoogleChromeLabs/squoosh/issues/299这个问题讨论">
+<meta name="twitter:image" content="https://res.cloudinary.com/zayfen/image/upload/v1570695926/img/ibvnab25sqxnz4ahapu6.png">
 
-<link rel="canonical" href="https://zayfen.com/2019/11/13/a43fd1c509d10e4d08fc1f789d58cb23/">
+<link rel="canonical" href="https://zayfen.com/2019/11/17/d3c4828a43569ce3ca593dc66b1eb668/">
 
 
 <script id="page-configurations">
@@ -79,11 +80,11 @@
     isHome: false,
     isPost: true,
     isPage: false,
-    isArchive: true
+    isArchive: false
   };
 </script>
 
-  <title>Git 常用操作 | Z . A . Y . F . E . N</title>
+  <title>解决JPEG图片显示方向不正确的问题 | Z . A . Y . F . E . N</title>
   
 
 
@@ -231,7 +232,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zayfen.com/2019/11/13/a43fd1c509d10e4d08fc1f789d58cb23/">
+    <link itemprop="mainEntityOfPage" href="https://zayfen.com/2019/11/17/d3c4828a43569ce3ca593dc66b1eb668/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -244,7 +245,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          Git 常用操作
+          解决JPEG图片显示方向不正确的问题
         </h2>
 
         <div class="post-meta">
@@ -253,30 +254,24 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2019-11-14 00:00:00" itemprop="dateCreated datePublished" datetime="2019-11-14T00:00:00-05:00">2019-11-14</time>
+              <time title="创建时间：2019-11-18 00:00:00 / 修改时间：02:34:38" itemprop="dateCreated datePublished" datetime="2019-11-18T00:00:00-05:00">2019-11-18</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-15 01:54:20" itemprop="dateModified" datetime="2019-11-15T01:54:20-05:00">2019-11-15</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
+                  <a href="/categories/web/" itemprop="url" rel="index">
+                    <span itemprop="name">web</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/2019/11/13/a43fd1c509d10e4d08fc1f789d58cb23/" class="post-meta-item leancloud_visitors" data-flag-title="Git 常用操作" title="阅读次数">
+            <span id="/2019/11/17/d3c4828a43569ce3ca593dc66b1eb668/" class="post-meta-item leancloud_visitors" data-flag-title="解决JPEG图片显示方向不正确的问题" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -300,34 +295,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><img src="https://res.cloudinary.com/zayfen/image/upload/v1568171685/img/l8yeyxvtfw6kplg1ci67.png" alt="git flow"></p><h3 id="漂亮打印git-log"><a href="#漂亮打印git-log" class="headerlink" title="漂亮打印git log"></a>漂亮打印git log</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">log</span> --graph --pretty=format:<span class="string">'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset'</span> --abbrev-commit --date=relative</span><br></pre></td></tr></table></figure><h3 id="添加修改或者新文件到待commit队列"><a href="#添加修改或者新文件到待commit队列" class="headerlink" title="添加修改或者新文件到待commit队列"></a>添加修改或者新文件到待commit队列</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment">### add 的文件是支持正则匹配的</span></span><br><span class="line">git add &lt;file(s)&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">### add all changes to commiter queue</span></span><br><span class="line">git add .</span><br><span class="line"></span><br><span class="line"><span class="comment">### 查看某个commit的修改内容</span></span><br><span class="line">git show &lt;commit-id&gt;</span><br><span class="line">git diff &lt;commit-id&gt;^!</span><br><span class="line"><span class="comment">##### e.g. git show d34ff657f5   git diff d34ff657f5^!</span></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line"><span class="comment">### 提交已添加的文件到本地仓库并创建一个新的版本</span></span><br><span class="line">```sh</span><br><span class="line">git commit -m <span class="string">"commit message"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### also can combine git add &amp; git commit in one command</span></span><br><span class="line">git commit -m <span class="string">"commit message"</span> -a</span><br></pre></td></tr></table></figure><a id="more"></a>
+        <p>背景： 一些jpeg图片，在pc中用图片查看器打开是正的，但是放到浏览器中，就横着了；有一个上传人脸的需求，用手机拍完人脸照片，在应用中显示所拍的照片总是横着的。今天，我们就来解决这个问题。</p><h3 id="为什么JEPG图片会横着显示？"><a href="#为什么JEPG图片会横着显示？" class="headerlink" title="为什么JEPG图片会横着显示？"></a>为什么JEPG图片会横着显示？</h3><p>首先，我们看一个github上的一个关于此问题的issue：<br><a href="https://github.com/GoogleChromeLabs/squoosh/issues/299" target="_blank" rel="noopener">https://github.com/GoogleChromeLabs/squoosh/issues/299</a><br>这个问题讨论的是chrome显示jpeg图片，旋转了90度的问题。<br>为什么会旋转呢？因为JEPG图片的EXIF data中有一个控制旋转的属性<strong>Orientation</strong>，但是有一些应用程序显示图片的时候会忽略这个属性，就导致图片在一些应用程序中显示出来和原本的方向不一致。</p><a id="more"></a>
 
+<p>这里有一张JEPG图片的EXIF数据（可以看到第一个属性就是 Orientation）：<br><img src="https://res.cloudinary.com/zayfen/image/upload/v1570695926/img/ibvnab25sqxnz4ahapu6.png" alt="JPEG图片的EXIF数据"></p>
+<h3 id="让图片永远都正着显示"><a href="#让图片永远都正着显示" class="headerlink" title="让图片永远都正着显示"></a>让图片永远都正着显示</h3><p>因为 JPEG的 <strong>Orientation</strong> 属性被忽略了，那么当检测到图片Orientation的值表示需要旋转的时候，我们就主动将JPEEG图片旋转，并且改正或者去掉新图片的<strong>Orientation</strong> 字段。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 使用exif-js 这个库去获取jpeg图片的EXIF元数据 (https://github.com/exif-js/exif-js)</span></span><br><span class="line"><span class="comment">// 旋转图片的工具,(旋转之后的图片的EXIF data被移除)</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">import</span> * <span class="keyword">as</span> EXIF <span class="keyword">from</span> <span class="string">'exif-js'</span>  <span class="comment">// npm install exif-js</span></span><br><span class="line"> </span><br><span class="line"> <span class="comment">// &lt;img id="show-image" /&gt;,用来显示旋转后的图像</span></span><br><span class="line"> <span class="keyword">var</span> image = <span class="built_in">document</span>.getElementById(<span class="string">'show-image'</span>) </span><br><span class="line"> </span><br><span class="line"> <span class="comment">// &lt;input id="image-input" type="file" name="imag" /&gt;</span></span><br><span class="line"> <span class="keyword">var</span> imageInput = <span class="built_in">document</span>.getElementById(<span class="string">'image-input'</span>) </span><br><span class="line"> imageInput.onchange = <span class="function"><span class="keyword">function</span> (<span class="params">evt</span>) </span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">"onchange: ..."</span>)</span><br><span class="line">   <span class="keyword">let</span> file = evt.target.files[<span class="number">0</span>]</span><br><span class="line">   rotateImage(file).then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">     image.src = data.base64</span><br><span class="line">   &#125;)</span><br><span class="line"> &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">fileToBinary</span> (<span class="params">file</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// 读取图片数据</span></span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> reader = <span class="keyword">new</span> FileReader()</span><br><span class="line">        reader.onload = <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">if</span> (<span class="keyword">this</span>.result <span class="keyword">instanceof</span> <span class="built_in">ArrayBuffer</span>) &#123;</span><br><span class="line">            <span class="comment">// resolve(new Uint8Array(reader.result))</span></span><br><span class="line">            resolve(<span class="keyword">this</span>.result)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        reader.readAsArrayBuffer(file)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将Blob 对象以fileName文件名下载下来</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">downloadBlob</span> (<span class="params">blob, fileName</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">const</span> url = <span class="built_in">window</span>.URL.createObjectURL(blob)</span><br><span class="line">      <span class="keyword">const</span> link = <span class="built_in">document</span>.createElement(<span class="string">'a'</span>)</span><br><span class="line">      link.href = url</span><br><span class="line">      link.setAttribute(<span class="string">'download'</span>, fileName)</span><br><span class="line">      <span class="built_in">document</span>.body.appendChild(link)</span><br><span class="line">      link.click()</span><br><span class="line">      <span class="built_in">document</span>.body.removeChild(link) <span class="comment">// 下载完成移除元素</span></span><br><span class="line">      <span class="built_in">window</span>.URL.revokeObjectURL(url) <span class="comment">// 释放掉blob对象      </span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">rotateImage</span>(<span class="params">file</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        fileToBinary(file).then(<span class="function">(<span class="params">binaryFile</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">let</span> meta = EXIF.readFromBinaryFile(binaryFile)</span><br><span class="line">          <span class="keyword">let</span> orientation = meta.Orientation</span><br><span class="line">          <span class="keyword">let</span> formData = <span class="keyword">new</span> FormData()</span><br><span class="line">          <span class="keyword">let</span> rotationMap = &#123; <span class="number">3</span>: <span class="number">180</span>, <span class="number">6</span>: <span class="number">90</span>, <span class="number">8</span>: <span class="number">270</span> &#125;</span><br><span class="line"></span><br><span class="line">          <span class="comment">// 不需要旋转</span></span><br><span class="line">          <span class="keyword">if</span> (meta === <span class="literal">false</span> || !rotationMap[orientation]) &#123;</span><br><span class="line">            formData.append(<span class="string">'file'</span>, file, <span class="string">'face.jpeg'</span>)</span><br><span class="line">            <span class="keyword">return</span> resolve(&#123; <span class="attr">base64</span>: <span class="string">''</span>, <span class="attr">formData</span>: formData, <span class="attr">rotated</span>: <span class="literal">false</span> &#125;)</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          <span class="keyword">let</span> rotationDegree = <span class="number">0</span></span><br><span class="line">          <span class="keyword">let</span> targetWidth = <span class="number">200</span></span><br><span class="line"></span><br><span class="line">          rotationDegree = rotationMap[orientation] || <span class="number">0</span></span><br><span class="line"></span><br><span class="line">          <span class="keyword">let</span> image = <span class="built_in">document</span>.createElement(<span class="string">'img'</span>)</span><br><span class="line">          image.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> canvas = <span class="built_in">document</span>.createElement(<span class="string">'canvas'</span>)</span><br><span class="line">            <span class="keyword">let</span> ctx = canvas.getContext(<span class="string">'2d'</span>)</span><br><span class="line">            </span><br><span class="line"></span><br><span class="line">            <span class="keyword">let</span> rate = <span class="built_in">Math</span>.min(targetWidth / image.width, <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">let</span> imageWidth = image.width * rate</span><br><span class="line">            <span class="keyword">let</span> imageHeight = image.height * rate</span><br><span class="line">            <span class="keyword">if</span> (rotationDegree === <span class="number">90</span> || rotationDegree === <span class="number">270</span>) &#123;</span><br><span class="line">              canvas.width = imageHeight</span><br><span class="line">              canvas.height = imageWidth</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">              canvas.width = image.width</span><br><span class="line">              canvas.height = image.height</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            ctx.fillStyle = <span class="string">'rgba(255, 255, 255, 0)'</span></span><br><span class="line"></span><br><span class="line">            ctx.clearRect(<span class="number">0</span>, <span class="number">0</span>, canvas.width, canvas.height)</span><br><span class="line"></span><br><span class="line">            ctx.save()</span><br><span class="line">            ctx.fillRect(<span class="number">0</span>, <span class="number">0</span>, canvas.width, canvas.height)</span><br><span class="line">            ctx.translate(canvas.width / <span class="number">2</span>, canvas.height / <span class="number">2</span>)</span><br><span class="line">            ctx.rotate(rotationDegree * <span class="built_in">Math</span>.PI / <span class="number">180</span>)</span><br><span class="line">            <span class="keyword">if</span> (rotationDegree === <span class="number">90</span> || rotationDegree === <span class="number">270</span>) &#123;</span><br><span class="line">              ctx.drawImage(image, -canvas.height / <span class="number">2</span>, -canvas.width / <span class="number">2</span> + (canvas.width - imageHeight) / <span class="number">2</span>, imageWidth, imageHeight)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">              ctx.drawImage(image, -canvas.width / <span class="number">2</span>, -canvas.height / <span class="number">2</span>, imageWidth, imageHeight)</span><br><span class="line">            &#125;</span><br><span class="line">            ctx.restore()</span><br><span class="line"></span><br><span class="line">            canvas.toBlob(<span class="function">(<span class="params">blob</span>) =&gt;</span> &#123;</span><br><span class="line">              formData.append(<span class="string">'file'</span>, blob, <span class="string">'face.jpeg'</span>)</span><br><span class="line">              <span class="keyword">let</span> base64 = canvas.toDataURL(<span class="string">'image/jpeg'</span>, <span class="number">0.8</span>)</span><br><span class="line">              <span class="built_in">console</span>.log(<span class="string">'rotated image  blob: '</span>, blob)</span><br><span class="line">              <span class="comment">// downloadBlob(blob, '123.jpg')  // 下载图片</span></span><br><span class="line">              resolve(&#123; <span class="attr">base64</span>: base64, <span class="attr">rotated</span>: <span class="literal">true</span>, <span class="attr">formData</span>: formData &#125;)</span><br><span class="line">            &#125;, <span class="string">'image/jpeg'</span>, <span class="number">0.8</span>)</span><br><span class="line">          &#125;</span><br><span class="line">          image.src = URL.createObjectURL(file)</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
+<p><strong>例子效果：</strong><br><img src="https://res.cloudinary.com/zayfen/image/upload/v1571232577/img/y8zxcjibljhul5nr1cab.png" alt="旋转图片的例子"></p>
 
-
-<h3 id="推送到远程仓库"><a href="#推送到远程仓库" class="headerlink" title="推送到远程仓库"></a>推送到远程仓库</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment">### origin 是仓库名（默认就是origin），branch_name 是分支名</span></span><br><span class="line">git push origin &lt;branch-name&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="仓库"><a href="#仓库" class="headerlink" title="仓库"></a>仓库</h2><h3 id="创建一个仓库"><a href="#创建一个仓库" class="headerlink" title="创建一个仓库"></a>创建一个仓库</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">### from existed repo </span></span><br><span class="line">git <span class="built_in">clone</span> &lt;repo-url&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">### create a new local repo</span></span><br><span class="line">git init [&lt;<span class="built_in">local</span>-directory&gt;]</span><br></pre></td></tr></table></figure>
-
-<h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><h3 id="查看分支"><a href="#查看分支" class="headerlink" title="查看分支"></a>查看分支</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment">### 查看本地分支</span></span><br><span class="line">git branch</span><br><span class="line"></span><br><span class="line"><span class="comment">### 查看本地和远端的分支</span></span><br><span class="line">git branch -va</span><br><span class="line"></span><br><span class="line"><span class="comment">### 查看本地分支和远程分支的对应关系</span></span><br><span class="line">git remote show &lt;repo-name&gt; <span class="comment">## git remote show origin</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment">### 仅仅创建一个新分支在本地</span></span><br><span class="line">git checkout &lt;new-branch-name&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">### 创建一个分支，并且将工作区切换到新创建的分支</span></span><br><span class="line">git checkout -b &lt;new-branch-name&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">### 拉取远程分支到本地，并切换分支</span></span><br><span class="line">git checkout -b &lt;<span class="built_in">local</span>-branch-name&gt; &lt;repo-name&gt;/&lt;remote-branch-name&gt;</span><br><span class="line"><span class="comment">#### e.g.: git checkout -b test origin/test</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### 把远程分支拉取到本地，不切换分支 (--tranck 选项现在是默认的了)</span></span><br><span class="line">git branch &lt;<span class="built_in">local</span>-branch-name&gt; &lt;repo-name&gt;/&lt;remote-branch-name&gt; [--track]</span><br><span class="line"><span class="comment">#### e.g.: git branch test origin/test</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="将本地分支推送到远程仓库"><a href="#将本地分支推送到远程仓库" class="headerlink" title="将本地分支推送到远程仓库"></a>将本地分支推送到远程仓库</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">## 远程分支不存在的情况</span></span><br><span class="line"><span class="comment">### remote-name: 通常是 origin； local-branch-name: 本地分支名； remote-branch-name: 要创建的远程分支名</span></span><br><span class="line"> git push &lt;remote-name&gt; &lt;<span class="built_in">local</span>-branch-name&gt;:&lt;remote-branch-name&gt;</span><br><span class="line"> </span><br><span class="line"> <span class="comment">## 远程分支存在的情况（但是没有关联）</span></span><br><span class="line"> <span class="comment">### 首先关联本地分支和远程分支</span></span><br><span class="line"> git push -u &lt;remote-name&gt; &lt;branch-name&gt;</span><br><span class="line"> <span class="comment">#### or</span></span><br><span class="line"> git branch --<span class="built_in">set</span>-upstream-to=&lt;remote-name&gt;/&lt;remote-branch&gt; &lt;<span class="built_in">local</span>-branch&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="更新分支"><a href="#更新分支" class="headerlink" title="更新分支"></a>更新分支</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">### 跟新本地分支</span></span><br><span class="line">git pull</span><br><span class="line"></span><br><span class="line"><span class="comment">### 更新远程分支信息</span></span><br><span class="line">git remote update</span><br><span class="line"></span><br><span class="line"><span class="comment">### 使用远程的代码强制更新本地的代码 （强制本地代码和线上的一致）v1.0</span></span><br><span class="line">git checkout .</span><br><span class="line">git pull</span><br><span class="line"></span><br><span class="line"><span class="comment">### 使用远程的分支代码强制更新本地的代码（强制本地代码和线上的一致）v2.0</span></span><br><span class="line">git fetch --all</span><br><span class="line">git reset --hard origin/master</span><br><span class="line">git pull</span><br></pre></td></tr></table></figure>
-
-<h2 id="Tag"><a href="#Tag" class="headerlink" title="Tag"></a>Tag</h2><h3 id="创建tag"><a href="#创建tag" class="headerlink" title="创建tag"></a>创建tag</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git tag -a &lt;tag-name&gt; -m &lt;tag-message&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="删除tag"><a href="#删除tag" class="headerlink" title="删除tag"></a>删除tag</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">### 删除本地tag</span></span><br><span class="line">git tag -d &lt;tag-name&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">### 删除远端tag</span></span><br><span class="line">git push --delete &lt;repo-name&gt; &lt;tag-name&gt;</span><br><span class="line">or </span><br><span class="line">git push &lt;repo-name&gt; :refs/tags/&lt;tag-name&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">### e.g.: git push --delete origin tag-r0</span></span><br><span class="line"><span class="comment">### e.g.: git push origin :refs/tags/tag-r0</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="查看tag"><a href="#查看tag" class="headerlink" title="查看tag"></a>查看tag</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">### 查看所有的tag</span></span><br><span class="line">git tag</span><br><span class="line"></span><br><span class="line"><span class="comment">### 查看单个tag</span></span><br><span class="line">git tag -l &lt;tag-name&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">### 查看一个tag的具体信息</span></span><br><span class="line">git show &lt;tag-name&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="推送tag到远程"><a href="#推送tag到远程" class="headerlink" title="推送tag到远程"></a>推送tag到远程</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment">## push single tag</span></span><br><span class="line">git push &lt;remote-name&gt; &lt;tag-name&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">## push all tags (not recommended)</span></span><br><span class="line">git push --tags</span><br></pre></td></tr></table></figure>
-
-<h3 id="撤销工作目录所有的更改（包括新创建的文件）"><a href="#撤销工作目录所有的更改（包括新创建的文件）" class="headerlink" title="撤销工作目录所有的更改（包括新创建的文件）"></a>撤销工作目录所有的更改（包括新创建的文件）</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">git reset --hard <span class="comment"># removes staged and working directory changes</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## !! be very careful with these !!</span></span><br><span class="line"><span class="comment">## you may end up deleting what you don't want to</span></span><br><span class="line"><span class="comment">## read comments and manual.</span></span><br><span class="line">git clean -f -d <span class="comment"># remove untracked</span></span><br><span class="line">git clean -f -x -d <span class="comment"># CAUTION: as above but removes ignored files like config.</span></span><br><span class="line">git clean -fxd :/ <span class="comment"># CAUTION: as above, but cleans untracked and ignored files through the entire repo (without :/, the operation affects only the current directory)</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="git仓库存储账号密码，不用每次都输入账号密码（针对https协议的仓库地址）"><a href="#git仓库存储账号密码，不用每次都输入账号密码（针对https协议的仓库地址）" class="headerlink" title="git仓库存储账号密码，不用每次都输入账号密码（针对https协议的仓库地址）"></a>git仓库存储账号密码，不用每次都输入账号密码（针对https协议的仓库地址）</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">$ git config credential.helper store</span><br><span class="line">$ git push https://github.com/owner/repo.git</span><br><span class="line"></span><br><span class="line">Username <span class="keyword">for</span> <span class="string">'https://github.com'</span>: &lt;USERNAME&gt;</span><br><span class="line">Password <span class="keyword">for</span> <span class="string">'https://USERNAME@github.com'</span>: &lt;PASSWORD&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">## 执行完上面的命令之后，以后所有的push都不再需要提交代码</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 如果想让此功能有个时间限制，可以这样</span></span><br><span class="line"></span><br><span class="line">git config --global credential.helper <span class="string">'cache --timeout 7200'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 7200秒后失效，push需要重新输入账号密码</span></span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -358,21 +333,22 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/git/" rel="tag"><i class="fa fa-tag"></i> git</a>
+              <a href="/tags/jpg/" rel="tag"><i class="fa fa-tag"></i> jpg</a>
+              <a href="/tags/image/" rel="tag"><i class="fa fa-tag"></i> image</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/13/a43fd1c509d10e4d08fc1f789d58cb23/" rel="next" title="Git 常用操作">
+                  <i class="fa fa-chevron-left"></i> Git 常用操作
+                </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/11/17/d3c4828a43569ce3ca593dc66b1eb668/" rel="prev" title="解决JPEG图片显示方向不正确的问题">
-                  解决JPEG图片显示方向不正确的问题 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -416,7 +392,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#漂亮打印git-log"><span class="nav-number">1.</span> <span class="nav-text">漂亮打印git log</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加修改或者新文件到待commit队列"><span class="nav-number">2.</span> <span class="nav-text">添加修改或者新文件到待commit队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推送到远程仓库"><span class="nav-number">3.</span> <span class="nav-text">推送到远程仓库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#仓库"><span class="nav-number"></span> <span class="nav-text">仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建一个仓库"><span class="nav-number">1.</span> <span class="nav-text">创建一个仓库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分支"><span class="nav-number"></span> <span class="nav-text">分支</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看分支"><span class="nav-number">1.</span> <span class="nav-text">查看分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建分支"><span class="nav-number">2.</span> <span class="nav-text">创建分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将本地分支推送到远程仓库"><span class="nav-number">3.</span> <span class="nav-text">将本地分支推送到远程仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新分支"><span class="nav-number">4.</span> <span class="nav-text">更新分支</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tag"><span class="nav-number"></span> <span class="nav-text">Tag</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建tag"><span class="nav-number">1.</span> <span class="nav-text">创建tag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除tag"><span class="nav-number">2.</span> <span class="nav-text">删除tag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看tag"><span class="nav-number">3.</span> <span class="nav-text">查看tag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推送tag到远程"><span class="nav-number">4.</span> <span class="nav-text">推送tag到远程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#撤销工作目录所有的更改（包括新创建的文件）"><span class="nav-number">5.</span> <span class="nav-text">撤销工作目录所有的更改（包括新创建的文件）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git仓库存储账号密码，不用每次都输入账号密码（针对https协议的仓库地址）"><span class="nav-number">6.</span> <span class="nav-text">git仓库存储账号密码，不用每次都输入账号密码（针对https协议的仓库地址）</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么JEPG图片会横着显示？"><span class="nav-number">1.</span> <span class="nav-text">为什么JEPG图片会横着显示？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#让图片永远都正着显示"><span class="nav-number">2.</span> <span class="nav-text">让图片永远都正着显示</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
