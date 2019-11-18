@@ -66,7 +66,7 @@
 <meta property="og:image" content="https://www.geeksforgeeks.org/wp-content/uploads/gq/2014/01/binary-search1.png">
 <meta property="og:image" content="https://res.cloudinary.com/zayfen/image/upload/v1574065062/img/jrebsdjju8ez4ggz3lrn.png">
 <meta property="og:image" content="https://res.cloudinary.com/zayfen/image/upload/v1574065247/img/oo88hrbld592stbd6lq2.png">
-<meta property="og:updated_time" content="2019-11-18T08:36:43.614Z">
+<meta property="og:updated_time" content="2019-11-18T08:49:18.926Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搜索算法">
 <meta name="twitter:description" content="线性搜索线性搜索也是最简单的搜索算法，简单来说，就是对一个数组或者顺序容器，进行从头到尾的遍历，一个一个的找到目标元素// 简单的线性搜索算法实现template &amp;lt;typename T&amp;gt;int linear_search(const std::vector&amp;lt;T&amp;gt;&amp;amp; vec, const T&amp;amp; x)&amp;#123;  int index = -1;  for(c">
@@ -258,7 +258,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2019-11-18 03:33:55 / 修改时间：03:36:43" itemprop="dateCreated datePublished" datetime="2019-11-18T03:33:55-05:00">2019-11-18</time>
+              <time title="创建时间：2019-11-18 03:33:55 / 修改时间：03:49:18" itemprop="dateCreated datePublished" datetime="2019-11-18T03:33:55-05:00">2019-11-18</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -320,7 +320,7 @@
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">position</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&amp; vec, <span class="keyword">const</span> T&amp; x, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> low + (high - low) * ((x - vec.at(low)) / (vec.at(high) - vec.at(low)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">interpolation_search</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&amp; vec, <span class="keyword">const</span> T&amp; x)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> high = vec.size() - <span class="number">1</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">while</span> (low &lt;= high &amp;&amp; x &gt;= vec.at(low) &amp;&amp; x &lt;= vec.at(high)) &#123;</span><br><span class="line">    <span class="keyword">int</span> pos = position(vec, x, low, high);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"position is %d \n"</span>, pos);</span><br><span class="line">    <span class="keyword">if</span> (vec.at(pos) == x) &#123;</span><br><span class="line">      <span class="keyword">return</span> pos;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (vec.at(pos) &lt; x) &#123;</span><br><span class="line">      low = pos + <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    high = pos - <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>算法分析：<br>如果顺序容器中的元素是均匀分布的，那么就是时间复杂度就是 $$O(log log n))$$, 最坏的情况是 O(n)<div class="pdf" target="../../Assets/p550-perl.pdf" height></div>
+<li>算法分析：<br>如果顺序容器中的元素是均匀分布的，那么就是时间复杂度就是 O(log log n)), 最坏的情况是 O(n)<div class="pdf" target="./Assets/p550-perl.pdf" height></div>
 </li>
 </ul>
 
