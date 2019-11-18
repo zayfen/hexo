@@ -54,22 +54,25 @@
   };
 </script>
 
-  <meta name="description" content="Bloom Filter1. 什么是布隆过滤？布隆过滤是应用于大数据中检测一个数据是否在一个集合中的搜索过滤算法。2. 应用场景比如如何在成千上万的网址中快速地识别出恶意的网址，在成千上万的邮件中快速识别出恶意的邮件等3. 算法简单描述布隆过滤是在一个bitmap中预先通过k个hash函数插入一些目标数据标记，表示为下图：假设这里的bitmap(所有的位都初始化为0)是有10个bits，有3个ha">
-<meta name="keywords" content="algorithm,bloom filter">
+  <meta name="description" content="线性搜索线性搜索也是最简单的搜索算法，简单来说，就是对一个数组或者顺序容器，进行从头到尾的遍历，一个一个的找到目标元素// 简单的线性搜索算法实现template &amp;lt;typename T&amp;gt;int linear_search(const std::vector&amp;lt;T&amp;gt;&amp;amp; vec, const T&amp;amp; x)&amp;#123;  int index = -1;  for(c">
+<meta name="keywords" content="algorithm,search">
 <meta property="og:type" content="article">
-<meta property="og:title" content="布隆过滤（Bloom Filter）">
-<meta property="og:url" content="https://zayfen.com/2019/11/18/bbc765cf2f120d4208792bc259324906/index.html">
+<meta property="og:title" content="搜索算法">
+<meta property="og:url" content="https://zayfen.com/2019/11/18/b7d273159f6becc31fc5174ea7582c5e/index.html">
 <meta property="og:site_name" content="Z . A . Y . F . E . N">
-<meta property="og:description" content="Bloom Filter1. 什么是布隆过滤？布隆过滤是应用于大数据中检测一个数据是否在一个集合中的搜索过滤算法。2. 应用场景比如如何在成千上万的网址中快速地识别出恶意的网址，在成千上万的邮件中快速识别出恶意的邮件等3. 算法简单描述布隆过滤是在一个bitmap中预先通过k个hash函数插入一些目标数据标记，表示为下图：假设这里的bitmap(所有的位都初始化为0)是有10个bits，有3个ha">
+<meta property="og:description" content="线性搜索线性搜索也是最简单的搜索算法，简单来说，就是对一个数组或者顺序容器，进行从头到尾的遍历，一个一个的找到目标元素// 简单的线性搜索算法实现template &amp;lt;typename T&amp;gt;int linear_search(const std::vector&amp;lt;T&amp;gt;&amp;amp; vec, const T&amp;amp; x)&amp;#123;  int index = -1;  for(c">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://cdncontribute.geeksforgeeks.org/wp-content/uploads/cat-300x109.png">
-<meta property="og:updated_time" content="2019-11-18T11:01:46.988Z">
+<meta property="og:image" content="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/Linear.png">
+<meta property="og:image" content="https://www.geeksforgeeks.org/wp-content/uploads/gq/2014/01/binary-search1.png">
+<meta property="og:image" content="https://res.cloudinary.com/zayfen/image/upload/v1574065062/img/jrebsdjju8ez4ggz3lrn.png">
+<meta property="og:image" content="https://res.cloudinary.com/zayfen/image/upload/v1574065247/img/oo88hrbld592stbd6lq2.png">
+<meta property="og:updated_time" content="2019-11-18T08:50:21.298Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="布隆过滤（Bloom Filter）">
-<meta name="twitter:description" content="Bloom Filter1. 什么是布隆过滤？布隆过滤是应用于大数据中检测一个数据是否在一个集合中的搜索过滤算法。2. 应用场景比如如何在成千上万的网址中快速地识别出恶意的网址，在成千上万的邮件中快速识别出恶意的邮件等3. 算法简单描述布隆过滤是在一个bitmap中预先通过k个hash函数插入一些目标数据标记，表示为下图：假设这里的bitmap(所有的位都初始化为0)是有10个bits，有3个ha">
-<meta name="twitter:image" content="http://cdncontribute.geeksforgeeks.org/wp-content/uploads/cat-300x109.png">
+<meta name="twitter:title" content="搜索算法">
+<meta name="twitter:description" content="线性搜索线性搜索也是最简单的搜索算法，简单来说，就是对一个数组或者顺序容器，进行从头到尾的遍历，一个一个的找到目标元素// 简单的线性搜索算法实现template &amp;lt;typename T&amp;gt;int linear_search(const std::vector&amp;lt;T&amp;gt;&amp;amp; vec, const T&amp;amp; x)&amp;#123;  int index = -1;  for(c">
+<meta name="twitter:image" content="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/Linear.png">
 
-<link rel="canonical" href="https://zayfen.com/2019/11/18/bbc765cf2f120d4208792bc259324906/">
+<link rel="canonical" href="https://zayfen.com/2019/11/18/b7d273159f6becc31fc5174ea7582c5e/">
 
 
 <script id="page-configurations">
@@ -83,7 +86,7 @@
   };
 </script>
 
-  <title>布隆过滤（Bloom Filter） | Z . A . Y . F . E . N</title>
+  <title>搜索算法 | Z . A . Y . F . E . N</title>
   
 
 
@@ -231,7 +234,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zayfen.com/2019/11/18/bbc765cf2f120d4208792bc259324906/">
+    <link itemprop="mainEntityOfPage" href="https://zayfen.com/2019/11/18/b7d273159f6becc31fc5174ea7582c5e/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -244,7 +247,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          布隆过滤（Bloom Filter）
+          搜索算法
         </h2>
 
         <div class="post-meta">
@@ -255,7 +258,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2019-11-18 04:44:34 / 修改时间：06:01:46" itemprop="dateCreated datePublished" datetime="2019-11-18T04:44:34-05:00">2019-11-18</time>
+              <time title="创建时间：2019-11-18 03:33:55 / 修改时间：03:50:21" itemprop="dateCreated datePublished" datetime="2019-11-18T03:33:55-05:00">2019-11-18</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -270,7 +273,7 @@
             </span>
 
           
-            <span id="/2019/11/18/bbc765cf2f120d4208792bc259324906/" class="post-meta-item leancloud_visitors" data-flag-title="布隆过滤（Bloom Filter）" title="阅读次数">
+            <span id="/2019/11/18/b7d273159f6becc31fc5174ea7582c5e/" class="post-meta-item leancloud_visitors" data-flag-title="搜索算法" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -294,21 +297,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Bloom-Filter"><a href="#Bloom-Filter" class="headerlink" title="Bloom Filter"></a>Bloom Filter</h1><h1 id="1-什么是布隆过滤？"><a href="#1-什么是布隆过滤？" class="headerlink" title="1. 什么是布隆过滤？"></a>1. 什么是布隆过滤？</h1><p>布隆过滤是应用于大数据中检测一个数据是否在一个集合中的搜索过滤算法。</p><h1 id="2-应用场景"><a href="#2-应用场景" class="headerlink" title="2. 应用场景"></a>2. 应用场景</h1><p>比如如何在成千上万的网址中快速地识别出恶意的网址，在成千上万的邮件中快速识别出恶意的邮件等</p><h1 id="3-算法简单描述"><a href="#3-算法简单描述" class="headerlink" title="3. 算法简单描述"></a>3. 算法简单描述</h1><p>布隆过滤是在一个bitmap中预先通过k个hash函数插入一些目标数据标记，表示为下图：<br>假设这里的bitmap(所有的位都初始化为0)是有10个bits，有3个hash 函数，有一个目标数据“cat”，那么将cat映射标记到bitmap就是通过3个hash函数分别计算cat的hash值，将hash值转换成bitmap的索引，并将对应索引位置的bit置为1，至此，我们就标记了一个目标数据，目前cat就是我们要过滤的数据，当在很多的数据中要识别出“cat”的时候，就可以通过建立好的这个bitmap来识别了。</p><a id="more"></a>
+        <h3 id="线性搜索"><a href="#线性搜索" class="headerlink" title="线性搜索"></a>线性搜索</h3><p>线性搜索也是最简单的搜索算法，简单来说，就是对一个数组或者顺序容器，进行从头到尾的遍历，一个一个的找到目标元素<br><img src="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/Linear.png" alt="image"><br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 简单的线性搜索算法实现</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">linear_search</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&amp; vec, <span class="keyword">const</span> T&amp; x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> index = <span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; element : vec) &#123;</span><br><span class="line">    index++;</span><br><span class="line">    <span class="keyword">if</span>(element == x) &#123;</span><br><span class="line">      <span class="keyword">return</span> index;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><a id="more"></a>
+<p><strong>时间复杂度： O(N)</strong></p>
+<hr>
+<h3 id="二分查找（Binary-Search）"><a href="#二分查找（Binary-Search）" class="headerlink" title="二分查找（Binary Search）"></a>二分查找（Binary Search）</h3><p>二分查找，是给定一个有序的数组或者顺序容器，每次取容器的中间位置的元素和目标元素对比来缩短查找的范围。过程可以简单描述如下：<br><img src="https://www.geeksforgeeks.org/wp-content/uploads/gq/2014/01/binary-search1.png" alt="image"><br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 二分查找</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">binary_search</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&amp; vec, <span class="keyword">const</span> <span class="keyword">int</span> low, <span class="keyword">const</span> <span class="keyword">int</span> high, <span class="keyword">const</span> T&amp; x)</span> </span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"binary_search low "</span> &lt;&lt; low &lt;&lt; <span class="string">"  high "</span> &lt;&lt; high &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">if</span> (low &gt; high) &#123; <span class="comment">// 没有找到</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">int</span> middle = low + (high - low) / <span class="number">2</span>; <span class="comment">// 搜索区间缩短一半</span></span><br><span class="line">  <span class="keyword">if</span> (x == vec.at(middle)) &#123;</span><br><span class="line">    <span class="keyword">return</span> middle;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">int</span> low_ = vec.at(middle) &gt; x ? low : middle + <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">int</span> high_ = vec.at(middle) &gt; x ? middle - <span class="number">1</span> : high;</span><br><span class="line">  <span class="keyword">return</span> binary_search(vec, low_, high_, x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>时间复杂度： O(LogN)</strong></p>
+<hr>
+<h3 id="跳跃查找（Jump-Search）"><a href="#跳跃查找（Jump-Search）" class="headerlink" title="跳跃查找（Jump Search）"></a>跳跃查找（Jump Search）</h3><p>给定一个有序的顺序容器，容器宗有n个元素， 将元素分成m份，每份 n/m 个元素。然后我们按照每n/m个元素间隔去查找元素，找到要搜索的元素所在的区间[i, i+n/m), 然后在这个区间中<br>判断值<br><img src="https://res.cloudinary.com/zayfen/image/upload/v1574065062/img/jrebsdjju8ez4ggz3lrn.png" alt="image"></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">jump_search</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&amp; vec, <span class="keyword">const</span> T&amp; x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (vec.size() == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">  <span class="keyword">int</span> stepWidth = <span class="built_in">std</span>::<span class="built_in">sqrt</span>(vec.size());</span><br><span class="line">  <span class="keyword">int</span> prevStepIndex = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> stepIndex = <span class="built_in">std</span>::min(stepWidth, <span class="keyword">int</span>(vec.size())) - <span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">  <span class="keyword">while</span> (vec.at(stepIndex) &lt; x) &#123;</span><br><span class="line">    prevStepIndex = stepIndex;</span><br><span class="line">    stepIndex = <span class="built_in">std</span>::min(stepWidth + stepIndex, <span class="keyword">int</span>(vec.size() - <span class="number">1</span>));</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (prevStepIndex == stepIndex) &#123; <span class="comment">// 到达尾部，没有找到x元素</span></span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// ignore all elements less than x</span></span><br><span class="line">  <span class="keyword">while</span> (vec.at(prevStepIndex) &lt; x) &#123;</span><br><span class="line">    prevStepIndex++;</span><br><span class="line">    <span class="keyword">if</span> (prevStepIndex &gt;= vec.size()) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// if element found</span></span><br><span class="line">  <span class="keyword">if</span> (vec.at(prevStepIndex) == x) &#123;</span><br><span class="line">    <span class="keyword">return</span> prevStepIndex;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>算法分析<br>寻找要查找的元素所在的区间，最大需要为 m - 1次比较，再区间段中最大需要n/m次比较 ，所以时间复杂度是 O((m-1) + n/m),<br>要使 (m-1) + n/m 最小，需要 m = sqrt(n),所有， 时间复杂度是 O(sqrt(n) - 1 + n/sqrt(n)) 也就是  O(sqrt(n))</li>
+</ul>
+<p>让 n/m+m-1 = 0,</p>
+<p>jump search 的时间复杂度，是介于线性查找和二分查找之间的，所以jump search 的性能没有比二分查找要好，但是jump search 有一个好处，就是他只需要回退一次，加入我们要查找一个最小的元素，jump search 只需要查找一个，而二分查找需要查满，这种情况下，jump search 是优于 二分查找的。<br><img src="https://res.cloudinary.com/zayfen/image/upload/v1574065247/img/oo88hrbld592stbd6lq2.png" alt="image"></p>
+<hr>
+<h3 id="差值搜索-（Interpolation-Search）"><a href="#差值搜索-（Interpolation-Search）" class="headerlink" title="差值搜索 （Interpolation Search）"></a>差值搜索 （Interpolation Search）</h3><p>差值搜索是对二分搜索的优化，二分搜索永远都是从搜索区间的中间位置开始切分，而差值搜索会从选择从要搜索的元素最接近的位置开始切分，这样就有利于尽快的找到要搜索的元素</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">position</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&amp; vec, <span class="keyword">const</span> T&amp; x, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> low + (high - low) * ((x - vec.at(low)) / (vec.at(high) - vec.at(low)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">interpolation_search</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&amp; vec, <span class="keyword">const</span> T&amp; x)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> high = vec.size() - <span class="number">1</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">while</span> (low &lt;= high &amp;&amp; x &gt;= vec.at(low) &amp;&amp; x &lt;= vec.at(high)) &#123;</span><br><span class="line">    <span class="keyword">int</span> pos = position(vec, x, low, high);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"position is %d \n"</span>, pos);</span><br><span class="line">    <span class="keyword">if</span> (vec.at(pos) == x) &#123;</span><br><span class="line">      <span class="keyword">return</span> pos;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (vec.at(pos) &lt; x) &#123;</span><br><span class="line">      low = pos + <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    high = pos - <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>算法分析：<br>如果顺序容器中的元素是均匀分布的，那么就是时间复杂度就是 O(log log n)), 最坏的情况是 O(n)<div class="pdf" target="/Assets/p550-perl.pdf" height></div>
+</li>
+</ul>
 
-
-<p><img src="http://cdncontribute.geeksforgeeks.org/wp-content/uploads/cat-300x109.png" alt="cat"></p>
-<p>比如，现在有3个数据来了，分别是 “dog”，“cat”，“pig”，我们需要从中识别出“cat”，怎么样识别呢？<br>“dog” =&gt; 映射到 bitmap[1], bitmap[2], bitmap[3], 发现都不是1，则‘dog‘就不是目标数据<br>“cat” =&gt; 映射到 bitmap[1], bitmap[3], bitmap[7],发现所有的都是1， 则 ‘cat’就是目标数据<br>“pig” =&gt; 映射到 bitmap[8], bitmap[9], bitmap[10]，发现都不是1， 则‘pig’就不是目标数据<br>这样通过重新计算hash来和bitmap中的对比就能过滤掉一些目标数据了<br>但是这里其实还有一个问题，存在一个不同的目标,比如“bird”，这个通过hash函数计算出来的结果可能在bitmap中都为1, 这种情况是无法避免的，我们称之为“误判”，这种识别错误的概率和目标数据，bitmap大小和hash函数的数据是相关联的</p>
-<h1 id="4-算法推导"><a href="#4-算法推导" class="headerlink" title="4. 算法推导"></a>4. 算法推导</h1><p>布隆过滤的原理大概了解了，但是这里有个问题是，如何确定bitmap的大小以及hash function的多少，<br>我们可以通过指定一个错误概率的大小和初始的目标数据来确定 bitmap的大小和hash function 的数量</p>
-<p>假设有 <script type="math/tex">K</script>个hash函数，<script type="math/tex">M</script> bits的bitmap， <script type="math/tex">N</script>个初始数据, 对于bitmap中的一个特定点，<script type="math/tex">K</script>个hash函数映射到此点的·概率相等，即一个点被函数命中的概率为：</p>
-<script type="math/tex; mode=display">p_1=\frac{1}{M}</script><p>则一个点不被命中的概率为：</p>
-<script type="math/tex; mode=display">p_2=1-\frac{1}{M}</script><p>则<script type="math/tex">K</script>个函数都不命中的概率为：</p>
-<script type="math/tex; mode=display">p_3=\left(1-\frac{1}{M}\right)^K</script><p>假设已经存在了<script type="math/tex">N</script>个数据，那么一个特定的点在N个数据下都没有被命中的概率为：</p>
-<script type="math/tex; mode=display">p_4=\left(1-\frac{1}{M}\right)^{KN}</script><p>那么这个点命中的概率为：</p>
-<script type="math/tex; mode=display">p_5=1-\left(1-\frac{1}{M}\right)^{KN}</script><p>现在来判断一个不再初始数据集合中的数据被命中的概率，即，满足<script type="math/tex">K</script>个hash函数计算的结果都被命中，这种情况的概率为：</p>
-<script type="math/tex; mode=display">p_6=\left(1-\left(1-\frac{1}{M}\right)^{KN}\right)^K</script><p>因为目标数据命中的概率为1，所以当<script type="math/tex">p_6</script>越小的时候，也就表示别的数据被命中的概率越低。<br>根据 <script type="math/tex">1-\frac{1}{m}\approx\ell^{-\frac{1}{m}}</script>可以将<script type="math/tex">p_6</script>简化为：<script type="math/tex">\ell^{-\frac{KN}{M}}</script></p>
-<script type="math/tex; mode=display">p_6\approx\left(1-\ell^{-\frac{KN}{M}}\right)^K</script><p>因为<script type="math/tex">K</script>为正数，取其值为<script type="math/tex">\frac{M}{N}\ln2</script>， 则</p>
-<script type="math/tex; mode=display">p_6\approx\left(1-\ell^{-\frac{\left(\frac{M}{N}\ln2\right)N}{M}}\right)^{\frac{M}{N}\ln2}</script><script type="math/tex; mode=display">\ln{p_6}\approx{\frac{M}{N}\ln2}\times\ln\left(1-\ell^{-\frac{\left(\frac{M}{N}\ln2\right)N}{M}}\right)</script><script type="math/tex; mode=display">\ln{p_6}\approx{\frac{M}{N}\ln2}\times\ln\left(1-\ell^{-\ln2}\right)</script><script type="math/tex; mode=display">\ln{p_6}\approx{\frac{M}{N}\ln2}\times\ln\left(1-\frac{1}{\ell^{\ln2}}\right)</script><script type="math/tex; mode=display">\ln{p_6}\approx\frac{M}{N}\ln2\times\ln\frac{1}{2}</script><script type="math/tex; mode=display">\ln{p_6}\approx\frac{M}{N}\ln2\times{\left(-\ln2\right)}</script><script type="math/tex; mode=display">\ln{p_6}\approx{-\frac{M}{N}{\left(\ln2\right)}^2}</script>
     </div>
 
     
@@ -340,21 +349,24 @@
           
           <div class="post-tags">
               <a href="/tags/algorithm/" rel="tag"><i class="fa fa-tag"></i> algorithm</a>
-              <a href="/tags/bloom-filter/" rel="tag"><i class="fa fa-tag"></i> bloom filter</a>
+              <a href="/tags/search/" rel="tag"><i class="fa fa-tag"></i> search</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2019/11/18/f97ef80c3fff95b1c02a4a937d666b66/" rel="next" title="常见WEB安全防御">
-                  <i class="fa fa-chevron-left"></i> 常见WEB安全防御
+                <a href="/2019/11/17/302d853864089ff3288321c00a69a043/" rel="next" title="Chrome调试微信web页面">
+                  <i class="fa fa-chevron-left"></i> Chrome调试微信web页面
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
+                <a href="/2019/11/18/f97ef80c3fff95b1c02a4a937d666b66/" rel="prev" title="常见WEB安全防御">
+                  常见WEB安全防御 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
       </footer>
@@ -398,7 +410,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Bloom-Filter"><span class="nav-number">1.</span> <span class="nav-text">Bloom Filter</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-什么是布隆过滤？"><span class="nav-number">2.</span> <span class="nav-text">1. 什么是布隆过滤？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-应用场景"><span class="nav-number">3.</span> <span class="nav-text">2. 应用场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-算法简单描述"><span class="nav-number">4.</span> <span class="nav-text">3. 算法简单描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-算法推导"><span class="nav-number">5.</span> <span class="nav-text">4. 算法推导</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#线性搜索"><span class="nav-number">1.</span> <span class="nav-text">线性搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二分查找（Binary-Search）"><span class="nav-number">2.</span> <span class="nav-text">二分查找（Binary Search）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跳跃查找（Jump-Search）"><span class="nav-number">3.</span> <span class="nav-text">跳跃查找（Jump Search）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#差值搜索-（Interpolation-Search）"><span class="nav-number">4.</span> <span class="nav-text">差值搜索 （Interpolation Search）</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -766,56 +778,6 @@ if (document.querySelectorAll('pre.mermaid').length) {
   
 
   
-      
-<script type="text/x-mathjax-config">
-    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
-
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-        extensions: ['[mhchem]/mhchem.js'],
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') {
-          next = next.nextSibling;
-        }
-        if (next && next.nodeName.toLowerCase() === 'br') {
-          next.parentNode.removeChild(next);
-        }
-      }
-    });
-  });
-
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
-      if (element.nodeName.toLowerCase() == 'li') {
-        element = element.parentNode;
-      }
-      element.classList.add('has-jax');
-    }
-  });
-</script>
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
-    MathJax.Hub.Typeset();
-  }, window.MathJax);
-</script>
-
-    
 
   
 
