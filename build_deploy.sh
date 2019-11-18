@@ -1,11 +1,15 @@
 
-cp -r public public-backup
+if [ -d "./public" ]; then
+  cp -r public public-backup
+fi
 
 ./node_modules/.bin/hexo clean
 ./node_modules/.bin/hexo g
 ./node_modules/.bin/hexo d
 
-cp -r Assets ./public/Assets
+if [ -d "./public" ]; then
+  cp -r Assets ./public/Assets
+fi
 
 git add .
 git commit -m "chore: upload repo"
@@ -17,8 +21,8 @@ hexo algolia
 
 if [ -d "./public" ];
 then
-    rm -r public-backup
+  rm -r public-backup
 else
-    mv public-back public
+  mv public-back public
 fi
 
