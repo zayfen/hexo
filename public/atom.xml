@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zayfen.com/"/>
-  <updated>2019-11-18T08:50:21.298Z</updated>
+  <updated>2019-11-18T09:37:45.318Z</updated>
   <id>https://zayfen.com/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>常见WEB安全防御</title>
+    <link href="https://zayfen.com/2019/11/18/f97ef80c3fff95b1c02a4a937d666b66/"/>
+    <id>https://zayfen.com/2019/11/18/f97ef80c3fff95b1c02a4a937d666b66/</id>
+    <published>2019-11-18T09:28:42.604Z</published>
+    <updated>2019-11-18T09:37:45.318Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="WEB安全"><a href="#WEB安全" class="headerlink" title="WEB安全"></a>WEB安全</h1><p>[TOC]</p><h2 id="一、漏洞分类"><a href="#一、漏洞分类" class="headerlink" title="一、漏洞分类"></a>一、漏洞分类</h2><ul><li>XSS漏洞</li><li>CSRF漏洞</li><li>SSRF漏洞</li><li>SQL漏洞</li></ul><p>二、各种漏洞介绍<br><strong>XSS漏洞</strong></p><ol><li><p>什么是XSS漏洞<br>XSS漏洞全称跨站脚本攻击，英文全称 Cross-site Scripting, 为了不和css名字重复，所以取名XSS. XSS漏洞主要是能够利用代码的漏洞，通过一些技巧在浏览器端执行非法的javascript脚本，这些非法的javascript脚本拥有当前登录用户的权限，可以执行一些非法操作，从而给用户或者企业带来损失。</p></li><li><p>XSS漏洞的种类</p></li></ol><a id="more"></a><ul><li>DOM型XSS</li></ul><p>这个是最常见的一个XSS漏洞了，在在浏览器端操作DOM时产生。比如，在一个input中输入一个字符串，并将字符串显示在页面中，如果没有对字符串做校验就可能会产生DOM型xss漏洞。<br>例子：</p><p><a href="https://pastebin.com/C1inFY9n" target="_blank" rel="noopener">https://pastebin.com/C1inFY9n</a></p><p><a href="https://pastebin.com/C1inFY9n" target="_blank" rel="noopener">https://pastebin.com/C1inFY9n</a></p><ul><li>反射型XSS</li></ul><p>反射型XSS是发送到服务端的数据没有做参数的校验和过滤，只是简单地把用户输入的数据”反射”给浏览器,导致在浏览器中渲染处理参数时引入了js脚本。反射型XSS也叫做”非持久型XSS” (Non-persistent XSS)</p><ul><li>存储型XSS .</li></ul><p>存储型XSS会把用户输入的数据”存储”在服务端, 这种XSS具有很强的稳定性.最常见的一种情况就是,在博客中写一段包含有恶意javascript代码发表, 这段恶意的代码就会随着博客内容存储到数据库中,如何人访问这篇博客都会受到攻击</p><hr><ol start="3"><li>XSS漏洞的危害<br>a. 窃取cookie,登录别人账户<br>攻击者可以构造一个链接,当被攻击者点击了这个链接之后,会触发xss漏洞,就会执行一个js脚本,该js脚本会携带cookie信息通过img标签或者script标签等可以跨域访问的标签将信息发送给攻击者.<br>b. 构造GET和POST请求,删除或者篡改受害者信息<br>比如有个删除文章的接口: <a href="http://blog.abc.com/delete?id=post_idxxx" target="_blank" rel="noopener">http://blog.abc.com/delete?id=post_idxxx</a>, 当攻击者知道被攻击者的一篇文章的id的时候,就可以通过xss payload来请求删除文章的接口, 修改被攻击者信息同理.<br>c. XSS钓鱼<br>xss的攻击过程都是需要在浏览器中通过javascript自动执行的.如果在攻击的过程中存在和用户交互的情况就比较麻烦了,比如需要输入旧密码或者输入图片上的验证码,虽然比较麻烦,但是我们还是可以实施xss攻击的,比如把显示验证码的图片地址发送给攻击者,或者制作一个长得一模一样的输入帐号密码的界面欺骗被攻击者.这些攻击方法就是xss钓鱼.<br>d. 识别用户的浏览器,利用浏览器的漏洞对系统进行攻击<br>浏览器有漏洞,虽然浏览器会通过更新来解决这些漏洞,但是不能保证所有的人都更新到最新版本,当检测到有漏洞的浏览器版本,就可以通过浏览器漏洞对系统进行攻击.<br>e. 识别用户安装的软件执行挂马攻击<br>在IE中可以通过判断 ActieX空间的classid是否存在来判断用户是否安装了软件.黑客通过判断被攻击者安装的软件,选择对应的浏览器漏洞,最终达到植入木马的目的.<br>比如在IE中通过如下的代码就可以判断用户是否安装了迅雷:<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">var</span> obj = <span class="keyword">new</span> ActiveXObject(<span class="string">'XunLeiBHO.ThunderIEHelper'</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">  <span class="comment">// 异常, 没有安装此软件</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (obj) &#123;</span><br><span class="line">  <span class="comment">// 安装了迅雷</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ol><p>另外,可以通过flash的一个 system.capabilities对象来找出电脑的硬件信息,还可以通过判断特定的DOM来判断浏览器安装了哪些插件.</p><p>通过xss攻击还可以知道被攻击者访问了哪些页面(通过 :visited 伪元素判断), 还可以在jre环境中通过调用Java Applete的接口获取客户端的本地ip地址.</p><ol start="4"><li><p>XSS的防御<br>a. HttpOnly<br>通过在cookie中设置HttpOnly这个属性,可以阻止javascript访问cookie内容.<br>b. 输入检查<br>对输入的值进行字符类型,字符长度检查,比如手机号码,不能出现字母,而且长度为11, 对一些特殊字符,比如尖括号进行转义编码,或者一些特殊的字符串进行过滤,比如 <code>&lt;script&gt;, javascript:</code>.<br>c. 输出检查<br>执行安全的编码函数, htmlEncode, javascriptEncode.<br>在html中输出变量$var,使用 htmlEncode对$var进行编码.<br>在html中的onclick等事件中输出,使用javascript对$var编码<br>在javascript中输出$var, 使用 javascript对$var编码<br>在css中,禁止变量输出,即不要在style中使用$var变量<br>在地址中输出,使用urlEncode<br>d. 处理富文本<br>通过htmlparser解析文本,过滤掉危险标签 <code>&lt;iframe&gt;, &lt;script&gt;, &lt;base&gt;, &lt;form&gt;</code>等, 在富文本中可选择的标签使用白名单,避免使用黑名单,即指定富文本中只能使用哪几种标签.<br>e.编写代码时,注意这些地方;</p><pre><code class="javascript"> <span class="built_in">document</span>.write(); <span class="built_in">document</span>.writeln(); xxx.innerHTML(); xxx.outerHTML(); innerHTML.replace(); <span class="built_in">document</span>.attachEvent(); <span class="built_in">window</span>.attachEvent(); <span class="built_in">document</span>.location.replace(); <span class="built_in">document</span>.location.assign(); <span class="comment">// 页面中所有的input输入框</span> <span class="built_in">window</span>.location(href, hash, ...) <span class="built_in">window</span>.name <span class="built_in">document</span>.referrer <span class="built_in">document</span>.cookie localstorage XMLHttpRequest <span class="comment">// 主要是返回的数据</span><span class="string">``</span><span class="string">`javascript</span><span class="string"></span></code></pre></li></ol><p><strong>CSRF漏洞</strong><br>CSRF漏洞,全称Cross Site Request Forgery<a href="跨站请求伪造">/ˈfɔːdʒəri/ 伪造</a>, 比如存在一个转账的接口:<br><a href="http://bank.com/transform/?money=xxx&amp;to=zzz" target="_blank" rel="noopener">http://bank.com/transform/?money=xxx&amp;to=zzz</a>;  攻击者可以伪造一个链接 <a href="http://bank.com/transform/?money=1&amp;o=lisi" target="_blank" rel="noopener">http://bank.com/transform/?money=1&amp;o=lisi</a>, 诱惑用户点击这个链接,那么用户在神不知鬼不觉之下就转移了1元钱给李四, 这个伪造的链接可以放到一个网页的img标签中, 当用户点击这个网页的时候,钱就被神不知鬼不觉的转走了. 为什么伪造的请求会请求通过呢?因为用户的浏览器成功的发送了Cookie给服务器.</p><p>防御方法: 增加一个随机的token, 每次转账的时候都要带上这个随机额token, 同事后台需要校验token的正确性,比如 <a href="http://bank.com/transform/?money=xxx&amp;to=zzz&amp;token=abcUx23Flzd" target="_blank" rel="noopener">http://bank.com/transform/?money=xxx&amp;to=zzz&amp;token=abcUx23Flzd</a>, 这样攻击者不知道token的情况下,构造的链接就会无效.</p><p><strong>点击劫持(ClickJacking)</strong><br>点击劫持是一种视觉上的欺骗手段.攻击者使用一个透明的iframe,覆盖在一个网页上,然后诱使用户在网页上进行操作,通过调整iframe的位置,当用户点击一个按钮的时候,其实是点击在iframe上的一个功能按钮上.</p><p>点击劫持有:</p><ul><li>Flash点击劫持</li><li>图片覆盖攻击</li><li>拖拽劫持与数据窃取</li><li>触屏劫持</li></ul><p>防御:<br>禁止跨域的iframe来防御, 使用HTTP头  X-Frame-Options, X-Frame-Options有3个选项, DENY, SAMEORIGIN, ALLOW-FROM origin</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;WEB安全&quot;&gt;&lt;a href=&quot;#WEB安全&quot; class=&quot;headerlink&quot; title=&quot;WEB安全&quot;&gt;&lt;/a&gt;WEB安全&lt;/h1&gt;&lt;p&gt;[TOC]&lt;/p&gt;&lt;h2 id=&quot;一、漏洞分类&quot;&gt;&lt;a href=&quot;#一、漏洞分类&quot; class=&quot;headerlink&quot; title=&quot;一、漏洞分类&quot;&gt;&lt;/a&gt;一、漏洞分类&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;XSS漏洞&lt;/li&gt;
+&lt;li&gt;CSRF漏洞&lt;/li&gt;
+&lt;li&gt;SSRF漏洞&lt;/li&gt;
+&lt;li&gt;SQL漏洞&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;二、各种漏洞介绍&lt;br&gt;&lt;strong&gt;XSS漏洞&lt;/strong&gt;&lt;/p&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;什么是XSS漏洞&lt;br&gt;XSS漏洞全称跨站脚本攻击，英文全称 Cross-site Scripting, 为了不和css名字重复，所以取名XSS. XSS漏洞主要是能够利用代码的漏洞，通过一些技巧在浏览器端执行非法的javascript脚本，这些非法的javascript脚本拥有当前登录用户的权限，可以执行一些非法操作，从而给用户或者企业带来损失。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;XSS漏洞的种类&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="web" scheme="https://zayfen.com/categories/web/"/>
+    
+    
+      <category term="web" scheme="https://zayfen.com/tags/web/"/>
+    
+      <category term="security" scheme="https://zayfen.com/tags/security/"/>
+    
+  </entry>
   
   <entry>
     <title>搜索算法</title>
@@ -91,40 +125,6 @@
       <category term="jpg" scheme="https://zayfen.com/tags/jpg/"/>
     
       <category term="image" scheme="https://zayfen.com/tags/image/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>常见WEB安全防御</title>
-    <link href="https://zayfen.com/2019/11/17/f97ef80c3fff95b1c02a4a937d666b66/"/>
-    <id>https://zayfen.com/2019/11/17/f97ef80c3fff95b1c02a4a937d666b66/</id>
-    <published>2019-11-18T05:00:00.000Z</published>
-    <updated>2019-11-18T09:28:42.604Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="WEB安全"><a href="#WEB安全" class="headerlink" title="WEB安全"></a>WEB安全</h1><p>[TOC]</p><h2 id="一、漏洞分类"><a href="#一、漏洞分类" class="headerlink" title="一、漏洞分类"></a>一、漏洞分类</h2><ul><li>XSS漏洞</li><li>CSRF漏洞</li><li>SSRF漏洞</li><li>SQL漏洞</li></ul><p>二、各种漏洞介绍<br><strong>XSS漏洞</strong></p><ol><li><p>什么是XSS漏洞<br>XSS漏洞全称跨站脚本攻击，英文全称 Cross-site Scripting, 为了不和css名字重复，所以取名XSS. XSS漏洞主要是能够利用代码的漏洞，通过一些技巧在浏览器端执行非法的javascript脚本，这些非法的javascript脚本拥有当前登录用户的权限，可以执行一些非法操作，从而给用户或者企业带来损失。</p></li><li><p>XSS漏洞的种类</p></li></ol><a id="more"></a><ul><li>DOM型XSS</li></ul><p>这个是最常见的一个XSS漏洞了，在在浏览器端操作DOM时产生。比如，在一个input中输入一个字符串，并将字符串显示在页面中，如果没有对字符串做校验就可能会产生DOM型xss漏洞。<br>例子：</p><p><a href="https://pastebin.com/C1inFY9n" target="_blank" rel="noopener">https://pastebin.com/C1inFY9n</a></p><p><a href="https://pastebin.com/C1inFY9n" target="_blank" rel="noopener">https://pastebin.com/C1inFY9n</a></p><ul><li>反射型XSS</li></ul><p>反射型XSS是发送到服务端的数据没有做参数的校验和过滤，只是简单地把用户输入的数据”反射”给浏览器,导致在浏览器中渲染处理参数时引入了js脚本。反射型XSS也叫做”非持久型XSS” (Non-persistent XSS)</p><ul><li>存储型XSS .</li></ul><p>存储型XSS会把用户输入的数据”存储”在服务端, 这种XSS具有很强的稳定性.最常见的一种情况就是,在博客中写一段包含有恶意javascript代码发表, 这段恶意的代码就会随着博客内容存储到数据库中,如何人访问这篇博客都会受到攻击</p><hr><ol start="3"><li>XSS漏洞的危害<ol><li>窃取cookie,登录别人账户<br>攻击者可以构造一个链接,当被攻击者点击了这个链接之后,会触发xss漏洞,就会执行一个js脚本,该js脚本会携带cookie信息通过img标签或者script标签等可以跨域访问的标签将信息发送给攻击者.<br>b. 构造GET和POST请求,删除或者篡改受害者信息<br>比如有个删除文章的接口: <a href="http://blog.abc.com/delete?id=post_idxxx" target="_blank" rel="noopener">http://blog.abc.com/delete?id=post_idxxx</a>, 当攻击者知道被攻击者的一篇文章的id的时候,就可以通过xss payload来请求删除文章的接口, 修改被攻击者信息同理.<br>c. XSS钓鱼<br>xss的攻击过程都是需要在浏览器中通过javascript自动执行的.如果在攻击的过程中存在和用户交互的情况就比较麻烦了,比如需要输入旧密码或者输入图片上的验证码,虽然比较麻烦,但是我们还是可以实施xss攻击的,比如把显示验证码的图片地址发送给攻击者,或者制作一个长得一模一样的输入帐号密码的界面欺骗被攻击者.这些攻击方法就是xss钓鱼.<br>d. 识别用户的浏览器,利用浏览器的漏洞对系统进行攻击<br>浏览器有漏洞,虽然浏览器会通过更新来解决这些漏洞,但是不能保证所有的人都更新到最新版本,当检测到有漏洞的浏览器版本,就可以通过浏览器漏洞对系统进行攻击.<br>e. 识别用户安装的软件执行挂马攻击<br>在IE中可以通过判断 ActieX空间的classid是否存在来判断用户是否安装了软件.黑客通过判断被攻击者安装的软件,选择对应的浏览器漏洞,最终达到植入木马的目的.<br>比如在IE中通过如下的代码就可以判断用户是否安装了迅雷:<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">var</span> obj = <span class="keyword">new</span> ActiveXObject(<span class="string">'XunLeiBHO.ThunderIEHelper'</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">  <span class="comment">// 异常, 没有安装此软件</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (obj) &#123;</span><br><span class="line">  <span class="comment">// 安装了迅雷</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ol></li></ol><p>另外,可以通过flash的一个 system.capabilities对象来找出电脑的硬件信息,还可以通过判断特定的DOM来判断浏览器安装了哪些插件.</p><p>通过xss攻击还可以知道被攻击者访问了哪些页面(通过 :visited 伪元素判断), 还可以在jre环境中通过调用Java Applete的接口获取客户端的本地ip地址.</p><ol start="4"><li><p>XSS的防御</p><ol><li>HttpOnly<br>通过在cookie中设置HttpOnly这个属性,可以阻止javascript访问cookie内容.<br>b. 输入检查<br>对输入的值进行字符类型,字符长度检查,比如手机号码,不能出现字母,而且长度为11, 对一些特殊字符,比如尖括号进行转义编码,或者一些特殊的字符串进行过滤,比如 <script>, javascript:.<br>c. 输出检查<br>执行安全的编码函数, htmlEncode, javascriptEncode.<br>在html中输出变量$var,使用 htmlEncode对$var进行编码.<br>在html中的onclick等事件中输出,使用javascript对$var编码<br>在javascript中输出$var, 使用 javascript对$var编码<br>在css中,禁止变量输出,即不要在style中使用$var变量<br>在地址中输出,使用urlEncode<br>d. 处理富文本<br>通过htmlparser解析文本,过滤掉危险标签 <iframe>, <script>, <base>, <form>等, 在富文本中可选择的标签使用白名单,避免使用黑名单,即指定富文本中只能使用哪几种标签.<br>e.编写代码时,注意这些地方</li></ol><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.write();</span><br><span class="line"><span class="built_in">document</span>.writeln();</span><br><span class="line">xxx.innerHTML();</span><br><span class="line">xxx.outerHTML();</span><br><span class="line">innerHTML.replace();</span><br><span class="line"><span class="built_in">document</span>.attachEvent();</span><br><span class="line"><span class="built_in">window</span>.attachEvent();</span><br><span class="line"><span class="built_in">document</span>.location.replace();</span><br><span class="line"><span class="built_in">document</span>.location.assign();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 页面中所有的input输入框</span></span><br><span class="line"><span class="built_in">window</span>.location(href, hash, ...)</span><br><span class="line"><span class="built_in">window</span>.name</span><br><span class="line"><span class="built_in">document</span>.referrer</span><br><span class="line"><span class="built_in">document</span>.cookie</span><br><span class="line">localstorage</span><br><span class="line">XMLHttpRequest <span class="comment">// 主要是返回的数据</span></span><br></pre></td></tr></table></figure></li></ol><p><strong>CSRF漏洞</strong><br>CSRF漏洞,全称Cross Site Request Forgery<a href="跨站请求伪造">/ˈfɔːdʒəri/ 伪造</a>, 比如存在一个转账的接口:<br><a href="http://bank.com/transform/?money=xxx&amp;to=zzz">http://bank.com/transform/?money=xxx&amp;to=zzz</a>;  攻击者可以伪造一个链接 <a href="http://bank.com/transform/?money=1&amp;o=lisi">http://bank.com/transform/?money=1&amp;o=lisi</a>, 诱惑用户点击这个链接,那么用户在神不知鬼不觉之下就转移了1元钱给李四, 这个伪造的链接可以放到一个网页的img标签中, 当用户点击这个网页的时候,钱就被神不知鬼不觉的转走了. 为什么伪造的请求会请求通过呢?因为用户的浏览器成功的发送了Cookie给服务器.</p><p>防御方法: 增加一个随机的token, 每次转账的时候都要带上这个随机额token, 同事后台需要校验token的正确性,比如 <a href="http://bank.com/transform/?money=xxx&amp;to=zzz&amp;token=abcUx23Flzd">http://bank.com/transform/?money=xxx&amp;to=zzz&amp;token=abcUx23Flzd</a>, 这样攻击者不知道token的情况下,构造的链接就会无效.</p><p><strong>点击劫持(ClickJacking)</strong><br>点击劫持是一种视觉上的欺骗手段.攻击者使用一个透明的iframe,覆盖在一个网页上,然后诱使用户在网页上进行操作,通过调整iframe的位置,当用户点击一个按钮的时候,其实是点击在iframe上的一个功能按钮上.</p><p>点击劫持有:</p><ul><li>Flash点击劫持</li><li>图片覆盖攻击</li><li>拖拽劫持与数据窃取</li><li>触屏劫持</li></ul><p>防御:<br>禁止跨域的iframe来防御, 使用HTTP头  X-Frame-Options, X-Frame-Options有3个选项, DENY, SAMEORIGIN, ALLOW-FROM origin</p></script></li></ol></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;WEB安全&quot;&gt;&lt;a href=&quot;#WEB安全&quot; class=&quot;headerlink&quot; title=&quot;WEB安全&quot;&gt;&lt;/a&gt;WEB安全&lt;/h1&gt;&lt;p&gt;[TOC]&lt;/p&gt;&lt;h2 id=&quot;一、漏洞分类&quot;&gt;&lt;a href=&quot;#一、漏洞分类&quot; class=&quot;headerlink&quot; title=&quot;一、漏洞分类&quot;&gt;&lt;/a&gt;一、漏洞分类&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;XSS漏洞&lt;/li&gt;
-&lt;li&gt;CSRF漏洞&lt;/li&gt;
-&lt;li&gt;SSRF漏洞&lt;/li&gt;
-&lt;li&gt;SQL漏洞&lt;/li&gt;
-&lt;/ul&gt;&lt;p&gt;二、各种漏洞介绍&lt;br&gt;&lt;strong&gt;XSS漏洞&lt;/strong&gt;&lt;/p&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;什么是XSS漏洞&lt;br&gt;XSS漏洞全称跨站脚本攻击，英文全称 Cross-site Scripting, 为了不和css名字重复，所以取名XSS. XSS漏洞主要是能够利用代码的漏洞，通过一些技巧在浏览器端执行非法的javascript脚本，这些非法的javascript脚本拥有当前登录用户的权限，可以执行一些非法操作，从而给用户或者企业带来损失。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;XSS漏洞的种类&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-    
-    </summary>
-    
-      <category term="web" scheme="https://zayfen.com/categories/web/"/>
-    
-    
-      <category term="web" scheme="https://zayfen.com/tags/web/"/>
-    
-      <category term="security" scheme="https://zayfen.com/tags/security/"/>
     
   </entry>
   
