@@ -23,6 +23,6 @@ if [ -d "./public" ];
 then
   rm -r public-backup
 else
-  mv public-back public
+  mv public-backup public
 fi
 
