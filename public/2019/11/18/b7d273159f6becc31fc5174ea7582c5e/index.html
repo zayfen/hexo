@@ -58,7 +58,7 @@
 <meta name="keywords" content="algorithm,search">
 <meta property="og:type" content="article">
 <meta property="og:title" content="搜索算法">
-<meta property="og:url" content="https://zayfen.com/2019/11/18/b7d273159f6becc31fc5174ea7582c5e/index.html">
+<meta property="og:url" content="https://www.zayfen.com/2019/11/18/b7d273159f6becc31fc5174ea7582c5e/index.html">
 <meta property="og:site_name" content="Z . A . Y . F . E . N">
 <meta property="og:description" content="线性搜索线性搜索也是最简单的搜索算法，简单来说，就是对一个数组或者顺序容器，进行从头到尾的遍历，一个一个的找到目标元素// 简单的线性搜索算法实现template &amp;lt;typename T&amp;gt;int linear_search(const std::vector&amp;lt;T&amp;gt;&amp;amp; vec, const T&amp;amp; x)&amp;#123;  int index = -1;  for(c">
 <meta property="og:locale" content="zh-CN">
@@ -72,7 +72,7 @@
 <meta name="twitter:description" content="线性搜索线性搜索也是最简单的搜索算法，简单来说，就是对一个数组或者顺序容器，进行从头到尾的遍历，一个一个的找到目标元素// 简单的线性搜索算法实现template &amp;lt;typename T&amp;gt;int linear_search(const std::vector&amp;lt;T&amp;gt;&amp;amp; vec, const T&amp;amp; x)&amp;#123;  int index = -1;  for(c">
 <meta name="twitter:image" content="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/Linear.png">
 
-<link rel="canonical" href="https://zayfen.com/2019/11/18/b7d273159f6becc31fc5174ea7582c5e/">
+<link rel="canonical" href="https://www.zayfen.com/2019/11/18/b7d273159f6becc31fc5174ea7582c5e/">
 
 
 <script id="page-configurations">
@@ -234,7 +234,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zayfen.com/2019/11/18/b7d273159f6becc31fc5174ea7582c5e/">
+    <link itemprop="mainEntityOfPage" href="https://www.zayfen.com/2019/11/18/b7d273159f6becc31fc5174ea7582c5e/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -292,14 +292,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.7k</span>
+              <span>3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -329,6 +329,20 @@
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">position</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&amp; vec, <span class="keyword">const</span> T&amp; x, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> low + (high - low) * ((x - vec.at(low)) / (vec.at(high) - vec.at(low)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">interpolation_search</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&amp; vec, <span class="keyword">const</span> T&amp; x)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> high = vec.size() - <span class="number">1</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">while</span> (low &lt;= high &amp;&amp; x &gt;= vec.at(low) &amp;&amp; x &lt;= vec.at(high)) &#123;</span><br><span class="line">    <span class="keyword">int</span> pos = position(vec, x, low, high);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"position is %d \n"</span>, pos);</span><br><span class="line">    <span class="keyword">if</span> (vec.at(pos) == x) &#123;</span><br><span class="line">      <span class="keyword">return</span> pos;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (vec.at(pos) &lt; x) &#123;</span><br><span class="line">      low = pos + <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    high = pos - <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>算法分析：<br>如果顺序容器中的元素是均匀分布的，那么就是时间复杂度就是 O(log log n)), 最坏的情况是 O(n)<div class="pdf" target="/Assets/p550-perl.pdf" height></div>
+<script>
+(function(){
+  var bp = document.createElement('script');
+  var curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+  }
+  else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();
+</script>
 </li>
 </ul>
 
@@ -511,12 +525,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">19k</span>
+    <span title="站点总字数">21k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">17 分钟</span>
+    <span title="站点阅读时长">19 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
   </div>

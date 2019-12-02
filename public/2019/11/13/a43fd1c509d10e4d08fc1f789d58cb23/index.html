@@ -58,7 +58,7 @@
 <meta name="keywords" content="git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git 常用操作">
-<meta property="og:url" content="https://zayfen.com/2019/11/13/a43fd1c509d10e4d08fc1f789d58cb23/index.html">
+<meta property="og:url" content="https://www.zayfen.com/2019/11/13/a43fd1c509d10e4d08fc1f789d58cb23/index.html">
 <meta property="og:site_name" content="Z . A . Y . F . E . N">
 <meta property="og:description" content="漂亮打印git loggit log --graph --pretty=format:&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset&apos; --abbrev-commit --date=relative添加修改或者新文件到待commit队列### add 的文件是支持正则匹配的git add &amp;lt;file(s)&amp;gt;###">
 <meta property="og:locale" content="zh-CN">
@@ -69,7 +69,7 @@
 <meta name="twitter:description" content="漂亮打印git loggit log --graph --pretty=format:&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset&apos; --abbrev-commit --date=relative添加修改或者新文件到待commit队列### add 的文件是支持正则匹配的git add &amp;lt;file(s)&amp;gt;###">
 <meta name="twitter:image" content="https://res.cloudinary.com/zayfen/image/upload/v1568171685/img/l8yeyxvtfw6kplg1ci67.png">
 
-<link rel="canonical" href="https://zayfen.com/2019/11/13/a43fd1c509d10e4d08fc1f789d58cb23/">
+<link rel="canonical" href="https://www.zayfen.com/2019/11/13/a43fd1c509d10e4d08fc1f789d58cb23/">
 
 
 <script id="page-configurations">
@@ -231,7 +231,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zayfen.com/2019/11/13/a43fd1c509d10e4d08fc1f789d58cb23/">
+    <link itemprop="mainEntityOfPage" href="https://www.zayfen.com/2019/11/13/a43fd1c509d10e4d08fc1f789d58cb23/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -295,7 +295,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.9k</span>
+              <span>3.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -328,7 +328,21 @@
 <h3 id="查看tag"><a href="#查看tag" class="headerlink" title="查看tag"></a>查看tag</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">### 查看所有的tag</span></span><br><span class="line">git tag</span><br><span class="line"></span><br><span class="line"><span class="comment">### 查看单个tag</span></span><br><span class="line">git tag -l &lt;tag-name&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">### 查看一个tag的具体信息</span></span><br><span class="line">git show &lt;tag-name&gt;</span><br></pre></td></tr></table></figure>
 <h3 id="推送tag到远程"><a href="#推送tag到远程" class="headerlink" title="推送tag到远程"></a>推送tag到远程</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment">## push single tag</span></span><br><span class="line">git push &lt;remote-name&gt; &lt;tag-name&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">## push all tags (not recommended)</span></span><br><span class="line">git push --tags</span><br></pre></td></tr></table></figure>
 <h3 id="撤销工作目录所有的更改（包括新创建的文件）"><a href="#撤销工作目录所有的更改（包括新创建的文件）" class="headerlink" title="撤销工作目录所有的更改（包括新创建的文件）"></a>撤销工作目录所有的更改（包括新创建的文件）</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">git reset --hard <span class="comment"># removes staged and working directory changes</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## !! be very careful with these !!</span></span><br><span class="line"><span class="comment">## you may end up deleting what you don't want to</span></span><br><span class="line"><span class="comment">## read comments and manual.</span></span><br><span class="line">git clean -f -d <span class="comment"># remove untracked</span></span><br><span class="line">git clean -f -x -d <span class="comment"># CAUTION: as above but removes ignored files like config.</span></span><br><span class="line">git clean -fxd :/ <span class="comment"># CAUTION: as above, but cleans untracked and ignored files through the entire repo (without :/, the operation affects only the current directory)</span></span><br></pre></td></tr></table></figure>
-<h3 id="git仓库存储账号密码，不用每次都输入账号密码（针对https协议的仓库地址）"><a href="#git仓库存储账号密码，不用每次都输入账号密码（针对https协议的仓库地址）" class="headerlink" title="git仓库存储账号密码，不用每次都输入账号密码（针对https协议的仓库地址）"></a>git仓库存储账号密码，不用每次都输入账号密码（针对https协议的仓库地址）</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">$ git config credential.helper store</span><br><span class="line">$ git push https://github.com/owner/repo.git</span><br><span class="line"></span><br><span class="line">Username <span class="keyword">for</span> <span class="string">'https://github.com'</span>: &lt;USERNAME&gt;</span><br><span class="line">Password <span class="keyword">for</span> <span class="string">'https://USERNAME@github.com'</span>: &lt;PASSWORD&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">## 执行完上面的命令之后，以后所有的push都不再需要提交代码</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 如果想让此功能有个时间限制，可以这样</span></span><br><span class="line"></span><br><span class="line">git config --global credential.helper <span class="string">'cache --timeout 7200'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 7200秒后失效，push需要重新输入账号密码</span></span><br></pre></td></tr></table></figure>
+<h3 id="git仓库存储账号密码，不用每次都输入账号密码（针对https协议的仓库地址）"><a href="#git仓库存储账号密码，不用每次都输入账号密码（针对https协议的仓库地址）" class="headerlink" title="git仓库存储账号密码，不用每次都输入账号密码（针对https协议的仓库地址）"></a>git仓库存储账号密码，不用每次都输入账号密码（针对https协议的仓库地址）</h3><p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">$ git config credential.helper store</span><br><span class="line">$ git push https://github.com/owner/repo.git</span><br><span class="line"></span><br><span class="line">Username <span class="keyword">for</span> <span class="string">'https://github.com'</span>: &lt;USERNAME&gt;</span><br><span class="line">Password <span class="keyword">for</span> <span class="string">'https://USERNAME@github.com'</span>: &lt;PASSWORD&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">## 执行完上面的命令之后，以后所有的push都不再需要提交代码</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 如果想让此功能有个时间限制，可以这样</span></span><br><span class="line"></span><br><span class="line">git config --global credential.helper <span class="string">'cache --timeout 7200'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 7200秒后失效，push需要重新输入账号密码</span></span><br></pre></td></tr></table></figure><script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script></p>
+
     </div>
 
     
@@ -498,12 +512,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">19k</span>
+    <span title="站点总字数">21k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">17 分钟</span>
+    <span title="站点阅读时长">19 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
   </div>
