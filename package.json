@@ -5,6 +5,14 @@
   "hexo": {
     "version": "3.9.0"
   },
+  "scripts": {
+    "start": "bash ./build_deploy.sh",
+    "debug": "hexo --debug",
+    "clean": "hexo clean",
+    "generate": "hexo generate",
+    "deploy": "hexo deploy",
+    "server": "hexo server"
+  },
   "dependencies": {
     "hexo": "^3.9.0",
     "hexo-algolia": "^1.3.1",

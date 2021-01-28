@@ -3,9 +3,9 @@ if [ -d "./public" ]; then
   cp -r public public-backup
 fi
 
-./node_modules/.bin/hexo clean
-./node_modules/.bin/hexo g
-./node_modules/.bin/hexo d
+npm run clean
+npm run generate
+npm run deploy
 
 if [ -d "./public" ]; then
   cp -r Assets ./public/Assets
@@ -15,8 +15,8 @@ if [ -d "./public" ];
 then
   rm -r public-backup
 else
-    mv public-backup public
-    exit 0
+  mv public-backup public
+  exit 0
 fi
 
 
