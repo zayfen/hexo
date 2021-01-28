@@ -6,7 +6,7 @@
     "version": "3.9.0"
   },
   "scripts": {
-    "start": "bash ./build_deploy.sh",
+    "start": "./build_deploy.sh",
     "debug": "hexo --debug",
     "clean": "hexo clean",
     "generate": "hexo generate",
