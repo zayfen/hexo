@@ -9,8 +9,7 @@ description: For Better Life...
 keywords: programming git  web linux rust python algorithm c++
 author: zayfen
 language: zh-CN
-#timezone: Asia/Shanghai 
-timezone: America/New_York
+timezone: Asia/Shanghai 
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
