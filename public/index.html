@@ -199,7 +199,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.zayfen.com/2021/01/29/vue指令快速网络请求/">
+    <link itemprop="mainEntityOfPage" href="https://www.zayfen.com/2021/01/30/vue指令快速网络请求/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -213,115 +213,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/29/vue指令快速网络请求/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-01-29 14:17:41 / 修改时间：15:45:11" itemprop="dateCreated datePublished" datetime="2021-01-29T14:17:41+08:00">2021-01-29</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>940</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <hr>
-<p>title: Vue通过指令实现快速的网络请求</p>
-<p>author: zayfen</p>
-<p>date: 2021/01/29</p>
-<p>tags:</p>
-<pre><code>- vue
-- web
-</code></pre><p>categories:</p>
-<ul>
-<li>web</li>
-</ul>
-<p>archives:</p>
-<p>​    - web</p>
-<hr>
-<h1 id="Vue通过指令实现快速的网络请求"><a href="#Vue通过指令实现快速的网络请求" class="headerlink" title="Vue通过指令实现快速的网络请求"></a>Vue通过指令实现快速的网络请求</h1><p>开发Vue应用，不可避免的会有很多的后台数据需要请求。传统的请求方式都是如下这种：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 拉取用户列表</span></span><br><span class="line">Api.fetchUserList(payload).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (res.code === <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> userList = res.data</span><br><span class="line">       </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// do some thing</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;).catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// do something </span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>在一个Vue文件中只存在少量的一两个接口请求还是能忍受的，但是一旦接口多了起来，网络请求的代码就可能占用了整个vue文件一大半的代码量。</p>
-<p>那么有没有办法简化这种请求呢？</p>
-<p>Vue中为了简单的绑定Properties和事件而实现了<strong>指令</strong>的概念，分别使用<code>v-bind</code>绑定Properties, 使用<code>v-on</code>绑定事件。那么我们同样可以使用指令来简化网络请求的代码。</p>
-<h2 id="Vue指令介绍"><a href="#Vue指令介绍" class="headerlink" title="Vue指令介绍"></a>Vue指令介绍</h2><p>vue指令(directive)包含2部分的内容，一个是指令的名字（字符串），一个是指令的对象，对象中包含了 <code>bind</code>, <code>inserted</code>, <code>update</code>，<code>componentUpdated</code> 和<code>unbind</code>这5个钩子函数。</p>
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
-      
-    </div>
-
-    
-    
-    
-      
-
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.zayfen.com/2021/01/28/2394e091a7d27e6f0a6c11f035a47267/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="zayfen">
-      <meta itemprop="description" content="For Better Life...">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Z . A . Y . F . E . N">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/28/2394e091a7d27e6f0a6c11f035a47267/" class="post-title-link" itemprop="url">IEEE 754  && 反码 && 补码  && 原码</a>
+            <a href="/2021/01/30/vue指令快速网络请求/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -331,17 +223,15 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-01-28 19:40:16" itemprop="dateCreated datePublished" datetime="2021-01-28T19:40:16+08:00">2021-01-28</time>
+              <time title="创建时间：2021-01-30 11:32:58" itemprop="dateCreated datePublished" datetime="2021-01-30T11:32:58+08:00">2021-01-30</time>
             </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OS/" itemprop="url" rel="index"><span itemprop="name">OS</span></a>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
                 </span>
-            </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-31 21:34:46" itemprop="dateModified" datetime="2021-01-31T21:34:46+08:00">2021-01-31</time>
+              </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -349,258 +239,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>假设一个二进制向量 $x = [x<em>w, x</em>{w-1}, x<em>{w-2}, …, x</em>{w<em>1}, x</em>{w_0}]$</p>
-<h2 id="补码"><a href="#补码" class="headerlink" title="补码"></a>补码</h2><p>$V = -{x<em>w} \cdot 2^w + \sum</em>{i=0}^{w-1}(x_i \cdot 2^i)$</p>
-<h2 id="反码"><a href="#反码" class="headerlink" title="反码"></a>反码</h2><p>$V = -1 \cdot {x<em>w} \cdot (2^w - 1) + \sum</em>{i=0}^{w-1}(x_i \cdot 2^i)$</p>
-<h2 id="原码"><a href="#原码" class="headerlink" title="原码"></a>原码</h2><p>$V=(-1)^{x<em>w} \cdot (\sum</em>{i = 0}^{w-1}x_i2^i)$</p>
-<h2 id="IEEE-754"><a href="#IEEE-754" class="headerlink" title="IEEE 754"></a>IEEE 754</h2><p>浮点表示法</p>
-<h3 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h3><p>将浮点数的位表示划分为3部分，分别为符号位(<strong>S</strong>)，编码阶码(<strong>E</strong>)，和 编码尾码(<strong>M</strong>)。</p>
-<p>浮点数值 $V = -1 <em> S </em> 2^E * M$</p>
-<ul>
-<li>$S$(sign) 表示符号，$0$表示正，$1$表示负</li>
-<li>$E$(exponent) 阶码，规格化格式中，取值为$e - bias$，非规格化格式中，取值为$1-bias$ ($e$为阶码的无符号值, $bias$为偏移值，假设阶码$k$位，则$bias=2^{k-1}-1$)</li>
-<li>$M$(significand) 尾数, 在规格化中，取值为$1 + fraction$, 非规格化中，取值为$fraction$（fraction为尾数的无符号值）</li>
-</ul>
-<h3 id="规格化-amp-非规格化-amp-无穷大-amp-NaN-不是一个数"><a href="#规格化-amp-非规格化-amp-无穷大-amp-NaN-不是一个数" class="headerlink" title="规格化 &amp; 非规格化 &amp; 无穷大 &amp; NaN(不是一个数)"></a>规格化 &amp; 非规格化 &amp; 无穷大 &amp; NaN(不是一个数)</h3><p>假设阶码有$k$位，尾数有$n$位，则$bias=2^{k-1}-1$;</p>
-<h4 id="规格化"><a href="#规格化" class="headerlink" title="规格化"></a>规格化</h4><p>规格化 指阶码位既不是$0$ 也不是 $2^k-1$</p>
-<p><strong>计算E</strong></p>
-<ul>
-<li>$bias = 2^{k-1} - 1$</li>
-<li>$e = \sum_{i=0}^{k-1}(k_i*2^i)$ </li>
-<li>$E=e - bias$</li>
-</ul>
-<p><strong>计算M</strong></p>
-<ul>
-<li>$f = \sum_{i=-1}^{-n}(n_i * 2^i)$</li>
-<li>$M = 1 + f$</li>
-</ul>
-<h4 id="非规格化"><a href="#非规格化" class="headerlink" title="非规格化"></a>非规格化</h4><p>非规格化 指阶码位全部是$0$</p>
-<p><strong>计算E</strong></p>
-<ul>
-<li>$bias = 2^{k-1} - 1$</li>
-<li>$E = 1 - bias$</li>
-</ul>
-<p><strong>计算M</strong></p>
-<ul>
-<li>$f = \sum_{i=-1}^{-n}(n_i * 2^i)$</li>
-<li>$M = f$</li>
-</ul>
-<h4 id="无穷大"><a href="#无穷大" class="headerlink" title="无穷大"></a>无穷大</h4><p>无穷大 指阶码全部都是$1$, 尾数等于$0$</p>
-<h4 id="NaN"><a href="#NaN" class="headerlink" title="NaN"></a>NaN</h4><p>NaN 指阶码全部都是$1$, 尾数不等于$0$</p>
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p><img data-src="https://res.cloudinary.com/zayfen/image/upload/v1576484284/img/agtkr1hlo1dm1mziuddi.png" alt="image"></p>
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
-      
-    </div>
-
-    
-    
-    
-      
-
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.zayfen.com/2021/01/28/b7d273159f6becc31fc5174ea7582c5e/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="zayfen">
-      <meta itemprop="description" content="For Better Life...">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Z . A . Y . F . E . N">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/28/b7d273159f6becc31fc5174ea7582c5e/" class="post-title-link" itemprop="url">搜索算法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-28 19:40:16" itemprop="dateCreated datePublished" datetime="2021-01-28T19:40:16+08:00">2021-01-28</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="线性搜索"><a href="#线性搜索" class="headerlink" title="线性搜索"></a>线性搜索</h3><p>线性搜索也是最简单的搜索算法，简单来说，就是对一个数组或者顺序容器，进行从头到尾的遍历，一个一个的找到目标元素<br><img data-src="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/Linear.png" alt="image"><br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 简单的线性搜索算法实现</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">linear_search</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&amp; vec, <span class="keyword">const</span> T&amp; x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> index = <span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; element : vec) &#123;</span><br><span class="line">    index++;</span><br><span class="line">    <span class="keyword">if</span>(element == x) &#123;</span><br><span class="line">      <span class="keyword">return</span> index;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>时间复杂度： O(N)</strong></p>
-<hr>
-<h3 id="二分查找（Binary-Search）"><a href="#二分查找（Binary-Search）" class="headerlink" title="二分查找（Binary Search）"></a>二分查找（Binary Search）</h3><p>二分查找，是给定一个有序的数组或者顺序容器，每次取容器的中间位置的元素和目标元素对比来缩短查找的范围。过程可以简单描述如下：<br><img data-src="https://www.geeksforgeeks.org/wp-content/uploads/gq/2014/01/binary-search1.png" alt="image"><br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 二分查找</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">binary_search</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&amp; vec, <span class="keyword">const</span> <span class="keyword">int</span> low, <span class="keyword">const</span> <span class="keyword">int</span> high, <span class="keyword">const</span> T&amp; x)</span> </span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"binary_search low "</span> &lt;&lt; low &lt;&lt; <span class="string">"  high "</span> &lt;&lt; high &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">if</span> (low &gt; high) &#123; <span class="comment">// 没有找到</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">int</span> middle = low + (high - low) / <span class="number">2</span>; <span class="comment">// 搜索区间缩短一半</span></span><br><span class="line">  <span class="keyword">if</span> (x == vec.at(middle)) &#123;</span><br><span class="line">    <span class="keyword">return</span> middle;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">int</span> low_ = vec.at(middle) &gt; x ? low : middle + <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">int</span> high_ = vec.at(middle) &gt; x ? middle - <span class="number">1</span> : high;</span><br><span class="line">  <span class="keyword">return</span> binary_search(vec, low_, high_, x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>时间复杂度： O(LogN)</strong></p>
-<hr>
-<h3 id="跳跃查找（Jump-Search）"><a href="#跳跃查找（Jump-Search）" class="headerlink" title="跳跃查找（Jump Search）"></a>跳跃查找（Jump Search）</h3><p>给定一个有序的顺序容器，容器宗有n个元素， 将元素分成m份，每份 n/m 个元素。然后我们按照每n/m个元素间隔去查找元素，找到要搜索的元素所在的区间[i, i+n/m), 然后在这个区间中<br>判断值<br><img data-src="https://res.cloudinary.com/zayfen/image/upload/v1574065062/img/jrebsdjju8ez4ggz3lrn.png" alt="image"></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">jump_search</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&amp; vec, <span class="keyword">const</span> T&amp; x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (vec.<span class="built_in">size</span>() == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">  <span class="keyword">int</span> stepWidth = <span class="built_in">std</span>::<span class="built_in">sqrt</span>(vec.<span class="built_in">size</span>());</span><br><span class="line">  <span class="keyword">int</span> prevStepIndex = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> stepIndex = <span class="built_in">std</span>::<span class="built_in">min</span>(stepWidth, <span class="keyword">int</span>(vec.<span class="built_in">size</span>())) - <span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">  <span class="keyword">while</span> (vec.at(stepIndex) &lt; x) &#123;</span><br><span class="line">    prevStepIndex = stepIndex;</span><br><span class="line">    stepIndex = <span class="built_in">std</span>::<span class="built_in">min</span>(stepWidth + stepIndex, <span class="keyword">int</span>(vec.<span class="built_in">size</span>() - <span class="number">1</span>));</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (prevStepIndex == stepIndex) &#123; <span class="comment">// 到达尾部，没有找到x元素</span></span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// ignore all elements less than x</span></span><br><span class="line">  <span class="keyword">while</span> (vec.at(prevStepIndex) &lt; x) &#123;</span><br><span class="line">    prevStepIndex++;</span><br><span class="line">    <span class="keyword">if</span> (prevStepIndex &gt;= vec.<span class="built_in">size</span>()) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// if element found</span></span><br><span class="line">  <span class="keyword">if</span> (vec.at(prevStepIndex) == x) &#123;</span><br><span class="line">    <span class="keyword">return</span> prevStepIndex;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>算法分析<br>寻找要查找的元素所在的区间，最大需要为 m - 1次比较，再区间段中最大需要n/m次比较 ，所以时间复杂度是 O((m-1) + n/m),<br>要使 (m-1) + n/m 最小，需要 m = sqrt(n),所有， 时间复杂度是 O(sqrt(n) - 1 + n/sqrt(n)) 也就是  O(sqrt(n))</li>
-</ul>
-<p>让 n/m+m-1 = 0,</p>
-<p>jump search 的时间复杂度，是介于线性查找和二分查找之间的，所以jump search 的性能没有比二分查找要好，但是jump search 有一个好处，就是他只需要回退一次，加入我们要查找一个最小的元素，jump search 只需要查找一个，而二分查找需要查满，这种情况下，jump search 是优于 二分查找的。<br><img data-src="https://res.cloudinary.com/zayfen/image/upload/v1574065247/img/oo88hrbld592stbd6lq2.png" alt="image"></p>
-<hr>
-<h3 id="差值搜索-（Interpolation-Search）"><a href="#差值搜索-（Interpolation-Search）" class="headerlink" title="差值搜索 （Interpolation Search）"></a>差值搜索 （Interpolation Search）</h3><p>差值搜索是对二分搜索的优化，二分搜索永远都是从搜索区间的中间位置开始切分，而差值搜索会从选择从要搜索的元素最接近的位置开始切分，这样就有利于尽快的找到要搜索的元素</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">position</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&amp; vec, <span class="keyword">const</span> T&amp; x, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> low + (high - low) * ((x - vec.at(low)) / (vec.at(high) - vec.at(low)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">interpolation_search</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&amp; vec, <span class="keyword">const</span> T&amp; x)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> high = vec.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">while</span> (low &lt;= high &amp;&amp; x &gt;= vec.at(low) &amp;&amp; x &lt;= vec.at(high)) &#123;</span><br><span class="line">    <span class="keyword">int</span> pos = <span class="built_in">position</span>(vec, x, low, high);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"position is %d \n"</span>, pos);</span><br><span class="line">    <span class="keyword">if</span> (vec.at(pos) == x) &#123;</span><br><span class="line">      <span class="keyword">return</span> pos;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (vec.at(pos) &lt; x) &#123;</span><br><span class="line">      low = pos + <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    high = pos - <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>算法分析：<br>如果顺序容器中的元素是均匀分布的，那么就是时间复杂度就是 O(log log n)), 最坏的情况是 O(n)<div class="pdfobject-container" data-target="/Assets/p550-perl.pdf" data-height="500px"></div>
-<script>
-(function(){
-  var bp = document.createElement('script');
-  var curProtocol = window.location.protocol.split(':')[0];
-  if (curProtocol === 'https') {
-      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-  }
-  else {
-      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-  }
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(bp, s);
-})();
-</script>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      
-
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.zayfen.com/2021/01/28/bbc765cf2f120d4208792bc259324906/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="zayfen">
-      <meta itemprop="description" content="For Better Life...">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Z . A . Y . F . E . N">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/28/bbc765cf2f120d4208792bc259324906/" class="post-title-link" itemprop="url">布隆过滤（Bloom Filter）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-28 19:40:16" itemprop="dateCreated datePublished" datetime="2021-01-28T19:40:16+08:00">2021-01-28</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.6k</span>
+              <span>2.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -619,26 +258,44 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Bloom-Filter"><a href="#Bloom-Filter" class="headerlink" title="Bloom Filter"></a>Bloom Filter</h1><h1 id="1-什么是布隆过滤？"><a href="#1-什么是布隆过滤？" class="headerlink" title="1. 什么是布隆过滤？"></a>1. 什么是布隆过滤？</h1><p>布隆过滤是应用于大数据中检测一个数据是否在一个集合中的搜索过滤算法。</p>
-<h1 id="2-应用场景"><a href="#2-应用场景" class="headerlink" title="2. 应用场景"></a>2. 应用场景</h1><p>比如如何在成千上万的网址中快速地识别出恶意的网址，在成千上万的邮件中快速识别出恶意的邮件等</p>
-<h1 id="3-算法简单描述"><a href="#3-算法简单描述" class="headerlink" title="3. 算法简单描述"></a>3. 算法简单描述</h1><p>布隆过滤是在一个bitmap中预先通过k个hash函数插入一些目标数据标记，表示为下图：<br>假设这里的bitmap(所有的位都初始化为0)是有10个bits，有3个hash 函数，有一个目标数据“cat”，那么将cat映射标记到bitmap就是通过3个hash函数分别计算cat的hash值，将hash值转换成bitmap的索引，并将对应索引位置的bit置为1，至此，我们就标记了一个目标数据，目前cat就是我们要过滤的数据，当在很多的数据中要识别出“cat”的时候，就可以通过建立好的这个bitmap来识别了。</p>
-<p><img data-src="http://cdncontribute.geeksforgeeks.org/wp-content/uploads/cat-300x109.png" alt="cat"></p>
-<p>比如，现在有3个数据来了，分别是 “dog”，“cat”，“pig”，我们需要从中识别出“cat”，怎么样识别呢？<br>“dog” =&gt; 映射到 bitmap[1], bitmap[2], bitmap[3], 发现都不是1，则‘dog‘就不是目标数据<br>“cat” =&gt; 映射到 bitmap[1], bitmap[3], bitmap[7],发现所有的都是1， 则 ‘cat’就是目标数据<br>“pig” =&gt; 映射到 bitmap[8], bitmap[9], bitmap[10]，发现都不是1， 则‘pig’就不是目标数据<br>这样通过重新计算hash来和bitmap中的对比就能过滤掉一些目标数据了<br>但是这里其实还有一个问题，存在一个不同的目标,比如“bird”，这个通过hash函数计算出来的结果可能在bitmap中都为1, 这种情况是无法避免的，我们称之为“误判”，这种识别错误的概率和目标数据，bitmap大小和hash函数的数据是相关联的</p>
-<h1 id="4-算法推导"><a href="#4-算法推导" class="headerlink" title="4. 算法推导"></a>4. 算法推导</h1><p>布隆过滤的原理大概了解了，但是这里有个问题是，如何确定bitmap的大小以及hash function的多少，<br>我们可以通过指定一个错误概率的大小和初始的目标数据来确定 bitmap的大小和hash function 的数量</p>
-<p>假设有 <script type="math/tex">K</script>个hash函数，<script type="math/tex">M</script> bits的bitmap， <script type="math/tex">N</script>个初始数据, 对于bitmap中的一个特定点，<script type="math/tex">K</script>个hash函数映射到此点的·概率相等，即一个点被函数命中的概率为：</p>
-<script type="math/tex; mode=display">p_1=\frac{1}{M}</script><p>则一个点不被命中的概率为：</p>
-<script type="math/tex; mode=display">p_2=1-\frac{1}{M}</script><p>则<script type="math/tex">K</script>个函数都不命中的概率为：</p>
-<script type="math/tex; mode=display">p_3=\left(1-\frac{1}{M}\right)^K</script><p>假设已经存在了<script type="math/tex">N</script>个数据，那么一个特定的点在N个数据下都没有被命中的概率为：</p>
-<script type="math/tex; mode=display">p_4=\left(1-\frac{1}{M}\right)^{KN}</script><p>那么这个点命中的概率为：</p>
-<script type="math/tex; mode=display">p_5=1-\left(1-\frac{1}{M}\right)^{KN}</script><p>现在来判断一个不再初始数据集合中的数据被命中的概率，即，满足<script type="math/tex">K</script>个hash函数计算的结果都被命中，这种情况的概率为：</p>
-<script type="math/tex; mode=display">p_6=\left(1-\left(1-\frac{1}{M}\right)^{KN}\right)^K</script><p>因为目标数据命中的概率为1，所以当<script type="math/tex">p_6</script>越小的时候，也就表示别的数据被命中的概率越低。<br>根据 <script type="math/tex">1-\frac{1}{m}\approx\ell^{-\frac{1}{m}}</script>可以将<script type="math/tex">p_6</script>简化为：<script type="math/tex">\ell^{-\frac{KN}{M}}</script></p>
-<script type="math/tex; mode=display">p_6\approx\left(1-\ell^{-\frac{KN}{M}}\right)^K</script><p>因为<script type="math/tex">K</script>为正数，取其值为<script type="math/tex">\frac{M}{N}\ln2</script>， 则</p>
-<script type="math/tex; mode=display">p_6\approx\left(1-\ell^{-\frac{\left(\frac{M}{N}\ln2\right)N}{M}}\right)^{\frac{M}{N}\ln2}</script><script type="math/tex; mode=display">\ln{p_6}\approx{\frac{M}{N}\ln2}\times\ln\left(1-\ell^{-\frac{\left(\frac{M}{N}\ln2\right)N}{M}}\right)</script><script type="math/tex; mode=display">\ln{p_6}\approx{\frac{M}{N}\ln2}\times\ln\left(1-\ell^{-\ln2}\right)</script><script type="math/tex; mode=display">\ln{p_6}\approx{\frac{M}{N}\ln2}\times\ln\left(1-\frac{1}{\ell^{\ln2}}\right)</script><script type="math/tex; mode=display">\ln{p_6}\approx\frac{M}{N}\ln2\times\ln\frac{1}{2}</script><script type="math/tex; mode=display">\ln{p_6}\approx\frac{M}{N}\ln2\times{\left(-\ln2\right)}</script><script type="math/tex; mode=display">\ln{p_6}\approx{-\frac{M}{N}{\left(\ln2\right)}^2}</script><p>所以最终</p>
-<script type="math/tex; mode=display">M = -\frac{\ln{p_6} \times N}{ \left(\ln2\right)^2 }</script><p>所以当我们希望误判命中的概率是  0.001,  初始化插入了 10000 条数据， 那么<script type="math/tex">M</script> 就等于 </p>
-<pre><code>Math.log(0.001)*10000 / Math.pow(Math.log(2), 2) * -1 // output: 143775.87566051158
-</code></pre><p>那么 <script type="math/tex">K</script>就等于</p>
-<pre><code>143776 / 10000 * Math.log(2) // output: 9.965... 也就是需要10个hash函数
-</code></pre><h1 id="5-代码实现"><a href="#5-代码实现" class="headerlink" title="5. 代码实现"></a>5. 代码实现</h1><p><a href="https://github.com/zhangyunfeng/BloomFilter/tree/master/src" target="_blank" rel="noopener">https://github.com/zhangyunfeng/BloomFilter/tree/master/src</a></p>
+          <hr>
+<p>title: Vue通过指令实现快速的网络请求</p>
+<p>author: zayfen</p>
+<p>date: 2021/01/29</p>
+<p>tags:</p>
+<ul>
+<li>web</li>
+<li>vue</li>
+</ul>
+<p>categories:</p>
+<ul>
+<li>web</li>
+</ul>
+<p>archives:</p>
+<ul>
+<li>web</li>
+</ul>
+<hr>
+<h1 id="Vue通过指令实现快速的网络请求"><a href="#Vue通过指令实现快速的网络请求" class="headerlink" title="Vue通过指令实现快速的网络请求"></a>Vue通过指令实现快速的网络请求</h1><p>开发Vue应用，不可避免的会有很多的后台数据需要请求。传统的请求方式都是如下这种：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 拉取用户列表</span></span><br><span class="line">Api.fetchUserList(payload).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (res.code === <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> userList = res.data</span><br><span class="line">       </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// do some thing</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;).catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// do something </span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>在一个Vue文件中只存在少量的一两个接口请求还是能忍受的，但是一旦接口多了起来，网络请求的代码就可能占用了整个vue文件一大半的代码量。</p>
+<p>那么有没有办法简化这种请求呢？</p>
+<p>Vue中为了简单的绑定Properties和事件而实现了<strong>指令</strong>的概念，分别使用<code>v-bind</code>绑定Properties, 使用<code>v-on</code>绑定事件。那么我们同样可以使用指令来简化网络请求的代码。</p>
+<h2 id="Vue指令介绍"><a href="#Vue指令介绍" class="headerlink" title="Vue指令介绍"></a>Vue指令介绍</h2><p>vue指令(directive)包含2部分的内容，一个是指令的名字（字符串），一个是指令的对象，对象中包含了 <code>bind</code>, <code>inserted</code>, <code>update</code>，<code>componentUpdated</code> 和<code>unbind</code>这5个钩子函数。</p>
+<p>钩子函数都有几个参数<code>el</code>, <code>binding</code>,<code>vnode</code>, <code>oldVnode</code>。</p>
+<ul>
+<li><p>el: 指令绑定的元素，可以直接用来操作DOM对象。</p>
+</li>
+<li><p>binding：一个对象，包含指令的一些属性信息。比如通过这个例子来描述<code>&lt;div v-api:fetchUserList.sync=&quot;response&quot;&gt;&lt;/div&gt;</code></p>
+<p>| 属性名     | 属性描述                                                     |<br>| ————— | —————————————————————————————— |<br>| name       | 指令名, 即例子中的 api                                       |<br>| value      | 指令的绑定值。即response的值                                 |<br>| oldValue   | 指令绑定的前一个值，仅在 update 和 componentUpdated的狗子中有用 |<br>| expression | 字符形式的表达式。比如 v-sum=”1+1”的binding.expression就是 “1+1” |<br>| arg        | 即例子中的 fetchUserList                                     |<br>| modifiers  | 即例子中的 { sync: true }                                    |</p>
+</li>
+<li><p>vnode: Vue编译生成的虚拟节点</p>
+</li>
+<li>oldVnode： 上一个虚拟节点，仅在update 和 componentUpdated 的钩子函数中有用</li>
+</ul>
+<h2 id="V-API指令的实现思路"><a href="#V-API指令的实现思路" class="headerlink" title="V-API指令的实现思路"></a>V-API指令的实现思路</h2><p>在需要数据的页面上使用v-api指令。v-api指令会指定接口名字和接口数据接收对象，v-api-param会指定接口参数。在inserted的钩子函数中，通过binding对象获取接口名和接口参数，执行接口调用，在接口返回之后将数据设置在response中。</p>
+<h2 id="V-API指令的实现代码"><a href="#V-API指令的实现代码" class="headerlink" title="V-API指令的实现代码"></a>V-API指令的实现代码</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">Vue.directive(<span class="string">'api'</span>, &#123;</span><br><span class="line">    inserted (el, binding, vnode, oldVnode) &#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Vue.directive(<span class="string">'api-param'</span>, &#123;</span><br><span class="line">    inserted (el, binding, vnode, oldVnode) &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="V-API指令DEMO"><a href="#V-API指令DEMO" class="headerlink" title="V-API指令DEMO"></a>V-API指令DEMO</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> </span></span><br><span class="line"><span class="tag">         <span class="attr">v-api:fetUserList</span>=<span class="string">"users"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">v-api-param</span>=<span class="string">"userListParam"</span></span></span><br><span class="line"><span class="tag">    &gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">ul</span> <span class="attr">v-for</span>=<span class="string">"(user, index) in users"</span> <span class="attr">:key</span>=<span class="string">"index"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;&#123;user&#125;]<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">        data () &#123;</span><br><span class="line"><span class="actionscript">            <span class="keyword">return</span> &#123;</span></span><br><span class="line">                users: [],</span><br><span class="line">                userListParam: &#123; page: 1, pageSize: 100 &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <script>
 (function(){
     var bp = document.createElement('script');
@@ -674,7 +331,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.zayfen.com/2021/01/28/f97ef80c3fff95b1c02a4a937d666b66/">
+    <link itemprop="mainEntityOfPage" href="https://www.zayfen.com/2021/01/30/f97ef80c3fff95b1c02a4a937d666b66/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -688,7 +345,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/28/f97ef80c3fff95b1c02a4a937d666b66/" class="post-title-link" itemprop="url">常见WEB安全防御</a>
+            <a href="/2021/01/30/f97ef80c3fff95b1c02a4a937d666b66/" class="post-title-link" itemprop="url">常见WEB安全防御</a>
         </h2>
 
         <div class="post-meta">
@@ -698,7 +355,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-01-28 19:40:16" itemprop="dateCreated datePublished" datetime="2021-01-28T19:40:16+08:00">2021-01-28</time>
+              <time title="创建时间：2021-01-30 11:32:58" itemprop="dateCreated datePublished" datetime="2021-01-30T11:32:58+08:00">2021-01-30</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -820,7 +477,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.zayfen.com/2021/01/28/743319a28402c588d40d5708a261f586/">
+    <link itemprop="mainEntityOfPage" href="https://www.zayfen.com/2021/01/30/bbc765cf2f120d4208792bc259324906/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -834,7 +491,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/28/743319a28402c588d40d5708a261f586/" class="post-title-link" itemprop="url">HTTP缓存（转载自developer.google.com）</a>
+            <a href="/2021/01/30/bbc765cf2f120d4208792bc259324906/" class="post-title-link" itemprop="url">布隆过滤（Bloom Filter）</a>
         </h2>
 
         <div class="post-meta">
@@ -844,7 +501,239 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-01-28 19:40:16" itemprop="dateCreated datePublished" datetime="2021-01-28T19:40:16+08:00">2021-01-28</time>
+              <time title="创建时间：2021-01-30 11:32:58" itemprop="dateCreated datePublished" datetime="2021-01-30T11:32:58+08:00">2021-01-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Bloom-Filter"><a href="#Bloom-Filter" class="headerlink" title="Bloom Filter"></a>Bloom Filter</h1><h1 id="1-什么是布隆过滤？"><a href="#1-什么是布隆过滤？" class="headerlink" title="1. 什么是布隆过滤？"></a>1. 什么是布隆过滤？</h1><p>布隆过滤是应用于大数据中检测一个数据是否在一个集合中的搜索过滤算法。</p>
+<h1 id="2-应用场景"><a href="#2-应用场景" class="headerlink" title="2. 应用场景"></a>2. 应用场景</h1><p>比如如何在成千上万的网址中快速地识别出恶意的网址，在成千上万的邮件中快速识别出恶意的邮件等</p>
+<h1 id="3-算法简单描述"><a href="#3-算法简单描述" class="headerlink" title="3. 算法简单描述"></a>3. 算法简单描述</h1><p>布隆过滤是在一个bitmap中预先通过k个hash函数插入一些目标数据标记，表示为下图：<br>假设这里的bitmap(所有的位都初始化为0)是有10个bits，有3个hash 函数，有一个目标数据“cat”，那么将cat映射标记到bitmap就是通过3个hash函数分别计算cat的hash值，将hash值转换成bitmap的索引，并将对应索引位置的bit置为1，至此，我们就标记了一个目标数据，目前cat就是我们要过滤的数据，当在很多的数据中要识别出“cat”的时候，就可以通过建立好的这个bitmap来识别了。</p>
+<p><img data-src="http://cdncontribute.geeksforgeeks.org/wp-content/uploads/cat-300x109.png" alt="cat"></p>
+<p>比如，现在有3个数据来了，分别是 “dog”，“cat”，“pig”，我们需要从中识别出“cat”，怎么样识别呢？<br>“dog” =&gt; 映射到 bitmap[1], bitmap[2], bitmap[3], 发现都不是1，则‘dog‘就不是目标数据<br>“cat” =&gt; 映射到 bitmap[1], bitmap[3], bitmap[7],发现所有的都是1， 则 ‘cat’就是目标数据<br>“pig” =&gt; 映射到 bitmap[8], bitmap[9], bitmap[10]，发现都不是1， 则‘pig’就不是目标数据<br>这样通过重新计算hash来和bitmap中的对比就能过滤掉一些目标数据了<br>但是这里其实还有一个问题，存在一个不同的目标,比如“bird”，这个通过hash函数计算出来的结果可能在bitmap中都为1, 这种情况是无法避免的，我们称之为“误判”，这种识别错误的概率和目标数据，bitmap大小和hash函数的数据是相关联的</p>
+<h1 id="4-算法推导"><a href="#4-算法推导" class="headerlink" title="4. 算法推导"></a>4. 算法推导</h1><p>布隆过滤的原理大概了解了，但是这里有个问题是，如何确定bitmap的大小以及hash function的多少，<br>我们可以通过指定一个错误概率的大小和初始的目标数据来确定 bitmap的大小和hash function 的数量</p>
+<p>假设有 <script type="math/tex">K</script>个hash函数，<script type="math/tex">M</script> bits的bitmap， <script type="math/tex">N</script>个初始数据, 对于bitmap中的一个特定点，<script type="math/tex">K</script>个hash函数映射到此点的·概率相等，即一个点被函数命中的概率为：</p>
+<script type="math/tex; mode=display">p_1=\frac{1}{M}</script><p>则一个点不被命中的概率为：</p>
+<script type="math/tex; mode=display">p_2=1-\frac{1}{M}</script><p>则<script type="math/tex">K</script>个函数都不命中的概率为：</p>
+<script type="math/tex; mode=display">p_3=\left(1-\frac{1}{M}\right)^K</script><p>假设已经存在了<script type="math/tex">N</script>个数据，那么一个特定的点在N个数据下都没有被命中的概率为：</p>
+<script type="math/tex; mode=display">p_4=\left(1-\frac{1}{M}\right)^{KN}</script><p>那么这个点命中的概率为：</p>
+<script type="math/tex; mode=display">p_5=1-\left(1-\frac{1}{M}\right)^{KN}</script><p>现在来判断一个不再初始数据集合中的数据被命中的概率，即，满足<script type="math/tex">K</script>个hash函数计算的结果都被命中，这种情况的概率为：</p>
+<script type="math/tex; mode=display">p_6=\left(1-\left(1-\frac{1}{M}\right)^{KN}\right)^K</script><p>因为目标数据命中的概率为1，所以当<script type="math/tex">p_6</script>越小的时候，也就表示别的数据被命中的概率越低。<br>根据 <script type="math/tex">1-\frac{1}{m}\approx\ell^{-\frac{1}{m}}</script>可以将<script type="math/tex">p_6</script>简化为：<script type="math/tex">\ell^{-\frac{KN}{M}}</script></p>
+<script type="math/tex; mode=display">p_6\approx\left(1-\ell^{-\frac{KN}{M}}\right)^K</script><p>因为<script type="math/tex">K</script>为正数，取其值为<script type="math/tex">\frac{M}{N}\ln2</script>， 则</p>
+<script type="math/tex; mode=display">p_6\approx\left(1-\ell^{-\frac{\left(\frac{M}{N}\ln2\right)N}{M}}\right)^{\frac{M}{N}\ln2}</script><script type="math/tex; mode=display">\ln{p_6}\approx{\frac{M}{N}\ln2}\times\ln\left(1-\ell^{-\frac{\left(\frac{M}{N}\ln2\right)N}{M}}\right)</script><script type="math/tex; mode=display">\ln{p_6}\approx{\frac{M}{N}\ln2}\times\ln\left(1-\ell^{-\ln2}\right)</script><script type="math/tex; mode=display">\ln{p_6}\approx{\frac{M}{N}\ln2}\times\ln\left(1-\frac{1}{\ell^{\ln2}}\right)</script><script type="math/tex; mode=display">\ln{p_6}\approx\frac{M}{N}\ln2\times\ln\frac{1}{2}</script><script type="math/tex; mode=display">\ln{p_6}\approx\frac{M}{N}\ln2\times{\left(-\ln2\right)}</script><script type="math/tex; mode=display">\ln{p_6}\approx{-\frac{M}{N}{\left(\ln2\right)}^2}</script><p>所以最终</p>
+<script type="math/tex; mode=display">M = -\frac{\ln{p_6} \times N}{ \left(\ln2\right)^2 }</script><p>所以当我们希望误判命中的概率是  0.001,  初始化插入了 10000 条数据， 那么<script type="math/tex">M</script> 就等于 </p>
+<pre><code>Math.log(0.001)*10000 / Math.pow(Math.log(2), 2) * -1 // output: 143775.87566051158
+</code></pre><p>那么 <script type="math/tex">K</script>就等于</p>
+<pre><code>143776 / 10000 * Math.log(2) // output: 9.965... 也就是需要10个hash函数
+</code></pre><h1 id="5-代码实现"><a href="#5-代码实现" class="headerlink" title="5. 代码实现"></a>5. 代码实现</h1><p><a href="https://github.com/zhangyunfeng/BloomFilter/tree/master/src" target="_blank" rel="noopener">https://github.com/zhangyunfeng/BloomFilter/tree/master/src</a></p>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+      
+    </div>
+
+    
+    
+    
+      
+
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.zayfen.com/2021/01/30/b7d273159f6becc31fc5174ea7582c5e/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zayfen">
+      <meta itemprop="description" content="For Better Life...">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z . A . Y . F . E . N">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/30/b7d273159f6becc31fc5174ea7582c5e/" class="post-title-link" itemprop="url">搜索算法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-30 11:32:58" itemprop="dateCreated datePublished" datetime="2021-01-30T11:32:58+08:00">2021-01-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="线性搜索"><a href="#线性搜索" class="headerlink" title="线性搜索"></a>线性搜索</h3><p>线性搜索也是最简单的搜索算法，简单来说，就是对一个数组或者顺序容器，进行从头到尾的遍历，一个一个的找到目标元素<br><img data-src="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/Linear.png" alt="image"><br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 简单的线性搜索算法实现</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">linear_search</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&amp; vec, <span class="keyword">const</span> T&amp; x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> index = <span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; element : vec) &#123;</span><br><span class="line">    index++;</span><br><span class="line">    <span class="keyword">if</span>(element == x) &#123;</span><br><span class="line">      <span class="keyword">return</span> index;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>时间复杂度： O(N)</strong></p>
+<hr>
+<h3 id="二分查找（Binary-Search）"><a href="#二分查找（Binary-Search）" class="headerlink" title="二分查找（Binary Search）"></a>二分查找（Binary Search）</h3><p>二分查找，是给定一个有序的数组或者顺序容器，每次取容器的中间位置的元素和目标元素对比来缩短查找的范围。过程可以简单描述如下：<br><img data-src="https://www.geeksforgeeks.org/wp-content/uploads/gq/2014/01/binary-search1.png" alt="image"><br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 二分查找</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">binary_search</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&amp; vec, <span class="keyword">const</span> <span class="keyword">int</span> low, <span class="keyword">const</span> <span class="keyword">int</span> high, <span class="keyword">const</span> T&amp; x)</span> </span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"binary_search low "</span> &lt;&lt; low &lt;&lt; <span class="string">"  high "</span> &lt;&lt; high &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">if</span> (low &gt; high) &#123; <span class="comment">// 没有找到</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">int</span> middle = low + (high - low) / <span class="number">2</span>; <span class="comment">// 搜索区间缩短一半</span></span><br><span class="line">  <span class="keyword">if</span> (x == vec.at(middle)) &#123;</span><br><span class="line">    <span class="keyword">return</span> middle;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">int</span> low_ = vec.at(middle) &gt; x ? low : middle + <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">int</span> high_ = vec.at(middle) &gt; x ? middle - <span class="number">1</span> : high;</span><br><span class="line">  <span class="keyword">return</span> binary_search(vec, low_, high_, x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>时间复杂度： O(LogN)</strong></p>
+<hr>
+<h3 id="跳跃查找（Jump-Search）"><a href="#跳跃查找（Jump-Search）" class="headerlink" title="跳跃查找（Jump Search）"></a>跳跃查找（Jump Search）</h3><p>给定一个有序的顺序容器，容器宗有n个元素， 将元素分成m份，每份 n/m 个元素。然后我们按照每n/m个元素间隔去查找元素，找到要搜索的元素所在的区间[i, i+n/m), 然后在这个区间中<br>判断值<br><img data-src="https://res.cloudinary.com/zayfen/image/upload/v1574065062/img/jrebsdjju8ez4ggz3lrn.png" alt="image"></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">jump_search</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&amp; vec, <span class="keyword">const</span> T&amp; x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (vec.<span class="built_in">size</span>() == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">  <span class="keyword">int</span> stepWidth = <span class="built_in">std</span>::<span class="built_in">sqrt</span>(vec.<span class="built_in">size</span>());</span><br><span class="line">  <span class="keyword">int</span> prevStepIndex = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> stepIndex = <span class="built_in">std</span>::<span class="built_in">min</span>(stepWidth, <span class="keyword">int</span>(vec.<span class="built_in">size</span>())) - <span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">  <span class="keyword">while</span> (vec.at(stepIndex) &lt; x) &#123;</span><br><span class="line">    prevStepIndex = stepIndex;</span><br><span class="line">    stepIndex = <span class="built_in">std</span>::<span class="built_in">min</span>(stepWidth + stepIndex, <span class="keyword">int</span>(vec.<span class="built_in">size</span>() - <span class="number">1</span>));</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (prevStepIndex == stepIndex) &#123; <span class="comment">// 到达尾部，没有找到x元素</span></span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// ignore all elements less than x</span></span><br><span class="line">  <span class="keyword">while</span> (vec.at(prevStepIndex) &lt; x) &#123;</span><br><span class="line">    prevStepIndex++;</span><br><span class="line">    <span class="keyword">if</span> (prevStepIndex &gt;= vec.<span class="built_in">size</span>()) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// if element found</span></span><br><span class="line">  <span class="keyword">if</span> (vec.at(prevStepIndex) == x) &#123;</span><br><span class="line">    <span class="keyword">return</span> prevStepIndex;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>算法分析<br>寻找要查找的元素所在的区间，最大需要为 m - 1次比较，再区间段中最大需要n/m次比较 ，所以时间复杂度是 O((m-1) + n/m),<br>要使 (m-1) + n/m 最小，需要 m = sqrt(n),所有， 时间复杂度是 O(sqrt(n) - 1 + n/sqrt(n)) 也就是  O(sqrt(n))</li>
+</ul>
+<p>让 n/m+m-1 = 0,</p>
+<p>jump search 的时间复杂度，是介于线性查找和二分查找之间的，所以jump search 的性能没有比二分查找要好，但是jump search 有一个好处，就是他只需要回退一次，加入我们要查找一个最小的元素，jump search 只需要查找一个，而二分查找需要查满，这种情况下，jump search 是优于 二分查找的。<br><img data-src="https://res.cloudinary.com/zayfen/image/upload/v1574065247/img/oo88hrbld592stbd6lq2.png" alt="image"></p>
+<hr>
+<h3 id="差值搜索-（Interpolation-Search）"><a href="#差值搜索-（Interpolation-Search）" class="headerlink" title="差值搜索 （Interpolation Search）"></a>差值搜索 （Interpolation Search）</h3><p>差值搜索是对二分搜索的优化，二分搜索永远都是从搜索区间的中间位置开始切分，而差值搜索会从选择从要搜索的元素最接近的位置开始切分，这样就有利于尽快的找到要搜索的元素</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">position</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&amp; vec, <span class="keyword">const</span> T&amp; x, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> low + (high - low) * ((x - vec.at(low)) / (vec.at(high) - vec.at(low)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">interpolation_search</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&amp; vec, <span class="keyword">const</span> T&amp; x)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> high = vec.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">while</span> (low &lt;= high &amp;&amp; x &gt;= vec.at(low) &amp;&amp; x &lt;= vec.at(high)) &#123;</span><br><span class="line">    <span class="keyword">int</span> pos = <span class="built_in">position</span>(vec, x, low, high);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"position is %d \n"</span>, pos);</span><br><span class="line">    <span class="keyword">if</span> (vec.at(pos) == x) &#123;</span><br><span class="line">      <span class="keyword">return</span> pos;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (vec.at(pos) &lt; x) &#123;</span><br><span class="line">      low = pos + <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    high = pos - <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>算法分析：<br>如果顺序容器中的元素是均匀分布的，那么就是时间复杂度就是 O(log log n)), 最坏的情况是 O(n)<div class="pdfobject-container" data-target="/Assets/p550-perl.pdf" data-height="500px"></div>
+<script>
+(function(){
+  var bp = document.createElement('script');
+  var curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+  }
+  else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();
+</script>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      
+
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.zayfen.com/2021/01/30/743319a28402c588d40d5708a261f586/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zayfen">
+      <meta itemprop="description" content="For Better Life...">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z . A . Y . F . E . N">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/30/743319a28402c588d40d5708a261f586/" class="post-title-link" itemprop="url">HTTP缓存（转载自developer.google.com）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-30 11:32:58" itemprop="dateCreated datePublished" datetime="2021-01-30T11:32:58+08:00">2021-01-30</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -969,7 +858,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.zayfen.com/2021/01/28/20197a10d04b8a4be9e5ef48897dee9c/">
+    <link itemprop="mainEntityOfPage" href="https://www.zayfen.com/2021/01/30/2394e091a7d27e6f0a6c11f035a47267/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -983,7 +872,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/28/20197a10d04b8a4be9e5ef48897dee9c/" class="post-title-link" itemprop="url">简单介绍 line-box、vertical-line、line-height 和 font</a>
+            <a href="/2021/01/30/2394e091a7d27e6f0a6c11f035a47267/" class="post-title-link" itemprop="url">IEEE 754  && 反码 && 补码  && 原码</a>
         </h2>
 
         <div class="post-meta">
@@ -993,7 +882,142 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-01-28 19:40:16" itemprop="dateCreated datePublished" datetime="2021-01-28T19:40:16+08:00">2021-01-28</time>
+              <time title="创建时间：2021-01-30 11:32:58" itemprop="dateCreated datePublished" datetime="2021-01-30T11:32:58+08:00">2021-01-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OS/" itemprop="url" rel="index"><span itemprop="name">OS</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>假设一个二进制向量 $x = [x<em>w, x</em>{w-1}, x<em>{w-2}, …, x</em>{w<em>1}, x</em>{w_0}]$</p>
+<h2 id="补码"><a href="#补码" class="headerlink" title="补码"></a>补码</h2><p>$V = -{x<em>w} \cdot 2^w + \sum</em>{i=0}^{w-1}(x_i \cdot 2^i)$</p>
+<h2 id="反码"><a href="#反码" class="headerlink" title="反码"></a>反码</h2><p>$V = -1 \cdot {x<em>w} \cdot (2^w - 1) + \sum</em>{i=0}^{w-1}(x_i \cdot 2^i)$</p>
+<h2 id="原码"><a href="#原码" class="headerlink" title="原码"></a>原码</h2><p>$V=(-1)^{x<em>w} \cdot (\sum</em>{i = 0}^{w-1}x_i2^i)$</p>
+<h2 id="IEEE-754"><a href="#IEEE-754" class="headerlink" title="IEEE 754"></a>IEEE 754</h2><p>浮点表示法</p>
+<h3 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h3><p>将浮点数的位表示划分为3部分，分别为符号位(<strong>S</strong>)，编码阶码(<strong>E</strong>)，和 编码尾码(<strong>M</strong>)。</p>
+<p>浮点数值 $V = -1 <em> S </em> 2^E * M$</p>
+<ul>
+<li>$S$(sign) 表示符号，$0$表示正，$1$表示负</li>
+<li>$E$(exponent) 阶码，规格化格式中，取值为$e - bias$，非规格化格式中，取值为$1-bias$ ($e$为阶码的无符号值, $bias$为偏移值，假设阶码$k$位，则$bias=2^{k-1}-1$)</li>
+<li>$M$(significand) 尾数, 在规格化中，取值为$1 + fraction$, 非规格化中，取值为$fraction$（fraction为尾数的无符号值）</li>
+</ul>
+<h3 id="规格化-amp-非规格化-amp-无穷大-amp-NaN-不是一个数"><a href="#规格化-amp-非规格化-amp-无穷大-amp-NaN-不是一个数" class="headerlink" title="规格化 &amp; 非规格化 &amp; 无穷大 &amp; NaN(不是一个数)"></a>规格化 &amp; 非规格化 &amp; 无穷大 &amp; NaN(不是一个数)</h3><p>假设阶码有$k$位，尾数有$n$位，则$bias=2^{k-1}-1$;</p>
+<h4 id="规格化"><a href="#规格化" class="headerlink" title="规格化"></a>规格化</h4><p>规格化 指阶码位既不是$0$ 也不是 $2^k-1$</p>
+<p><strong>计算E</strong></p>
+<ul>
+<li>$bias = 2^{k-1} - 1$</li>
+<li>$e = \sum_{i=0}^{k-1}(k_i*2^i)$ </li>
+<li>$E=e - bias$</li>
+</ul>
+<p><strong>计算M</strong></p>
+<ul>
+<li>$f = \sum_{i=-1}^{-n}(n_i * 2^i)$</li>
+<li>$M = 1 + f$</li>
+</ul>
+<h4 id="非规格化"><a href="#非规格化" class="headerlink" title="非规格化"></a>非规格化</h4><p>非规格化 指阶码位全部是$0$</p>
+<p><strong>计算E</strong></p>
+<ul>
+<li>$bias = 2^{k-1} - 1$</li>
+<li>$E = 1 - bias$</li>
+</ul>
+<p><strong>计算M</strong></p>
+<ul>
+<li>$f = \sum_{i=-1}^{-n}(n_i * 2^i)$</li>
+<li>$M = f$</li>
+</ul>
+<h4 id="无穷大"><a href="#无穷大" class="headerlink" title="无穷大"></a>无穷大</h4><p>无穷大 指阶码全部都是$1$, 尾数等于$0$</p>
+<h4 id="NaN"><a href="#NaN" class="headerlink" title="NaN"></a>NaN</h4><p>NaN 指阶码全部都是$1$, 尾数不等于$0$</p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p><img data-src="https://res.cloudinary.com/zayfen/image/upload/v1576484284/img/agtkr1hlo1dm1mziuddi.png" alt="image"></p>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+      
+    </div>
+
+    
+    
+    
+      
+
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.zayfen.com/2021/01/30/20197a10d04b8a4be9e5ef48897dee9c/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zayfen">
+      <meta itemprop="description" content="For Better Life...">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z . A . Y . F . E . N">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/30/20197a10d04b8a4be9e5ef48897dee9c/" class="post-title-link" itemprop="url">简单介绍 line-box、vertical-line、line-height 和 font</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-30 11:32:58" itemprop="dateCreated datePublished" datetime="2021-01-30T11:32:58+08:00">2021-01-30</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1128,7 +1152,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-28 19:40:16" itemprop="dateModified" datetime="2021-01-28T19:40:16+08:00">2021-01-28</time>
+                <time title="修改时间：2021-01-30 11:32:58" itemprop="dateModified" datetime="2021-01-30T11:32:58+08:00">2021-01-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1251,7 +1275,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-28 19:40:16" itemprop="dateModified" datetime="2021-01-28T19:40:16+08:00">2021-01-28</time>
+                <time title="修改时间：2021-01-30 11:32:58" itemprop="dateModified" datetime="2021-01-30T11:32:58+08:00">2021-01-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1360,7 +1384,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-28 19:40:16" itemprop="dateModified" datetime="2021-01-28T19:40:16+08:00">2021-01-28</time>
+                <time title="修改时间：2021-01-30 11:32:58" itemprop="dateModified" datetime="2021-01-30T11:32:58+08:00">2021-01-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1567,12 +1591,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">29k</span>
+    <span title="站点总字数">30k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">26 分钟</span>
+    <span title="站点阅读时长">27 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>

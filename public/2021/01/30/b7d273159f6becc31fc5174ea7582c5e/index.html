@@ -21,20 +21,20 @@
     var CONFIG = {"hostname":"www.zayfen.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"M3PLLO9TMX","apiKey":"a6accc6480b4a9053d9905fa81d61d9c","indexName":"zayfen.com","hits":{"per_page":10},"labels":{"input_placeholder":"搜索文章","hits_empty":"没有搜索到相关内容: ${query}","hits_stats":"${hits} 条搜索结果(${time} ms)"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="WEB安全[TOC] 一、漏洞分类 XSS漏洞 CSRF漏洞 SSRF漏洞 SQL漏洞  二、各种漏洞介绍XSS漏洞  什么是XSS漏洞XSS漏洞全称跨站脚本攻击，英文全称 Cross-site Scripting, 为了不和css名字重复，所以取名XSS. XSS漏洞主要是能够利用代码的漏洞，通过一些技巧在浏览器端执行非法的javascript脚本，这些非法的javascript脚本拥有当前登录">
-<meta name="keywords" content="web,security">
+  <meta name="description" content="线性搜索线性搜索也是最简单的搜索算法，简单来说，就是对一个数组或者顺序容器，进行从头到尾的遍历，一个一个的找到目标元素// 简单的线性搜索算法实现template &amp;lt;typename T&amp;gt;int linear_search(const std::vector&amp;lt;T&amp;gt;&amp;amp; vec, const T&amp;amp; x)&amp;#123;  int index = -1;  for(c">
+<meta name="keywords" content="algorithm,search">
 <meta property="og:type" content="article">
-<meta property="og:title" content="常见WEB安全防御">
-<meta property="og:url" content="https://www.zayfen.com/2021/01/28/f97ef80c3fff95b1c02a4a937d666b66/index.html">
+<meta property="og:title" content="搜索算法">
+<meta property="og:url" content="https://www.zayfen.com/2021/01/30/b7d273159f6becc31fc5174ea7582c5e/index.html">
 <meta property="og:site_name" content="Z . A . Y . F . E . N">
-<meta property="og:description" content="WEB安全[TOC] 一、漏洞分类 XSS漏洞 CSRF漏洞 SSRF漏洞 SQL漏洞  二、各种漏洞介绍XSS漏洞  什么是XSS漏洞XSS漏洞全称跨站脚本攻击，英文全称 Cross-site Scripting, 为了不和css名字重复，所以取名XSS. XSS漏洞主要是能够利用代码的漏洞，通过一些技巧在浏览器端执行非法的javascript脚本，这些非法的javascript脚本拥有当前登录">
+<meta property="og:description" content="线性搜索线性搜索也是最简单的搜索算法，简单来说，就是对一个数组或者顺序容器，进行从头到尾的遍历，一个一个的找到目标元素// 简单的线性搜索算法实现template &amp;lt;typename T&amp;gt;int linear_search(const std::vector&amp;lt;T&amp;gt;&amp;amp; vec, const T&amp;amp; x)&amp;#123;  int index = -1;  for(c">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-01-28T11:40:16.078Z">
+<meta property="og:updated_time" content="2021-01-30T03:32:58.959Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="常见WEB安全防御">
-<meta name="twitter:description" content="WEB安全[TOC] 一、漏洞分类 XSS漏洞 CSRF漏洞 SSRF漏洞 SQL漏洞  二、各种漏洞介绍XSS漏洞  什么是XSS漏洞XSS漏洞全称跨站脚本攻击，英文全称 Cross-site Scripting, 为了不和css名字重复，所以取名XSS. XSS漏洞主要是能够利用代码的漏洞，通过一些技巧在浏览器端执行非法的javascript脚本，这些非法的javascript脚本拥有当前登录">
+<meta name="twitter:title" content="搜索算法">
+<meta name="twitter:description" content="线性搜索线性搜索也是最简单的搜索算法，简单来说，就是对一个数组或者顺序容器，进行从头到尾的遍历，一个一个的找到目标元素// 简单的线性搜索算法实现template &amp;lt;typename T&amp;gt;int linear_search(const std::vector&amp;lt;T&amp;gt;&amp;amp; vec, const T&amp;amp; x)&amp;#123;  int index = -1;  for(c">
 
-<link rel="canonical" href="https://www.zayfen.com/2021/01/28/f97ef80c3fff95b1c02a4a937d666b66/">
+<link rel="canonical" href="https://www.zayfen.com/2021/01/30/b7d273159f6becc31fc5174ea7582c5e/">
 
 
 <script id="page-configurations">
@@ -47,7 +47,7 @@
   };
 </script>
 
-  <title>常见WEB安全防御 | Z . A . Y . F . E . N</title>
+  <title>搜索算法 | Z . A . Y . F . E . N</title>
   
 
 
@@ -201,7 +201,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.zayfen.com/2021/01/28/f97ef80c3fff95b1c02a4a937d666b66/">
+    <link itemprop="mainEntityOfPage" href="https://www.zayfen.com/2021/01/30/b7d273159f6becc31fc5174ea7582c5e/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -214,7 +214,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          常见WEB安全防御
+          搜索算法
         </h1>
 
         <div class="post-meta">
@@ -224,7 +224,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-01-28 19:40:16" itemprop="dateCreated datePublished" datetime="2021-01-28T19:40:16+08:00">2021-01-28</time>
+              <time title="创建时间：2021-01-30 11:32:58" itemprop="dateCreated datePublished" datetime="2021-01-30T11:32:58+08:00">2021-01-30</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -232,7 +232,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a>
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
                 </span>
             </span>
 
@@ -249,7 +249,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.4k</span>
+              <span>3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -268,70 +268,40 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="WEB安全"><a href="#WEB安全" class="headerlink" title="WEB安全"></a>WEB安全</h1><p>[TOC]</p>
-<h2 id="一、漏洞分类"><a href="#一、漏洞分类" class="headerlink" title="一、漏洞分类"></a>一、漏洞分类</h2><ul>
-<li>XSS漏洞</li>
-<li>CSRF漏洞</li>
-<li>SSRF漏洞</li>
-<li>SQL漏洞</li>
-</ul>
-<p>二、各种漏洞介绍<br><strong>XSS漏洞</strong></p>
-<ol>
-<li><p>什么是XSS漏洞<br>XSS漏洞全称跨站脚本攻击，英文全称 Cross-site Scripting, 为了不和css名字重复，所以取名XSS. XSS漏洞主要是能够利用代码的漏洞，通过一些技巧在浏览器端执行非法的javascript脚本，这些非法的javascript脚本拥有当前登录用户的权限，可以执行一些非法操作，从而给用户或者企业带来损失。</p>
-</li>
-<li><p>XSS漏洞的种类</p>
-</li>
-</ol>
-<ul>
-<li>DOM型XSS</li>
-</ul>
-<p>这个是最常见的一个XSS漏洞了，在在浏览器端操作DOM时产生。比如，在一个input中输入一个字符串，并将字符串显示在页面中，如果没有对字符串做校验就可能会产生DOM型xss漏洞。<br>例子：</p>
-<p><a href="https://pastebin.com/C1inFY9n" target="_blank" rel="noopener">https://pastebin.com/C1inFY9n</a></p>
-<p><a href="https://pastebin.com/C1inFY9n" target="_blank" rel="noopener">https://pastebin.com/C1inFY9n</a></p>
-<ul>
-<li>反射型XSS</li>
-</ul>
-<p>反射型XSS是发送到服务端的数据没有做参数的校验和过滤，只是简单地把用户输入的数据”反射”给浏览器,导致在浏览器中渲染处理参数时引入了js脚本。反射型XSS也叫做”非持久型XSS” (Non-persistent XSS)</p>
-<ul>
-<li>存储型XSS .</li>
-</ul>
-<p>存储型XSS会把用户输入的数据”存储”在服务端, 这种XSS具有很强的稳定性.最常见的一种情况就是,在博客中写一段包含有恶意javascript代码发表, 这段恶意的代码就会随着博客内容存储到数据库中,如何人访问这篇博客都会受到攻击</p>
+        <h3 id="线性搜索"><a href="#线性搜索" class="headerlink" title="线性搜索"></a>线性搜索</h3><p>线性搜索也是最简单的搜索算法，简单来说，就是对一个数组或者顺序容器，进行从头到尾的遍历，一个一个的找到目标元素<br><img data-src="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/Linear.png" alt="image"><br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 简单的线性搜索算法实现</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">linear_search</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&amp; vec, <span class="keyword">const</span> T&amp; x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> index = <span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; element : vec) &#123;</span><br><span class="line">    index++;</span><br><span class="line">    <span class="keyword">if</span>(element == x) &#123;</span><br><span class="line">      <span class="keyword">return</span> index;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>时间复杂度： O(N)</strong></p>
 <hr>
-<ol>
-<li>XSS漏洞的危害<br>a. 窃取cookie,登录别人账户<br>攻击者可以构造一个链接,当被攻击者点击了这个链接之后,会触发xss漏洞,就会执行一个js脚本,该js脚本会携带cookie信息通过img标签或者script标签等可以跨域访问的标签将信息发送给攻击者.<br>b. 构造GET和POST请求,删除或者篡改受害者信息<br>比如有个删除文章的接口: <a href="http://blog.abc.com/delete?id=post_idxxx" target="_blank" rel="noopener">http://blog.abc.com/delete?id=post_idxxx</a>, 当攻击者知道被攻击者的一篇文章的id的时候,就可以通过xss payload来请求删除文章的接口, 修改被攻击者信息同理.<br>c. XSS钓鱼<br>xss的攻击过程都是需要在浏览器中通过javascript自动执行的.如果在攻击的过程中存在和用户交互的情况就比较麻烦了,比如需要输入旧密码或者输入图片上的验证码,虽然比较麻烦,但是我们还是可以实施xss攻击的,比如把显示验证码的图片地址发送给攻击者,或者制作一个长得一模一样的输入帐号密码的界面欺骗被攻击者.这些攻击方法就是xss钓鱼.<br>d. 识别用户的浏览器,利用浏览器的漏洞对系统进行攻击<br>浏览器有漏洞,虽然浏览器会通过更新来解决这些漏洞,但是不能保证所有的人都更新到最新版本,当检测到有漏洞的浏览器版本,就可以通过浏览器漏洞对系统进行攻击.<br>e. 识别用户安装的软件执行挂马攻击<br>在IE中可以通过判断 ActieX空间的classid是否存在来判断用户是否安装了软件.黑客通过判断被攻击者安装的软件,选择对应的浏览器漏洞,最终达到植入木马的目的.<br>比如在IE中通过如下的代码就可以判断用户是否安装了迅雷:<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">var</span> obj = <span class="keyword">new</span> ActiveXObject(<span class="string">'XunLeiBHO.ThunderIEHelper'</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">  <span class="comment">// 异常, 没有安装此软件</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (obj) &#123;</span><br><span class="line">  <span class="comment">// 安装了迅雷</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>另外,可以通过flash的一个 system.capabilities对象来找出电脑的硬件信息,还可以通过判断特定的DOM来判断浏览器安装了哪些插件.</p>
-<p>通过xss攻击还可以知道被攻击者访问了哪些页面(通过 :visited 伪元素判断), 还可以在jre环境中通过调用Java Applete的接口获取客户端的本地ip地址.</p>
-<ol>
-<li>XSS的防御<br>a. HttpOnly<br>通过在cookie中设置HttpOnly这个属性,可以阻止javascript访问cookie内容.<br>b. 输入检查<br>对输入的值进行字符类型,字符长度检查,比如手机号码,不能出现字母,而且长度为11, 对一些特殊字符,比如尖括号进行转义编码,或者一些特殊的字符串进行过滤,比如 <code>&lt;script&gt;, javascript:</code>.<br>c. 输出检查<br>执行安全的编码函数, htmlEncode, javascriptEncode.<br>在html中输出变量$var,使用 htmlEncode对$var进行编码.<br>在html中的onclick等事件中输出,使用javascript对$var编码<br>在javascript中输出$var, 使用 javascript对$var编码<br>在css中,禁止变量输出,即不要在style中使用$var变量<br>在地址中输出,使用urlEncode<br>d. 处理富文本<br>通过htmlparser解析文本,过滤掉危险标签 <code>&lt;iframe&gt;, &lt;script&gt;, &lt;base&gt;, &lt;form&gt;</code>等, 在富文本中可选择的标签使用白名单,避免使用黑名单,即指定富文本中只能使用哪几种标签.<br>e.编写代码时,注意这些地方;<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">document.write();</span><br><span class="line">document.writeln();</span><br><span class="line">xxx.innerHTML();</span><br><span class="line">xxx.outerHTML();</span><br><span class="line">innerHTML.replace();</span><br><span class="line">document.attachEvent();</span><br><span class="line">window.attachEvent();</span><br><span class="line">document.location.replace();</span><br><span class="line">document.location.assign();</span><br><span class="line"></span><br><span class="line">// 页面中所有的input输入框</span><br><span class="line">window.location(href, hash, ...)</span><br><span class="line">window.name</span><br><span class="line">document.referrer</span><br><span class="line">document.cookie</span><br><span class="line">localstorage</span><br><span class="line">XMLHttpRequest // 主要是返回的数据</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><strong>CSRF漏洞</strong><br>CSRF漏洞,全称Cross Site Request Forgery<a href="跨站请求伪造">/ˈfɔːdʒəri/ 伪造</a>, 比如存在一个转账的接口:<br><a href="http://bank.com/transform/?money=xxx&amp;to=zzz" target="_blank" rel="noopener">http://bank.com/transform/?money=xxx&amp;to=zzz</a>;  攻击者可以伪造一个链接 <a href="http://bank.com/transform/?money=1&amp;o=lisi" target="_blank" rel="noopener">http://bank.com/transform/?money=1&amp;o=lisi</a>, 诱惑用户点击这个链接,那么用户在神不知鬼不觉之下就转移了1元钱给李四, 这个伪造的链接可以放到一个网页的img标签中, 当用户点击这个网页的时候,钱就被神不知鬼不觉的转走了. 为什么伪造的请求会请求通过呢?因为用户的浏览器成功的发送了Cookie给服务器.</p>
-<p>防御方法: 增加一个随机的token, 每次转账的时候都要带上这个随机额token, 同事后台需要校验token的正确性,比如 <a href="http://bank.com/transform/?money=xxx&amp;to=zzz&amp;token=abcUx23Flzd" target="_blank" rel="noopener">http://bank.com/transform/?money=xxx&amp;to=zzz&amp;token=abcUx23Flzd</a>, 这样攻击者不知道token的情况下,构造的链接就会无效.</p>
-<p><strong>点击劫持(ClickJacking)</strong><br>点击劫持是一种视觉上的欺骗手段.攻击者使用一个透明的iframe,覆盖在一个网页上,然后诱使用户在网页上进行操作,通过调整iframe的位置,当用户点击一个按钮的时候,其实是点击在iframe上的一个功能按钮上.</p>
-<p>点击劫持有:</p>
+<h3 id="二分查找（Binary-Search）"><a href="#二分查找（Binary-Search）" class="headerlink" title="二分查找（Binary Search）"></a>二分查找（Binary Search）</h3><p>二分查找，是给定一个有序的数组或者顺序容器，每次取容器的中间位置的元素和目标元素对比来缩短查找的范围。过程可以简单描述如下：<br><img data-src="https://www.geeksforgeeks.org/wp-content/uploads/gq/2014/01/binary-search1.png" alt="image"><br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 二分查找</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">binary_search</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&amp; vec, <span class="keyword">const</span> <span class="keyword">int</span> low, <span class="keyword">const</span> <span class="keyword">int</span> high, <span class="keyword">const</span> T&amp; x)</span> </span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"binary_search low "</span> &lt;&lt; low &lt;&lt; <span class="string">"  high "</span> &lt;&lt; high &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">if</span> (low &gt; high) &#123; <span class="comment">// 没有找到</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">int</span> middle = low + (high - low) / <span class="number">2</span>; <span class="comment">// 搜索区间缩短一半</span></span><br><span class="line">  <span class="keyword">if</span> (x == vec.at(middle)) &#123;</span><br><span class="line">    <span class="keyword">return</span> middle;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">int</span> low_ = vec.at(middle) &gt; x ? low : middle + <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">int</span> high_ = vec.at(middle) &gt; x ? middle - <span class="number">1</span> : high;</span><br><span class="line">  <span class="keyword">return</span> binary_search(vec, low_, high_, x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>时间复杂度： O(LogN)</strong></p>
+<hr>
+<h3 id="跳跃查找（Jump-Search）"><a href="#跳跃查找（Jump-Search）" class="headerlink" title="跳跃查找（Jump Search）"></a>跳跃查找（Jump Search）</h3><p>给定一个有序的顺序容器，容器宗有n个元素， 将元素分成m份，每份 n/m 个元素。然后我们按照每n/m个元素间隔去查找元素，找到要搜索的元素所在的区间[i, i+n/m), 然后在这个区间中<br>判断值<br><img data-src="https://res.cloudinary.com/zayfen/image/upload/v1574065062/img/jrebsdjju8ez4ggz3lrn.png" alt="image"></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">jump_search</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&amp; vec, <span class="keyword">const</span> T&amp; x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (vec.<span class="built_in">size</span>() == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">  <span class="keyword">int</span> stepWidth = <span class="built_in">std</span>::<span class="built_in">sqrt</span>(vec.<span class="built_in">size</span>());</span><br><span class="line">  <span class="keyword">int</span> prevStepIndex = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> stepIndex = <span class="built_in">std</span>::<span class="built_in">min</span>(stepWidth, <span class="keyword">int</span>(vec.<span class="built_in">size</span>())) - <span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">  <span class="keyword">while</span> (vec.at(stepIndex) &lt; x) &#123;</span><br><span class="line">    prevStepIndex = stepIndex;</span><br><span class="line">    stepIndex = <span class="built_in">std</span>::<span class="built_in">min</span>(stepWidth + stepIndex, <span class="keyword">int</span>(vec.<span class="built_in">size</span>() - <span class="number">1</span>));</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (prevStepIndex == stepIndex) &#123; <span class="comment">// 到达尾部，没有找到x元素</span></span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// ignore all elements less than x</span></span><br><span class="line">  <span class="keyword">while</span> (vec.at(prevStepIndex) &lt; x) &#123;</span><br><span class="line">    prevStepIndex++;</span><br><span class="line">    <span class="keyword">if</span> (prevStepIndex &gt;= vec.<span class="built_in">size</span>()) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// if element found</span></span><br><span class="line">  <span class="keyword">if</span> (vec.at(prevStepIndex) == x) &#123;</span><br><span class="line">    <span class="keyword">return</span> prevStepIndex;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>Flash点击劫持</li>
-<li>图片覆盖攻击</li>
-<li>拖拽劫持与数据窃取</li>
-<li>触屏劫持</li>
+<li>算法分析<br>寻找要查找的元素所在的区间，最大需要为 m - 1次比较，再区间段中最大需要n/m次比较 ，所以时间复杂度是 O((m-1) + n/m),<br>要使 (m-1) + n/m 最小，需要 m = sqrt(n),所有， 时间复杂度是 O(sqrt(n) - 1 + n/sqrt(n)) 也就是  O(sqrt(n))</li>
 </ul>
-<p>防御:<br>禁止跨域的iframe来防御, 使用HTTP头  X-Frame-Options, X-Frame-Options有3个选项, DENY, SAMEORIGIN, ALLOW-FROM origin</p>
+<p>让 n/m+m-1 = 0,</p>
+<p>jump search 的时间复杂度，是介于线性查找和二分查找之间的，所以jump search 的性能没有比二分查找要好，但是jump search 有一个好处，就是他只需要回退一次，加入我们要查找一个最小的元素，jump search 只需要查找一个，而二分查找需要查满，这种情况下，jump search 是优于 二分查找的。<br><img data-src="https://res.cloudinary.com/zayfen/image/upload/v1574065247/img/oo88hrbld592stbd6lq2.png" alt="image"></p>
+<hr>
+<h3 id="差值搜索-（Interpolation-Search）"><a href="#差值搜索-（Interpolation-Search）" class="headerlink" title="差值搜索 （Interpolation Search）"></a>差值搜索 （Interpolation Search）</h3><p>差值搜索是对二分搜索的优化，二分搜索永远都是从搜索区间的中间位置开始切分，而差值搜索会从选择从要搜索的元素最接近的位置开始切分，这样就有利于尽快的找到要搜索的元素</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">position</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&amp; vec, <span class="keyword">const</span> T&amp; x, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> low + (high - low) * ((x - vec.at(low)) / (vec.at(high) - vec.at(low)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">interpolation_search</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&amp; vec, <span class="keyword">const</span> T&amp; x)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> high = vec.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">while</span> (low &lt;= high &amp;&amp; x &gt;= vec.at(low) &amp;&amp; x &lt;= vec.at(high)) &#123;</span><br><span class="line">    <span class="keyword">int</span> pos = <span class="built_in">position</span>(vec, x, low, high);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"position is %d \n"</span>, pos);</span><br><span class="line">    <span class="keyword">if</span> (vec.at(pos) == x) &#123;</span><br><span class="line">      <span class="keyword">return</span> pos;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (vec.at(pos) &lt; x) &#123;</span><br><span class="line">      low = pos + <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    high = pos - <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>算法分析：<br>如果顺序容器中的元素是均匀分布的，那么就是时间复杂度就是 O(log log n)), 最坏的情况是 O(n)<div class="pdfobject-container" data-target="/Assets/p550-perl.pdf" data-height="500px"></div>
 <script>
 (function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
+  var bp = document.createElement('script');
+  var curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+  }
+  else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
 })();
 </script>
+</li>
+</ul>
 
     </div>
 
@@ -342,7 +312,7 @@
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2019/11/18/302d853864089ff3288321c00a69a043/" rel="bookmark">Chrome调试微信web页面</a></div>
+      <div class="popular-posts-title"><a href="\2021\01\30\bbc765cf2f120d4208792bc259324906\" rel="bookmark">布隆过滤（Bloom Filter）</a></div>
     </li>
   </ul>
 
@@ -370,8 +340,8 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/web/" rel="tag"><i class="fa fa-tag"></i> web</a>
-              <a href="/tags/security/" rel="tag"><i class="fa fa-tag"></i> security</a>
+              <a href="/tags/algorithm/" rel="tag"><i class="fa fa-tag"></i> algorithm</a>
+              <a href="/tags/search/" rel="tag"><i class="fa fa-tag"></i> search</a>
           </div>
 
         
@@ -380,11 +350,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/01/28/743319a28402c588d40d5708a261f586/" rel="prev" title="HTTP缓存（转载自developer.google.com）">
+    <a href="/2021/01/30/743319a28402c588d40d5708a261f586/" rel="prev" title="HTTP缓存（转载自developer.google.com）">
       <i class="fa fa-chevron-left"></i> HTTP缓存（转载自developer.google.com）
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/01/28/bbc765cf2f120d4208792bc259324906/" rel="next" title="布隆过滤（Bloom Filter）">
+    <a href="/2021/01/30/bbc765cf2f120d4208792bc259324906/" rel="next" title="布隆过滤（Bloom Filter）">
       布隆过滤（Bloom Filter） <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -450,7 +420,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB安全"><span class="nav-number">1.</span> <span class="nav-text">WEB安全</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、漏洞分类"><span class="nav-number">1.1.</span> <span class="nav-text">一、漏洞分类</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#线性搜索"><span class="nav-number">1.</span> <span class="nav-text">线性搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二分查找（Binary-Search）"><span class="nav-number">2.</span> <span class="nav-text">二分查找（Binary Search）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跳跃查找（Jump-Search）"><span class="nav-number">3.</span> <span class="nav-text">跳跃查找（Jump Search）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#差值搜索-（Interpolation-Search）"><span class="nav-number">4.</span> <span class="nav-text">差值搜索 （Interpolation Search）</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -523,12 +493,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">29k</span>
+    <span title="站点总字数">30k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">26 分钟</span>
+    <span title="站点阅读时长">27 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
