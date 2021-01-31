@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.zayfen.com/"/>
-  <updated>2021-01-31T13:34:46.469Z</updated>
+  <updated>2021-01-30T03:32:58.961Z</updated>
   <id>https://www.zayfen.com/</id>
   
   <author>
@@ -15,36 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title></title>
-    <link href="https://www.zayfen.com/2021/01/30/vue%E6%8C%87%E4%BB%A4%E5%BF%AB%E9%80%9F%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/"/>
-    <id>https://www.zayfen.com/2021/01/30/vue指令快速网络请求/</id>
-    <published>2021-01-30T03:32:58.961Z</published>
-    <updated>2021-01-31T13:34:46.469Z</updated>
-    
-    <content type="html"><![CDATA[<hr><p>title: Vue通过指令实现快速的网络请求</p><p>author: zayfen</p><p>date: 2021/01/29</p><p>tags:</p><ul><li>web</li><li>vue</li></ul><p>categories:</p><ul><li>web</li></ul><p>archives:</p><ul><li>web</li></ul><hr><h1 id="Vue通过指令实现快速的网络请求"><a href="#Vue通过指令实现快速的网络请求" class="headerlink" title="Vue通过指令实现快速的网络请求"></a>Vue通过指令实现快速的网络请求</h1><p>开发Vue应用，不可避免的会有很多的后台数据需要请求。传统的请求方式都是如下这种：</p><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 拉取用户列表</span></span><br><span class="line">Api.fetchUserList(payload).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (res.code === <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> userList = res.data</span><br><span class="line">       </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// do some thing</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;).catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// do something </span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>在一个Vue文件中只存在少量的一两个接口请求还是能忍受的，但是一旦接口多了起来，网络请求的代码就可能占用了整个vue文件一大半的代码量。</p><p>那么有没有办法简化这种请求呢？</p><p>Vue中为了简单的绑定Properties和事件而实现了<strong>指令</strong>的概念，分别使用<code>v-bind</code>绑定Properties, 使用<code>v-on</code>绑定事件。那么我们同样可以使用指令来简化网络请求的代码。</p><h2 id="Vue指令介绍"><a href="#Vue指令介绍" class="headerlink" title="Vue指令介绍"></a>Vue指令介绍</h2><p>vue指令(directive)包含2部分的内容，一个是指令的名字（字符串），一个是指令的对象，对象中包含了 <code>bind</code>, <code>inserted</code>, <code>update</code>，<code>componentUpdated</code> 和<code>unbind</code>这5个钩子函数。</p><p>钩子函数都有几个参数<code>el</code>, <code>binding</code>,<code>vnode</code>, <code>oldVnode</code>。</p><ul><li><p>el: 指令绑定的元素，可以直接用来操作DOM对象。</p></li><li><p>binding：一个对象，包含指令的一些属性信息。比如通过这个例子来描述<code>&lt;div v-api:fetchUserList.sync=&quot;response&quot;&gt;&lt;/div&gt;</code></p><p>| 属性名     | 属性描述                                                     |<br>| ————— | —————————————————————————————— |<br>| name       | 指令名, 即例子中的 api                                       |<br>| value      | 指令的绑定值。即response的值                                 |<br>| oldValue   | 指令绑定的前一个值，仅在 update 和 componentUpdated的狗子中有用 |<br>| expression | 字符形式的表达式。比如 v-sum=”1+1”的binding.expression就是 “1+1” |<br>| arg        | 即例子中的 fetchUserList                                     |<br>| modifiers  | 即例子中的 { sync: true }                                    |</p></li><li><p>vnode: Vue编译生成的虚拟节点</p></li><li>oldVnode： 上一个虚拟节点，仅在update 和 componentUpdated 的钩子函数中有用</li></ul><h2 id="V-API指令的实现思路"><a href="#V-API指令的实现思路" class="headerlink" title="V-API指令的实现思路"></a>V-API指令的实现思路</h2><p>在需要数据的页面上使用v-api指令。v-api指令会指定接口名字和接口数据接收对象，v-api-param会指定接口参数。在inserted的钩子函数中，通过binding对象获取接口名和接口参数，执行接口调用，在接口返回之后将数据设置在response中。</p><h2 id="V-API指令的实现代码"><a href="#V-API指令的实现代码" class="headerlink" title="V-API指令的实现代码"></a>V-API指令的实现代码</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">Vue.directive(<span class="string">'api'</span>, &#123;</span><br><span class="line">    inserted (el, binding, vnode, oldVnode) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Vue.directive(<span class="string">'api-param'</span>, &#123;</span><br><span class="line">    inserted (el, binding, vnode, oldVnode) &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><h2 id="V-API指令DEMO"><a href="#V-API指令DEMO" class="headerlink" title="V-API指令DEMO"></a>V-API指令DEMO</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> </span></span><br><span class="line"><span class="tag">         <span class="attr">v-api:fetUserList</span>=<span class="string">"users"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">v-api-param</span>=<span class="string">"userListParam"</span></span></span><br><span class="line"><span class="tag">    &gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">v-for</span>=<span class="string">"(user, index) in users"</span> <span class="attr">:key</span>=<span class="string">"index"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;&#123;user&#125;]<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">        data () &#123;</span><br><span class="line"><span class="actionscript">            <span class="keyword">return</span> &#123;</span></span><br><span class="line">                users: [],</span><br><span class="line">                userListParam: &#123; page: 1, pageSize: 100 &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><script>(function(){    var bp = document.createElement('script');    var curProtocol = window.location.protocol.split(':')[0];    if (curProtocol === 'https') {        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';            }    else {        bp.src = 'http://push.zhanzhang.baidu.com/push.js';    }    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(bp, s);})();</script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;hr&gt;
-&lt;p&gt;title: Vue通过指令实现快速的网络请求&lt;/p&gt;
-&lt;p&gt;author: zayfen&lt;/p&gt;
-&lt;p&gt;date: 2021/01/29&lt;/p&gt;
-&lt;p&gt;tags:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;web&lt;/li&gt;
-&lt;li&gt;vue&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;categ
-      
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>常见WEB安全防御</title>
@@ -213,6 +183,33 @@
       <category term="line-height" scheme="https://www.zayfen.com/tags/line-height/"/>
     
       <category term="font" scheme="https://www.zayfen.com/tags/font/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vue通过指令实现快速的网络请求</title>
+    <link href="https://www.zayfen.com/2021/01/29/vue%E6%8C%87%E4%BB%A4%E5%BF%AB%E9%80%9F%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/"/>
+    <id>https://www.zayfen.com/2021/01/29/vue指令快速网络请求/</id>
+    <published>2021-01-28T16:00:00.000Z</published>
+    <updated>2021-01-31T15:39:00.084Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Vue通过指令实现快速的网络请求"><a href="#Vue通过指令实现快速的网络请求" class="headerlink" title="Vue通过指令实现快速的网络请求"></a>Vue通过指令实现快速的网络请求</h1><p>开发Vue应用，不可避免的会有很多的后台数据需要请求。传统的请求方式都是如下这种：</p><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 拉取用户列表</span></span><br><span class="line">Api.fetchUserList(payload).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (res.code === <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> userList = res.data</span><br><span class="line">       </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// do some thing</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;).catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// do something </span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>在一个Vue文件中只存在少量的一两个接口请求还是能忍受的，但是一旦接口多了起来，网络请求的代码就可能占用了整个vue文件一大半的代码量。</p><p>那么有没有办法简化这种请求呢？</p><p>Vue中为了简单的绑定Properties和事件而实现了<strong>指令</strong>的概念，分别使用<code>v-bind</code>绑定Properties, 使用<code>v-on</code>绑定事件。那么我们同样可以使用指令来简化网络请求的代码。</p><h2 id="Vue指令介绍"><a href="#Vue指令介绍" class="headerlink" title="Vue指令介绍"></a>Vue指令介绍</h2><p>vue指令(directive)包含2部分的内容，一个是指令的名字（字符串），一个是指令的对象，对象中包含了 <code>bind</code>, <code>inserted</code>, <code>update</code>，<code>componentUpdated</code> 和<code>unbind</code>这5个钩子函数。</p><p>钩子函数都有几个参数<code>el</code>, <code>binding</code>,<code>vnode</code>, <code>oldVnode</code>。</p><ul><li><p>el: 指令绑定的元素，可以直接用来操作DOM对象。</p></li><li><p>binding：一个对象，包含指令的一些属性信息。比如通过这个例子来描述<code>&lt;div v-api:fetchUserList.sync=&quot;response&quot;&gt;&lt;/div&gt;</code></p></li></ul><div class="table-container"><table><thead><tr><th>属性名</th><th>属性描述</th></tr></thead><tbody><tr><td>name</td><td>指令名, 即例子中的 api</td></tr><tr><td>value</td><td>指令的绑定值。即response的值</td></tr><tr><td>oldValue</td><td>指令绑定的前一个值，仅在 update 和 componentUpdated的狗子中有用</td></tr><tr><td>expression</td><td>字符形式的表达式。比如 v-sum=”1+1”的binding.expression就是 “1+1”</td></tr><tr><td>arg</td><td>即例子中的 fetchUserList</td></tr><tr><td>modifiers</td><td>即例子中的 { sync: true }</td></tr></tbody></table></div><ul><li>vnode: Vue编译生成的虚拟节点</li><li>oldVnode： 上一个虚拟节点，仅在update 和 componentUpdated 的钩子函数中有用</li></ul><h2 id="V-API指令的实现思路"><a href="#V-API指令的实现思路" class="headerlink" title="V-API指令的实现思路"></a>V-API指令的实现思路</h2><p>在需要数据的页面上使用v-api指令。v-api指令会指定接口名字和接口数据接收对象，v-api-param会指定接口参数。在inserted的钩子函数中，通过binding对象获取接口名和接口参数，执行接口调用，在接口返回之后将数据设置在response中。</p><h2 id="V-API指令的实现代码"><a href="#V-API指令的实现代码" class="headerlink" title="V-API指令的实现代码"></a>V-API指令的实现代码</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">Vue.directive(<span class="string">'api'</span>, &#123;</span><br><span class="line">    inserted (el, binding, vnode, oldVnode) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Vue.directive(<span class="string">'api-param'</span>, &#123;</span><br><span class="line">    inserted (el, binding, vnode, oldVnode) &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><h2 id="V-API指令DEMO"><a href="#V-API指令DEMO" class="headerlink" title="V-API指令DEMO"></a>V-API指令DEMO</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> </span></span><br><span class="line"><span class="tag">         <span class="attr">v-api:fetUserList</span>=<span class="string">"users"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">v-api-param</span>=<span class="string">"userListParam"</span></span></span><br><span class="line"><span class="tag">    &gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">v-for</span>=<span class="string">"(user, index) in users"</span> <span class="attr">:key</span>=<span class="string">"index"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;&#123;user&#125;]<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">        data () &#123;</span><br><span class="line"><span class="actionscript">            <span class="keyword">return</span> &#123;</span></span><br><span class="line">                users: [],</span><br><span class="line">                userListParam: &#123; page: 1, pageSize: 100 &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><script>(function(){    var bp = document.createElement('script');    var curProtocol = window.location.protocol.split(':')[0];    if (curProtocol === 'https') {        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';            }    else {        bp.src = 'http://push.zhanzhang.baidu.com/push.js';    }    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(bp, s);})();</script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Vue通过指令实现快速的网络请求&quot;&gt;&lt;a href=&quot;#Vue通过指令实现快速的网络请求&quot; class=&quot;headerlink&quot; title=&quot;Vue通过指令实现快速的网络请求&quot;&gt;&lt;/a&gt;Vue通过指令实现快速的网络请求&lt;/h1&gt;&lt;p&gt;开发Vue应用，不可避免的会
+      
+    
+    </summary>
+    
+      <category term="web" scheme="https://www.zayfen.com/categories/web/"/>
+    
+    
+      <category term="web" scheme="https://www.zayfen.com/tags/web/"/>
+    
+      <category term="vue" scheme="https://www.zayfen.com/tags/vue/"/>
     
   </entry>
   

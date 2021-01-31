@@ -1,25 +1,15 @@
------------
-
+------
 title: Vue通过指令实现快速的网络请求
-
 author: zayfen
-
 date: 2021/01/29
-
 tags:
-
 - web
 - vue
-
 categories:
-
  - web
-
 archives:
-
-- web
-
----------------
+ - web
+------
 
 
 
@@ -49,7 +39,7 @@ Api.fetchUserList(payload).then(res => {
 
 Vue中为了简单的绑定Properties和事件而实现了**指令**的概念，分别使用`v-bind`绑定Properties, 使用`v-on`绑定事件。那么我们同样可以使用指令来简化网络请求的代码。
 
-
+<!--  more -->
 
 ## Vue指令介绍
 
@@ -63,14 +53,14 @@ vue指令(directive)包含2部分的内容，一个是指令的名字（字符�
 
 * binding：一个对象，包含指令的一些属性信息。比如通过这个例子来描述`<div v-api:fetchUserList.sync="response"></div>`
 
-  | 属性名     | 属性描述                                                     |
-  | ---------- | ------------------------------------------------------------ |
-  | name       | 指令名, 即例子中的 api                                       |
-  | value      | 指令的绑定值。即response的值                                 |
-  | oldValue   | 指令绑定的前一个值，仅在 update 和 componentUpdated的狗子中有用 |
-  | expression | 字符形式的表达式。比如 v-sum="1+1"的binding.expression就是 “1+1” |
-  | arg        | 即例子中的 fetchUserList                                     |
-  | modifiers  | 即例子中的 { sync: true }                                    |
+| 属性名     | 属性描述                                                     |
+| ---------- | ------------------------------------------------------------ |
+| name       | 指令名, 即例子中的 api                                       |
+| value      | 指令的绑定值。即response的值                                 |
+| oldValue   | 指令绑定的前一个值，仅在 update 和 componentUpdated的狗子中有用 |
+| expression | 字符形式的表达式。比如 v-sum="1+1"的binding.expression就是 “1+1” |
+| arg        | 即例子中的 fetchUserList                                     |
+| modifiers  | 即例子中的 { sync: true }                                    |
 
 * vnode: Vue编译生成的虚拟节点
 * oldVnode： 上一个虚拟节点，仅在update 和 componentUpdated 的钩子函数中有用
