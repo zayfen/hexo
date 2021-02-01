@@ -155,53 +155,6 @@
       </tags>
   </entry>
   <entry>
-    <title>布隆过滤（Bloom Filter）</title>
-    <url>/2021/01/28/bbc765cf2f120d4208792bc259324906/</url>
-    <content><![CDATA[<h1 id="Bloom-Filter"><a href="#Bloom-Filter" class="headerlink" title="Bloom Filter"></a>Bloom Filter</h1><h1 id="1-什么是布隆过滤？"><a href="#1-什么是布隆过滤？" class="headerlink" title="1. 什么是布隆过滤？"></a>1. 什么是布隆过滤？</h1><p>布隆过滤是应用于大数据中检测一个数据是否在一个集合中的搜索过滤算法。</p>
-<h1 id="2-应用场景"><a href="#2-应用场景" class="headerlink" title="2. 应用场景"></a>2. 应用场景</h1><p>比如如何在成千上万的网址中快速地识别出恶意的网址，在成千上万的邮件中快速识别出恶意的邮件等</p>
-<a id="more"></a>
-<h1 id="3-算法简单描述"><a href="#3-算法简单描述" class="headerlink" title="3. 算法简单描述"></a>3. 算法简单描述</h1><p>布隆过滤是在一个bitmap中预先通过k个hash函数插入一些目标数据标记，表示为下图：<br>假设这里的bitmap(所有的位都初始化为0)是有10个bits，有3个hash 函数，有一个目标数据“cat”，那么将cat映射标记到bitmap就是通过3个hash函数分别计算cat的hash值，将hash值转换成bitmap的索引，并将对应索引位置的bit置为1，至此，我们就标记了一个目标数据，目前cat就是我们要过滤的数据，当在很多的数据中要识别出“cat”的时候，就可以通过建立好的这个bitmap来识别了。</p>
-<p><img data-src="http://cdncontribute.geeksforgeeks.org/wp-content/uploads/cat-300x109.png" alt="cat"></p>
-<p>比如，现在有3个数据来了，分别是 “dog”，“cat”，“pig”，我们需要从中识别出“cat”，怎么样识别呢？<br>“dog” =&gt; 映射到 bitmap[1], bitmap[2], bitmap[3], 发现都不是1，则‘dog‘就不是目标数据<br>“cat” =&gt; 映射到 bitmap[1], bitmap[3], bitmap[7],发现所有的都是1， 则 ‘cat’就是目标数据<br>“pig” =&gt; 映射到 bitmap[8], bitmap[9], bitmap[10]，发现都不是1， 则‘pig’就不是目标数据<br>这样通过重新计算hash来和bitmap中的对比就能过滤掉一些目标数据了<br>但是这里其实还有一个问题，存在一个不同的目标,比如“bird”，这个通过hash函数计算出来的结果可能在bitmap中都为1, 这种情况是无法避免的，我们称之为“误判”，这种识别错误的概率和目标数据，bitmap大小和hash函数的数据是相关联的</p>
-<h1 id="4-算法推导"><a href="#4-算法推导" class="headerlink" title="4. 算法推导"></a>4. 算法推导</h1><p>布隆过滤的原理大概了解了，但是这里有个问题是，如何确定bitmap的大小以及hash function的多少，<br>我们可以通过指定一个错误概率的大小和初始的目标数据来确定 bitmap的大小和hash function 的数量</p>
-<p>假设有 <script type="math/tex">K</script>个hash函数，<script type="math/tex">M</script> bits的bitmap， <script type="math/tex">N</script>个初始数据, 对于bitmap中的一个特定点，<script type="math/tex">K</script>个hash函数映射到此点的·概率相等，即一个点被函数命中的概率为：</p>
-<script type="math/tex; mode=display">p_1=\frac{1}{M}</script><p>则一个点不被命中的概率为：</p>
-<script type="math/tex; mode=display">p_2=1-\frac{1}{M}</script><p>则<script type="math/tex">K</script>个函数都不命中的概率为：</p>
-<script type="math/tex; mode=display">p_3=\left(1-\frac{1}{M}\right)^K</script><p>假设已经存在了<script type="math/tex">N</script>个数据，那么一个特定的点在N个数据下都没有被命中的概率为：</p>
-<script type="math/tex; mode=display">p_4=\left(1-\frac{1}{M}\right)^{KN}</script><p>那么这个点命中的概率为：</p>
-<script type="math/tex; mode=display">p_5=1-\left(1-\frac{1}{M}\right)^{KN}</script><p>现在来判断一个不再初始数据集合中的数据被命中的概率，即，满足<script type="math/tex">K</script>个hash函数计算的结果都被命中，这种情况的概率为：</p>
-<script type="math/tex; mode=display">p_6=\left(1-\left(1-\frac{1}{M}\right)^{KN}\right)^K</script><p>因为目标数据命中的概率为1，所以当<script type="math/tex">p_6</script>越小的时候，也就表示别的数据被命中的概率越低。<br>根据 <script type="math/tex">1-\frac{1}{m}\approx\ell^{-\frac{1}{m}}</script>可以将<script type="math/tex">p_6</script>简化为：<script type="math/tex">\ell^{-\frac{KN}{M}}</script></p>
-<script type="math/tex; mode=display">p_6\approx\left(1-\ell^{-\frac{KN}{M}}\right)^K</script><p>因为<script type="math/tex">K</script>为正数，取其值为<script type="math/tex">\frac{M}{N}\ln2</script>， 则</p>
-<script type="math/tex; mode=display">p_6\approx\left(1-\ell^{-\frac{\left(\frac{M}{N}\ln2\right)N}{M}}\right)^{\frac{M}{N}\ln2}</script><script type="math/tex; mode=display">\ln{p_6}\approx{\frac{M}{N}\ln2}\times\ln\left(1-\ell^{-\frac{\left(\frac{M}{N}\ln2\right)N}{M}}\right)</script><script type="math/tex; mode=display">\ln{p_6}\approx{\frac{M}{N}\ln2}\times\ln\left(1-\ell^{-\ln2}\right)</script><script type="math/tex; mode=display">\ln{p_6}\approx{\frac{M}{N}\ln2}\times\ln\left(1-\frac{1}{\ell^{\ln2}}\right)</script><script type="math/tex; mode=display">\ln{p_6}\approx\frac{M}{N}\ln2\times\ln\frac{1}{2}</script><script type="math/tex; mode=display">\ln{p_6}\approx\frac{M}{N}\ln2\times{\left(-\ln2\right)}</script><script type="math/tex; mode=display">\ln{p_6}\approx{-\frac{M}{N}{\left(\ln2\right)}^2}</script><p>所以最终</p>
-<script type="math/tex; mode=display">M = -\frac{\ln{p_6} \times N}{ \left(\ln2\right)^2 }</script><p>所以当我们希望误判命中的概率是  0.001,  初始化插入了 10000 条数据， 那么<script type="math/tex">M</script> 就等于 </p>
-<pre><code>Math.log(0.001)*10000 / Math.pow(Math.log(2), 2) * -1 // output: 143775.87566051158
-</code></pre><p>那么 <script type="math/tex">K</script>就等于</p>
-<pre><code>143776 / 10000 * Math.log(2) // output: 9.965... 也就是需要10个hash函数
-</code></pre><h1 id="5-代码实现"><a href="#5-代码实现" class="headerlink" title="5. 代码实现"></a>5. 代码实现</h1><p><a href="https://github.com/zhangyunfeng/BloomFilter/tree/master/src" target="_blank" rel="noopener">https://github.com/zhangyunfeng/BloomFilter/tree/master/src</a></p>
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-]]></content>
-      <categories>
-        <category>algorithm</category>
-      </categories>
-      <tags>
-        <tag>algorithm</tag>
-        <tag>bloom filter</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>搜索算法</title>
     <url>/2021/01/28/b7d273159f6becc31fc5174ea7582c5e/</url>
     <content><![CDATA[<h3 id="线性搜索"><a href="#线性搜索" class="headerlink" title="线性搜索"></a>线性搜索</h3><p>线性搜索也是最简单的搜索算法，简单来说，就是对一个数组或者顺序容器，进行从头到尾的遍历，一个一个的找到目标元素  <a id="more"></a><br><img data-src="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/Linear.png" alt="image"><br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 简单的线性搜索算法实现</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">linear_search</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&amp; vec, <span class="keyword">const</span> T&amp; x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> index = <span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; element : vec) &#123;</span><br><span class="line">    index++;</span><br><span class="line">    <span class="keyword">if</span>(element == x) &#123;</span><br><span class="line">      <span class="keyword">return</span> index;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -395,23 +348,30 @@
       </tags>
   </entry>
   <entry>
-    <title>前端文件下载方法汇总</title>
-    <url>/2021/02/01/%E5%89%8D%E7%AB%AF%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/</url>
-    <content><![CDATA[<h2 id="一、从服务端下载文件"><a href="#一、从服务端下载文件" class="headerlink" title="一、从服务端下载文件"></a>一、从服务端下载文件</h2><p>兼容性最好的办法是后端返回<code>Content-Disposition</code>HTTP(S)头。这个有更好的浏览器兼容性，没有内存限制，不需要javascript代码。</p>
-<p>服务器返回头示例：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Content-Type: &apos;application/octet-stream; charset=utf-8&apos;</span><br><span class="line">Content-Disposition: attachment; filename=&quot;filename.jpg&quot;; filename*=&quot;filename.jpg&quot;</span><br><span class="line">Content-Length: &lt;size in bytes&gt;</span><br></pre></td></tr></table></figure></p>
-<p><code>Content-Type</code>: 表示返回的数据的类型，示例中的类型就是 ‘application/octet-stream’, 这个类型浏览器无法渲染，所以浏览器会采用后备方案，就是将它保存下来。</p>
-<p><code>Content-Disposition</code>: 表示告诉浏览器下载内容，这个对浏览器有更好的兼容性。</p>
-<p><code>Content-Length</code>: 告诉用户已经传了多少的数据，让用户知道数据传输的进度</p>
+    <title>布隆过滤（Bloom Filter）</title>
+    <url>/2021/01/28/bbc765cf2f120d4208792bc259324906/</url>
+    <content><![CDATA[<h1 id="Bloom-Filter"><a href="#Bloom-Filter" class="headerlink" title="Bloom Filter"></a>Bloom Filter</h1><h1 id="1-什么是布隆过滤？"><a href="#1-什么是布隆过滤？" class="headerlink" title="1. 什么是布隆过滤？"></a>1. 什么是布隆过滤？</h1><p>布隆过滤是应用于大数据中检测一个数据是否在一个集合中的搜索过滤算法。</p>
+<h1 id="2-应用场景"><a href="#2-应用场景" class="headerlink" title="2. 应用场景"></a>2. 应用场景</h1><p>比如如何在成千上万的网址中快速地识别出恶意的网址，在成千上万的邮件中快速识别出恶意的邮件等</p>
 <a id="more"></a>
-<h2 id="二、从客户端（浏览器）下载文件"><a href="#二、从客户端（浏览器）下载文件" class="headerlink" title="二、从客户端（浏览器）下载文件"></a>二、从客户端（浏览器）下载文件</h2><ol>
-<li>使用&lt;a&gt;标签去下载<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;a href=&quot;uploads/cat.png&quot; download=&quot;my-cat.png&quot;&gt;下载&lt;/a&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>点击这个<code>&lt;a&gt;标签，就可以下载</code>uploads/cat.png`这个图片文件了。</p>
-<ol>
-<li>使用Ajax + FileSaver下载<br>通过Ajax去拉取后台数据，用FileSaver将数据保存到文件中。<br>FileSaver是一个开源的在浏览器中保存文件的库，可以方便的存储 Text, Blob, 或者 URL指向的资源。<br>FileSaver地址： <a href="https://github.com/eligrey/FileSaver.js" target="_blank" rel="noopener">https://github.com/eligrey/FileSaver.js</a>。</li>
-</ol>
-<p>FileSaver使用示例：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 可以使用require导入file-saver库，保存text文字到文件中</span></span><br><span class="line"><span class="keyword">var</span> FileSaver = <span class="built_in">require</span>(<span class="string">'file-saver'</span>);</span><br><span class="line"><span class="keyword">var</span> blob = <span class="keyword">new</span> Blob([<span class="string">"Hello, world!"</span>], &#123;<span class="attr">type</span>: <span class="string">"text/plain;charset=utf-8"</span>&#125;);</span><br><span class="line">FileSaver.saveAs(blob, <span class="string">"hello world.txt"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 保存url的数据到文件中</span></span><br><span class="line">FileSaver.saveAs(<span class="string">"https://httpbin.org/image"</span>, <span class="string">"image.jpg"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 也可以保存Canvas的数据到图片文件中</span></span><br><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">'canvas'</span>) <span class="comment">// 一个canvas dom对象</span></span><br><span class="line">canvas.toBlob(<span class="function"><span class="keyword">function</span> (<span class="params">blob</span>) </span>&#123;</span><br><span class="line">  FileSaver.saveAs(blob, <span class="string">'filename.png'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><script>
+<h1 id="3-算法简单描述"><a href="#3-算法简单描述" class="headerlink" title="3. 算法简单描述"></a>3. 算法简单描述</h1><p>布隆过滤是在一个bitmap中预先通过k个hash函数插入一些目标数据标记，表示为下图：<br>假设这里的bitmap(所有的位都初始化为0)是有10个bits，有3个hash 函数，有一个目标数据“cat”，那么将cat映射标记到bitmap就是通过3个hash函数分别计算cat的hash值，将hash值转换成bitmap的索引，并将对应索引位置的bit置为1，至此，我们就标记了一个目标数据，目前cat就是我们要过滤的数据，当在很多的数据中要识别出“cat”的时候，就可以通过建立好的这个bitmap来识别了。</p>
+<p><img data-src="http://cdncontribute.geeksforgeeks.org/wp-content/uploads/cat-300x109.png" alt="cat"></p>
+<p>比如，现在有3个数据来了，分别是 “dog”，“cat”，“pig”，我们需要从中识别出“cat”，怎么样识别呢？<br>“dog” =&gt; 映射到 bitmap[1], bitmap[2], bitmap[3], 发现都不是1，则‘dog‘就不是目标数据<br>“cat” =&gt; 映射到 bitmap[1], bitmap[3], bitmap[7],发现所有的都是1， 则 ‘cat’就是目标数据<br>“pig” =&gt; 映射到 bitmap[8], bitmap[9], bitmap[10]，发现都不是1， 则‘pig’就不是目标数据<br>这样通过重新计算hash来和bitmap中的对比就能过滤掉一些目标数据了<br>但是这里其实还有一个问题，存在一个不同的目标,比如“bird”，这个通过hash函数计算出来的结果可能在bitmap中都为1, 这种情况是无法避免的，我们称之为“误判”，这种识别错误的概率和目标数据，bitmap大小和hash函数的数据是相关联的</p>
+<h1 id="4-算法推导"><a href="#4-算法推导" class="headerlink" title="4. 算法推导"></a>4. 算法推导</h1><p>布隆过滤的原理大概了解了，但是这里有个问题是，如何确定bitmap的大小以及hash function的多少，<br>我们可以通过指定一个错误概率的大小和初始的目标数据来确定 bitmap的大小和hash function 的数量</p>
+<p>假设有 <script type="math/tex">K</script>个hash函数，<script type="math/tex">M</script> bits的bitmap， <script type="math/tex">N</script>个初始数据, 对于bitmap中的一个特定点，<script type="math/tex">K</script>个hash函数映射到此点的·概率相等，即一个点被函数命中的概率为：</p>
+<script type="math/tex; mode=display">p_1=\frac{1}{M}</script><p>则一个点不被命中的概率为：</p>
+<script type="math/tex; mode=display">p_2=1-\frac{1}{M}</script><p>则<script type="math/tex">K</script>个函数都不命中的概率为：</p>
+<script type="math/tex; mode=display">p_3=\left(1-\frac{1}{M}\right)^K</script><p>假设已经存在了<script type="math/tex">N</script>个数据，那么一个特定的点在N个数据下都没有被命中的概率为：</p>
+<script type="math/tex; mode=display">p_4=\left(1-\frac{1}{M}\right)^{KN}</script><p>那么这个点命中的概率为：</p>
+<script type="math/tex; mode=display">p_5=1-\left(1-\frac{1}{M}\right)^{KN}</script><p>现在来判断一个不再初始数据集合中的数据被命中的概率，即，满足<script type="math/tex">K</script>个hash函数计算的结果都被命中，这种情况的概率为：</p>
+<script type="math/tex; mode=display">p_6=\left(1-\left(1-\frac{1}{M}\right)^{KN}\right)^K</script><p>因为目标数据命中的概率为1，所以当<script type="math/tex">p_6</script>越小的时候，也就表示别的数据被命中的概率越低。<br>根据 <script type="math/tex">1-\frac{1}{m}\approx\ell^{-\frac{1}{m}}</script>可以将<script type="math/tex">p_6</script>简化为：<script type="math/tex">\ell^{-\frac{KN}{M}}</script></p>
+<script type="math/tex; mode=display">p_6\approx\left(1-\ell^{-\frac{KN}{M}}\right)^K</script><p>因为<script type="math/tex">K</script>为正数，取其值为<script type="math/tex">\frac{M}{N}\ln2</script>， 则</p>
+<script type="math/tex; mode=display">p_6\approx\left(1-\ell^{-\frac{\left(\frac{M}{N}\ln2\right)N}{M}}\right)^{\frac{M}{N}\ln2}</script><script type="math/tex; mode=display">\ln{p_6}\approx{\frac{M}{N}\ln2}\times\ln\left(1-\ell^{-\frac{\left(\frac{M}{N}\ln2\right)N}{M}}\right)</script><script type="math/tex; mode=display">\ln{p_6}\approx{\frac{M}{N}\ln2}\times\ln\left(1-\ell^{-\ln2}\right)</script><script type="math/tex; mode=display">\ln{p_6}\approx{\frac{M}{N}\ln2}\times\ln\left(1-\frac{1}{\ell^{\ln2}}\right)</script><script type="math/tex; mode=display">\ln{p_6}\approx\frac{M}{N}\ln2\times\ln\frac{1}{2}</script><script type="math/tex; mode=display">\ln{p_6}\approx\frac{M}{N}\ln2\times{\left(-\ln2\right)}</script><script type="math/tex; mode=display">\ln{p_6}\approx{-\frac{M}{N}{\left(\ln2\right)}^2}</script><p>所以最终</p>
+<script type="math/tex; mode=display">M = -\frac{\ln{p_6} \times N}{ \left(\ln2\right)^2 }</script><p>所以当我们希望误判命中的概率是  0.001,  初始化插入了 10000 条数据， 那么<script type="math/tex">M</script> 就等于 </p>
+<pre><code>Math.log(0.001)*10000 / Math.pow(Math.log(2), 2) * -1 // output: 143775.87566051158
+</code></pre><p>那么 <script type="math/tex">K</script>就等于</p>
+<pre><code>143776 / 10000 * Math.log(2) // output: 9.965... 也就是需要10个hash函数
+</code></pre><h1 id="5-代码实现"><a href="#5-代码实现" class="headerlink" title="5. 代码实现"></a>5. 代码实现</h1><p><a href="https://github.com/zhangyunfeng/BloomFilter/tree/master/src" target="_blank" rel="noopener">https://github.com/zhangyunfeng/BloomFilter/tree/master/src</a></p>
+<script>
 (function(){
     var bp = document.createElement('script');
     var curProtocol = window.location.protocol.split(':')[0];
@@ -424,14 +384,14 @@
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(bp, s);
 })();
-</script></p>
+</script>
 ]]></content>
       <categories>
-        <category>web</category>
+        <category>algorithm</category>
       </categories>
       <tags>
-        <tag>web</tag>
-        <tag>download</tag>
+        <tag>algorithm</tag>
+        <tag>bloom filter</tag>
       </tags>
   </entry>
   <entry>
@@ -509,6 +469,98 @@
       <tags>
         <tag>web</tag>
         <tag>security</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nodejs使用es module开发CLI</title>
+    <url>/2021/02/01/nodejs%E4%B8%AD%E4%BD%BF%E7%94%A8es%20module%E5%BC%80%E5%8F%91CLI/</url>
+    <content><![CDATA[<p>这里主要介绍的不是CLI的开发,而是node使用es module开发cli的工程配置和注意事项</p>
+<a id="more"></a>
+<h2 id="一、-package-json的配置"><a href="#一、-package-json的配置" class="headerlink" title="一、 package.json的配置"></a>一、 package.json的配置</h2><ul>
+<li><p><strong>bin</strong><br>bin字段是指定cli的执行文件的. 比如我将bin指定为<code>{“sm-cli&quot;: &quot;index.js&quot;}</code>, 那么当用户安装了此工具之后，系统会安装sm-cli这个可执行文件并且加入到系统环境变量中，可以在终端执行<br><code>sm-cli</code>命令，当执行这个命令的时候，其实就是运行的index.js文件。</p>
+<p>bin字段可以跟上一个执行文件路径字符串，也可以跟上一个json对象，json对象中指定&lt;命令名：执行文件名&gt;。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 安装之后，执行命令就是package.json中的name字段的值</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"bin"</span>: <span class="string">"./index.js"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 安装之后，执行命令是"sm-cli"</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"bin"</span>: &#123;</span><br><span class="line">        <span class="string">"sm-cli"</span>: <span class="string">"./index.js"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><strong>type</strong><br>node默认的是cjs模块管理系统，我们可以通过设置type字段来开启使用es的模块管理系统。将type字段设置成”module”<br>e.g.</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"type"</span>: <span class="string">"module"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>preferGlobal</strong></p>
+<p>preferGloabl字段表示改工具模块更加倾向于全局安装，对与CLI工具来说，这个是需要设置成true的。</p>
+<p>e.g.</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"perferGlobal"</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="二、-入口文件的配置"><a href="#二、-入口文件的配置" class="headerlink" title="二、 入口文件的配置"></a>二、 入口文件的配置</h2><p>可执行文件的设置需要注意，因为我们选定了使用es module，但是在<code>npm install  -g</code>安装之后，node会使用commonjs的方式去执行文件，此时文件中的</p>
+<p><strong>import xxx from “xxxx”</strong>就会无法执行；解决方案是我们需要指定node的 <strong>—experimental-modules</strong>参数，—experimental-modules表示node的实验中的es 模块功能，指定了这个参数之后，node就可以执行es module文件代码了。</p>
+<p>如何指定—experimental-modules呢？</p>
+<p>需要在<code>bin</code>指定的文件中增加shebang(aka Hashbang)。shebang是一个由井号和感叹号构成的字符串序列，出现再文本的第一行，写过脚本语言的（比如python）一定对此不陌生。</p>
+<p>开启—experimental-modules的shebang:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env node --experimental-modules</span></span><br></pre></td></tr></table></figure>
+<p><img data-src="https://kodbox.zayfen.com/index.php?explorer/share/fileOut&amp;shareID=6MsdbC0Q&amp;path=%7BshareItemLink%3A6MsdbC0Q%7D%2F" alt="代码示范"></p>
+<h2 id="三、-编写你的代码"><a href="#三、-编写你的代码" class="headerlink" title="三、 编写你的代码"></a>三、 编写你的代码</h2><p>以上的配置完成之后，可以使用es module开发node程序，并且<code>npm install -g</code>之后也能正确的执行，剩下的就是你愉快的开发之旅了！</p>
+<p>##Happy Coding##<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script></p>
+]]></content>
+      <categories>
+        <category>nodejs</category>
+      </categories>
+      <tags>
+        <tag>nodejs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>前端文件下载方法汇总</title>
+    <url>/2021/02/01/%E5%89%8D%E7%AB%AF%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/</url>
+    <content><![CDATA[<h2 id="一、从服务端下载文件"><a href="#一、从服务端下载文件" class="headerlink" title="一、从服务端下载文件"></a>一、从服务端下载文件</h2><p>兼容性最好的办法是后端返回<code>Content-Disposition</code>HTTP(S)头。这个有更好的浏览器兼容性，没有内存限制，不需要javascript代码。</p>
+<p>服务器返回头示例：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Content-Type: &apos;application/octet-stream; charset=utf-8&apos;</span><br><span class="line">Content-Disposition: attachment; filename=&quot;filename.jpg&quot;; filename*=&quot;filename.jpg&quot;</span><br><span class="line">Content-Length: &lt;size in bytes&gt;</span><br></pre></td></tr></table></figure></p>
+<p><code>Content-Type</code>: 表示返回的数据的类型，示例中的类型就是 ‘application/octet-stream’, 这个类型浏览器无法渲染，所以浏览器会采用后备方案，就是将它保存下来。</p>
+<p><code>Content-Disposition</code>: 表示告诉浏览器下载内容，这个对浏览器有更好的兼容性。</p>
+<p><code>Content-Length</code>: 告诉用户已经传了多少的数据，让用户知道数据传输的进度</p>
+<a id="more"></a>
+<h2 id="二、从客户端（浏览器）下载文件"><a href="#二、从客户端（浏览器）下载文件" class="headerlink" title="二、从客户端（浏览器）下载文件"></a>二、从客户端（浏览器）下载文件</h2><ol>
+<li>使用&lt;a&gt;标签去下载<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;a href=&quot;uploads/cat.png&quot; download=&quot;my-cat.png&quot;&gt;下载&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>点击这个<code>&lt;a&gt;标签，就可以下载</code>uploads/cat.png`这个图片文件了。</p>
+<ol>
+<li>使用Ajax + FileSaver下载<br>通过Ajax去拉取后台数据，用FileSaver将数据保存到文件中。<br>FileSaver是一个开源的在浏览器中保存文件的库，可以方便的存储 Text, Blob, 或者 URL指向的资源。<br>FileSaver地址： <a href="https://github.com/eligrey/FileSaver.js" target="_blank" rel="noopener">https://github.com/eligrey/FileSaver.js</a>。</li>
+</ol>
+<p>FileSaver使用示例：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 可以使用require导入file-saver库，保存text文字到文件中</span></span><br><span class="line"><span class="keyword">var</span> FileSaver = <span class="built_in">require</span>(<span class="string">'file-saver'</span>);</span><br><span class="line"><span class="keyword">var</span> blob = <span class="keyword">new</span> Blob([<span class="string">"Hello, world!"</span>], &#123;<span class="attr">type</span>: <span class="string">"text/plain;charset=utf-8"</span>&#125;);</span><br><span class="line">FileSaver.saveAs(blob, <span class="string">"hello world.txt"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 保存url的数据到文件中</span></span><br><span class="line">FileSaver.saveAs(<span class="string">"https://httpbin.org/image"</span>, <span class="string">"image.jpg"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 也可以保存Canvas的数据到图片文件中</span></span><br><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">'canvas'</span>) <span class="comment">// 一个canvas dom对象</span></span><br><span class="line">canvas.toBlob(<span class="function"><span class="keyword">function</span> (<span class="params">blob</span>) </span>&#123;</span><br><span class="line">  FileSaver.saveAs(blob, <span class="string">'filename.png'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script></p>
+]]></content>
+      <categories>
+        <category>web</category>
+      </categories>
+      <tags>
+        <tag>web</tag>
+        <tag>download</tag>
       </tags>
   </entry>
   <entry>
@@ -592,58 +644,6 @@
       <tags>
         <tag>web</tag>
         <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Nodejs使用es module开发CLI</title>
-    <url>/2021/02/01/nodejs%E4%B8%AD%E4%BD%BF%E7%94%A8es%20module%E5%BC%80%E5%8F%91CLI/</url>
-    <content><![CDATA[<p>这里主要介绍的不是CLI的开发,而是node使用es module开发cli的工程配置和注意事项</p>
-<a id="more"></a>
-<h2 id="一、-package-json的配置"><a href="#一、-package-json的配置" class="headerlink" title="一、 package.json的配置"></a>一、 package.json的配置</h2><ul>
-<li><p><strong>bin</strong><br>bin字段是指定cli的执行文件的. 比如我将bin指定为<code>{“sm-cli&quot;: &quot;index.js&quot;}</code>, 那么当用户安装了此工具之后，系统会安装sm-cli这个可执行文件并且加入到系统环境变量中，可以在终端执行<br><code>sm-cli</code>命令，当执行这个命令的时候，其实就是运行的index.js文件。</p>
-<p>bin字段可以跟上一个执行文件路径字符串，也可以跟上一个json对象，json对象中指定&lt;命令名：执行文件名&gt;。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 安装之后，执行命令就是package.json中的name字段的值</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"bin"</span>: <span class="string">"./index.js"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 安装之后，执行命令是"sm-cli"</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"bin"</span>: &#123;</span><br><span class="line">        <span class="string">"sm-cli"</span>: <span class="string">"./index.js"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li><strong>type</strong><br>node默认的是cjs模块管理系统，我们可以通过设置type字段来开启使用es的模块管理系统。将type字段设置成”module”<br>e.g.</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"type"</span>: <span class="string">"module"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p><strong>preferGlobal</strong></p>
-<p>preferGloabl字段表示改工具模块更加倾向于全局安装，对与CLI工具来说，这个是需要设置成true的。</p>
-<p>e.g.</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"perferGlobal"</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="二、-入口文件的配置"><a href="#二、-入口文件的配置" class="headerlink" title="二、 入口文件的配置"></a>二、 入口文件的配置</h2><p>可执行文件的设置需要注意，因为我们选定了使用es module，但是在<code>npm install  -g</code>安装之后，node会使用commonjs的方式去执行文件，此时文件中的</p>
-<p><strong>import xxx from “xxxx”</strong>就会无法执行；解决方案是我们需要指定node的 <strong>—experimental-modules</strong>参数，—experimental-modules表示node的实验中的es 模块功能，指定了这个参数之后，node就可以执行es module文件代码了。</p>
-<p>如何指定—experimental-modules呢？</p>
-<p>需要在<code>bin</code>指定的文件中增加shebang(aka Hashbang)。shebang是一个由井号和感叹号构成的字符串序列，出现再文本的第一行，写过脚本语言的（比如python）一定对此不陌生。</p>
-<p>开启—experimental-modules的shebang:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env node --experimental-modules</span></span><br></pre></td></tr></table></figure>
-<p><img data-src="https://kodbox.zayfen.com/index.php?explorer/share/fileOut&amp;shareID=6MsdbC0Q&amp;path=%7BshareItemLink%3A6MsdbC0Q%7D%2F" alt="代码示范"></p>
-<h2 id="三、-编写你的代码"><a href="#三、-编写你的代码" class="headerlink" title="三、 编写你的代码"></a>三、 编写你的代码</h2><p>以上的配置完成之后，可以使用es module开发node程序，并且<code>npm install -g</code>之后也能正确的执行，剩下的就是你愉快的开发之旅了！</p>
-<p>##Happy Coding##<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script></p>
-]]></content>
-      <categories>
-        <category>nodejs</category>
-      </categories>
-      <tags>
-        <tag>nodejs</tag>
       </tags>
   </entry>
   <entry>

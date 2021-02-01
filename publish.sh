@@ -8,4 +8,4 @@ timestamp () {
 
 git add .
 git commit -m "PUBLISH: $(timestamp)"
-#git push
+git push
