@@ -248,6 +248,270 @@
       </tags>
   </entry>
   <entry>
+    <title>componentstart和componentend事件</title>
+    <url>/2021/02/01/compositionstart%E5%92%8Ccompositionend%E4%BA%8B%E4%BB%B6/</url>
+    <content><![CDATA[<h1 id="优雅输入中文，浏览器中的compositionstart和compositionend事件讲解"><a href="#优雅输入中文，浏览器中的compositionstart和compositionend事件讲解" class="headerlink" title="优雅输入中文，浏览器中的compositionstart和compositionend事件讲解"></a>优雅输入中文，浏览器中的<code>compositionstart</code>和<code>compositionend</code>事件讲解</h1><p>当文本合成系统，如IME（input method editor）开始键盘输入时，触发<code>compositionstart</code>事件。<br>当文本合成系统输入完成或者取消当前的composition会话时触发<code>compositionend</code>事件。</p>
+<p>输入中文和输入英文不一样的是，中文需要多次敲击前盘才能组成一个字，想要有比较舒适的中文输入环境，需要实现输入一个中文字后再响应事件，而不是每次敲击一次键盘就响应一次事件，所以就需要<code>compositionstart</code> 和 <code>compositionend</code>事件。</p>
+<p>IME在如下场景中使用：</p>
+<ul>
+<li>使用拉丁键盘输入中文，日文或者韩文</li>
+<li>在数字小键盘输入拉丁文本</li>
+<li>使用手写识别在触摸屏输入文本</li>
+</ul>
+<a id="more"></a>
+<h2 id="事件应用的场景"><a href="#事件应用的场景" class="headerlink" title="事件应用的场景"></a>事件应用的场景</h2><ol>
+<li>当在input中输入中文进行列表过滤时，可以避免在敲击键盘的过程中执行过滤操作, <code>compositionend</code>在输入完成后触发，可以在此事件中拿到完整的中文输入执行过滤操作</li>
+<li>在input中输入中文搜索时，如上，可以避免敲键盘时，就执行搜索动作</li>
+</ol>
+<blockquote>
+<p>总之在输入中文的环境中，需要拿到完整的输入中文的地方，就可以使用这两个事件。</p>
+</blockquote>
+<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"input"</span> <span class="attr">type</span>=<span class="string">"text"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">id</span>=<span class="string">"log"</span>  <span class="attr">readonly</span> <span class="attr">style</span>=<span class="string">"width:200px; height:300px"</span>&gt;</span> <span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">  </span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> inputEle = <span class="built_in">document</span>.getElementById(<span class="string">'input'</span>)</span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> logEle = <span class="built_in">document</span>.getElementById(<span class="string">'log'</span>)</span></span><br><span class="line">  </span><br><span class="line"><span class="actionscript">  <span class="keyword">var</span> compositionLock = <span class="literal">false</span></span></span><br><span class="line">  </span><br><span class="line"><span class="actionscript">  <span class="comment">// 从英文切换到中文输入时触发</span></span></span><br><span class="line"><span class="actionscript">  inputEle.addEventListener(<span class="string">'compositionstart'</span>, (event) =&gt; &#123;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(<span class="string">'compositionstart: '</span>, <span class="string">`type: <span class="subst">$&#123;event.type&#125;</span>  data: <span class="subst">$&#123;event.data&#125;</span>`</span>)</span></span><br><span class="line"><span class="javascript">    logEle.textContent = logEle.textContent +  <span class="string">`type: <span class="subst">$&#123;event.type&#125;</span>  data: <span class="subst">$&#123;event.data&#125;</span>\n`</span></span></span><br><span class="line">    </span><br><span class="line"><span class="actionscript">    compositionLock = <span class="literal">true</span></span></span><br><span class="line">  &#125;)</span><br><span class="line">  </span><br><span class="line"><span class="actionscript">  <span class="comment">// 比如windows10的中文输入法，输入完中文按`SPACE`或者`Enter`触发</span></span></span><br><span class="line"><span class="actionscript">  inputEle.addEventListener(<span class="string">'compositionend'</span>, (event) =&gt; &#123;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(<span class="string">'compositionstart: '</span>, <span class="string">`type: <span class="subst">$&#123;event.type&#125;</span>  data: <span class="subst">$&#123;event.data&#125;</span>`</span>)</span></span><br><span class="line"><span class="javascript">    logEle.textContent = logEle.textContent +  <span class="string">`type: <span class="subst">$&#123;event.type&#125;</span>  data: <span class="subst">$&#123;event.data&#125;</span>\n`</span></span></span><br><span class="line">    </span><br><span class="line"><span class="actionscript">    compositionLock = <span class="literal">false</span></span></span><br><span class="line">    </span><br><span class="line"><span class="actionscript">    <span class="comment">// 因为input事件在此事件之前触发了，所以需要手动触发input事件</span></span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> evt = <span class="keyword">new</span> Event(<span class="string">'input'</span>)</span></span><br><span class="line">    evt.data = event.data</span><br><span class="line">    inputEle.dispatchEvent(evt)</span><br><span class="line">  &#125;)</span><br><span class="line">  </span><br><span class="line"><span class="actionscript">  <span class="comment">// 按任何键，都会触发，即使在中文的输入情况下</span></span></span><br><span class="line"><span class="actionscript">  inputEle.addEventListener(<span class="string">'input'</span>, (event) =&gt; &#123;</span></span><br><span class="line"><span class="actionscript">    <span class="comment">// 如果不用compositinLock标志位，那么输入中文环境下输入abcdefg，</span></span></span><br><span class="line"><span class="actionscript">    <span class="comment">// 看到的event.data会是这个样子：abc'de'f'g</span></span></span><br><span class="line">    if (compositionLock) &#123;</span><br><span class="line"><span class="actionscript">      <span class="keyword">return</span></span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="actionscript">    <span class="comment">// 在输入中文的时候，当按下`SPACE`键的时候，这里event.data会拿到中文输入法中完整的中文内容</span></span></span><br><span class="line"><span class="javascript">    logEle.textContent = logEle.textContent +  <span class="string">`type: <span class="subst">$&#123;event.type&#125;</span>  data: <span class="subst">$&#123;event.data&#125;</span>\n`</span></span></span><br><span class="line">  &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img data-src="https://kodbox.zayfen.com/index.php?explorer/share/file&amp;hash=7ec6ttRDVWGMEEA0pE7Q3HpMKU9LU6QCwG1CHwdBcccAgTBWV8gYPm4x&amp;name=compositionstart.gif" alt="compositionstart.gif"></p>
+<h2 id="事件的兼容性"><a href="#事件的兼容性" class="headerlink" title="事件的兼容性"></a>事件的兼容性</h2><p><strong>Support Status</strong> 的表示：</p>
+<ul>
+<li><code>yes</code>表示完全支持</li>
+<li><code>Number</code>表示浏览器支持这个事件的最低版本号</li>
+<li><code>?</code> 表示支持情况未知</li>
+</ul>
+<p><strong>PC端兼容性</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Browser</th>
+<th>Support Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chrome</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Edge</td>
+<td>12</td>
+</tr>
+<tr>
+<td>Firfox</td>
+<td>9</td>
+</tr>
+<tr>
+<td>IE</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Opera</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Safari</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>移动端兼容性</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Browser</th>
+<th>Support Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Android Webview</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Chrome for Android</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Firefox for Android</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Opera for Android</td>
+<td>?</td>
+</tr>
+<tr>
+<td>Safari on iOS</td>
+<td>?</td>
+</tr>
+<tr>
+<td>Samsung Internet</td>
+<td>Yes</td>
+<td><script></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>(function(){<br>    var bp = document.createElement(‘script’);<br>    var curProtocol = window.location.protocol.split(‘:’)[0];<br>    if (curProtocol === ‘https’) {<br>        bp.src = ‘<a href="https://zz.bdstatic.com/linksubmit/push.js">https://zz.bdstatic.com/linksubmit/push.js</a>‘;<br>    }<br>    else {<br>        bp.src = ‘<a href="http://push.zhanzhang.baidu.com/push.js">http://push.zhanzhang.baidu.com/push.js</a>‘;<br>    }<br>    var s = document.getElementsByTagName(“script”)[0];<br>    s.parentNode.insertBefore(bp, s);<br>})();<br>&lt;/script&gt;</p>
+</script></td></tr></tbody></table></div>]]></content>
+      <categories>
+        <category>web</category>
+      </categories>
+      <tags>
+        <tag>web</tag>
+        <tag>event</tag>
+        <tag>componentstart</tag>
+        <tag>componentend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决JPEG图片显示方向不正确的问题</title>
+    <url>/2019/11/18/d3c4828a43569ce3ca593dc66b1eb668/</url>
+    <content><![CDATA[<p>背景： 一些jpeg图片，在pc中用图片查看器打开是正的，但是放到浏览器中，就横着了；有一个上传人脸的需求，用手机拍完人脸照片，在应用中显示所拍的照片总是横着的。今天，我们就来解决这个问题。</p>
+<h3 id="为什么JEPG图片会横着显示？"><a href="#为什么JEPG图片会横着显示？" class="headerlink" title="为什么JEPG图片会横着显示？"></a>为什么JEPG图片会横着显示？</h3><p>首先，我们看一个github上的一个关于此问题的issue：<br><a href="https://github.com/GoogleChromeLabs/squoosh/issues/299" target="_blank" rel="noopener">https://github.com/GoogleChromeLabs/squoosh/issues/299</a><br>这个问题讨论的是chrome显示jpeg图片，旋转了90度的问题。<br>为什么会旋转呢？因为JEPG图片的EXIF data中有一个控制旋转的属性<strong>Orientation</strong>，但是有一些应用程序显示图片的时候会忽略这个属性，就导致图片在一些应用程序中显示出来和原本的方向不一致。</p>
+<p>这里有一张JEPG图片的EXIF数据（可以看到第一个属性就是 Orientation）：<br><img data-src="https://res.cloudinary.com/zayfen/image/upload/v1570695926/img/ibvnab25sqxnz4ahapu6.png" alt="JPEG图片的EXIF数据"></p>
+<a id="more"></a>
+<h3 id="让图片永远都正着显示"><a href="#让图片永远都正着显示" class="headerlink" title="让图片永远都正着显示"></a>让图片永远都正着显示</h3><p>因为 JPEG的 <strong>Orientation</strong> 属性被忽略了，那么当检测到图片Orientation的值表示需要旋转的时候，我们就主动将JPEEG图片旋转，并且改正或者去掉新图片的<strong>Orientation</strong> 字段。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 使用exif-js 这个库去获取jpeg图片的EXIF元数据 (https://github.com/exif-js/exif-js)</span></span><br><span class="line"><span class="comment">// 旋转图片的工具,(旋转之后的图片的EXIF data被移除)</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">import</span> * <span class="keyword">as</span> EXIF <span class="keyword">from</span> <span class="string">'exif-js'</span>  <span class="comment">// npm install exif-js</span></span><br><span class="line"> </span><br><span class="line"> <span class="comment">// &lt;img id="show-image" /&gt;,用来显示旋转后的图像</span></span><br><span class="line"> <span class="keyword">var</span> image = <span class="built_in">document</span>.getElementById(<span class="string">'show-image'</span>) </span><br><span class="line"> </span><br><span class="line"> <span class="comment">// &lt;input id="image-input" type="file" name="imag" /&gt;</span></span><br><span class="line"> <span class="keyword">var</span> imageInput = <span class="built_in">document</span>.getElementById(<span class="string">'image-input'</span>) </span><br><span class="line"> imageInput.onchange = <span class="function"><span class="keyword">function</span> (<span class="params">evt</span>) </span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">"onchange: ..."</span>)</span><br><span class="line">   <span class="keyword">let</span> file = evt.target.files[<span class="number">0</span>]</span><br><span class="line">   rotateImage(file).then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">     image.src = data.base64</span><br><span class="line">   &#125;)</span><br><span class="line"> &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">fileToBinary</span> (<span class="params">file</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// 读取图片数据</span></span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> reader = <span class="keyword">new</span> FileReader()</span><br><span class="line">        reader.onload = <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">if</span> (<span class="keyword">this</span>.result <span class="keyword">instanceof</span> <span class="built_in">ArrayBuffer</span>) &#123;</span><br><span class="line">            <span class="comment">// resolve(new Uint8Array(reader.result))</span></span><br><span class="line">            resolve(<span class="keyword">this</span>.result)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        reader.readAsArrayBuffer(file)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将Blob 对象以fileName文件名下载下来</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">downloadBlob</span> (<span class="params">blob, fileName</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">const</span> url = <span class="built_in">window</span>.URL.createObjectURL(blob)</span><br><span class="line">      <span class="keyword">const</span> link = <span class="built_in">document</span>.createElement(<span class="string">'a'</span>)</span><br><span class="line">      link.href = url</span><br><span class="line">      link.setAttribute(<span class="string">'download'</span>, fileName)</span><br><span class="line">      <span class="built_in">document</span>.body.appendChild(link)</span><br><span class="line">      link.click()</span><br><span class="line">      <span class="built_in">document</span>.body.removeChild(link) <span class="comment">// 下载完成移除元素</span></span><br><span class="line">      <span class="built_in">window</span>.URL.revokeObjectURL(url) <span class="comment">// 释放掉blob对象      </span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">rotateImage</span>(<span class="params">file</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        fileToBinary(file).then(<span class="function">(<span class="params">binaryFile</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">let</span> meta = EXIF.readFromBinaryFile(binaryFile)</span><br><span class="line">          <span class="keyword">let</span> orientation = meta.Orientation</span><br><span class="line">          <span class="keyword">let</span> formData = <span class="keyword">new</span> FormData()</span><br><span class="line">          <span class="keyword">let</span> rotationMap = &#123; <span class="number">3</span>: <span class="number">180</span>, <span class="number">6</span>: <span class="number">90</span>, <span class="number">8</span>: <span class="number">270</span> &#125;</span><br><span class="line"></span><br><span class="line">          <span class="comment">// 不需要旋转</span></span><br><span class="line">          <span class="keyword">if</span> (meta === <span class="literal">false</span> || !rotationMap[orientation]) &#123;</span><br><span class="line">            formData.append(<span class="string">'file'</span>, file, <span class="string">'face.jpeg'</span>)</span><br><span class="line">            <span class="keyword">return</span> resolve(&#123; <span class="attr">base64</span>: <span class="string">''</span>, <span class="attr">formData</span>: formData, <span class="attr">rotated</span>: <span class="literal">false</span> &#125;)</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          <span class="keyword">let</span> rotationDegree = <span class="number">0</span></span><br><span class="line">          <span class="keyword">let</span> targetWidth = <span class="number">200</span></span><br><span class="line"></span><br><span class="line">          rotationDegree = rotationMap[orientation] || <span class="number">0</span></span><br><span class="line"></span><br><span class="line">          <span class="keyword">let</span> image = <span class="built_in">document</span>.createElement(<span class="string">'img'</span>)</span><br><span class="line">          image.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> canvas = <span class="built_in">document</span>.createElement(<span class="string">'canvas'</span>)</span><br><span class="line">            <span class="keyword">let</span> ctx = canvas.getContext(<span class="string">'2d'</span>)</span><br><span class="line">            </span><br><span class="line"></span><br><span class="line">            <span class="keyword">let</span> rate = <span class="built_in">Math</span>.min(targetWidth / image.width, <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">let</span> imageWidth = image.width * rate</span><br><span class="line">            <span class="keyword">let</span> imageHeight = image.height * rate</span><br><span class="line">            <span class="keyword">if</span> (rotationDegree === <span class="number">90</span> || rotationDegree === <span class="number">270</span>) &#123;</span><br><span class="line">              canvas.width = imageHeight</span><br><span class="line">              canvas.height = imageWidth</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">              canvas.width = image.width</span><br><span class="line">              canvas.height = image.height</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            ctx.fillStyle = <span class="string">'rgba(255, 255, 255, 0)'</span></span><br><span class="line"></span><br><span class="line">            ctx.clearRect(<span class="number">0</span>, <span class="number">0</span>, canvas.width, canvas.height)</span><br><span class="line"></span><br><span class="line">            ctx.save()</span><br><span class="line">            ctx.fillRect(<span class="number">0</span>, <span class="number">0</span>, canvas.width, canvas.height)</span><br><span class="line">            ctx.translate(canvas.width / <span class="number">2</span>, canvas.height / <span class="number">2</span>)</span><br><span class="line">            ctx.rotate(rotationDegree * <span class="built_in">Math</span>.PI / <span class="number">180</span>)</span><br><span class="line">            <span class="keyword">if</span> (rotationDegree === <span class="number">90</span> || rotationDegree === <span class="number">270</span>) &#123;</span><br><span class="line">              ctx.drawImage(image, -canvas.height / <span class="number">2</span>, -canvas.width / <span class="number">2</span> + (canvas.width - imageHeight) / <span class="number">2</span>, imageWidth, imageHeight)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">              ctx.drawImage(image, -canvas.width / <span class="number">2</span>, -canvas.height / <span class="number">2</span>, imageWidth, imageHeight)</span><br><span class="line">            &#125;</span><br><span class="line">            ctx.restore()</span><br><span class="line"></span><br><span class="line">            canvas.toBlob(<span class="function">(<span class="params">blob</span>) =&gt;</span> &#123;</span><br><span class="line">              formData.append(<span class="string">'file'</span>, blob, <span class="string">'face.jpeg'</span>)</span><br><span class="line">              <span class="keyword">let</span> base64 = canvas.toDataURL(<span class="string">'image/jpeg'</span>, <span class="number">0.8</span>)</span><br><span class="line">              <span class="built_in">console</span>.log(<span class="string">'rotated image  blob: '</span>, blob)</span><br><span class="line">              <span class="comment">// downloadBlob(blob, '123.jpg')  // 下载图片</span></span><br><span class="line">              resolve(&#123; <span class="attr">base64</span>: base64, <span class="attr">rotated</span>: <span class="literal">true</span>, <span class="attr">formData</span>: formData &#125;)</span><br><span class="line">            &#125;, <span class="string">'image/jpeg'</span>, <span class="number">0.8</span>)</span><br><span class="line">          &#125;</span><br><span class="line">          image.src = URL.createObjectURL(file)</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>例子效果：</strong><br><img data-src="https://res.cloudinary.com/zayfen/image/upload/v1571232577/img/y8zxcjibljhul5nr1cab.png" alt="旋转图片的例子"></p>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+]]></content>
+      <categories>
+        <category>web</category>
+      </categories>
+      <tags>
+        <tag>jpg</tag>
+        <tag>image</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>前端文件下载方法汇总</title>
+    <url>/2021/02/01/%E5%89%8D%E7%AB%AF%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/</url>
+    <content><![CDATA[<h2 id="一、从服务端下载文件"><a href="#一、从服务端下载文件" class="headerlink" title="一、从服务端下载文件"></a>一、从服务端下载文件</h2><p>兼容性最好的办法是后端返回<code>Content-Disposition</code>HTTP(S)头。这个有更好的浏览器兼容性，没有内存限制，不需要javascript代码。</p>
+<p>服务器返回头示例：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Content-Type: &apos;application/octet-stream; charset=utf-8&apos;</span><br><span class="line">Content-Disposition: attachment; filename=&quot;filename.jpg&quot;; filename*=&quot;filename.jpg&quot;</span><br><span class="line">Content-Length: &lt;size in bytes&gt;</span><br></pre></td></tr></table></figure></p>
+<p><code>Content-Type</code>: 表示返回的数据的类型，示例中的类型就是 ‘application/octet-stream’, 这个类型浏览器无法渲染，所以浏览器会采用后备方案，就是将它保存下来。</p>
+<p><code>Content-Disposition</code>: 表示告诉浏览器下载内容，这个对浏览器有更好的兼容性。</p>
+<p><code>Content-Length</code>: 告诉用户已经传了多少的数据，让用户知道数据传输的进度</p>
+<a id="more"></a>
+<h2 id="二、从客户端（浏览器）下载文件"><a href="#二、从客户端（浏览器）下载文件" class="headerlink" title="二、从客户端（浏览器）下载文件"></a>二、从客户端（浏览器）下载文件</h2><ol>
+<li>使用&lt;a&gt;标签去下载<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;a href=&quot;uploads/cat.png&quot; download=&quot;my-cat.png&quot;&gt;下载&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>点击这个<code>&lt;a&gt;标签，就可以下载</code>uploads/cat.png`这个图片文件了。</p>
+<ol>
+<li>使用Ajax + FileSaver下载<br>通过Ajax去拉取后台数据，用FileSaver将数据保存到文件中。<br>FileSaver是一个开源的在浏览器中保存文件的库，可以方便的存储 Text, Blob, 或者 URL指向的资源。<br>FileSaver地址： <a href="https://github.com/eligrey/FileSaver.js" target="_blank" rel="noopener">https://github.com/eligrey/FileSaver.js</a>。</li>
+</ol>
+<p>FileSaver使用示例：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 可以使用require导入file-saver库，保存text文字到文件中</span></span><br><span class="line"><span class="keyword">var</span> FileSaver = <span class="built_in">require</span>(<span class="string">'file-saver'</span>);</span><br><span class="line"><span class="keyword">var</span> blob = <span class="keyword">new</span> Blob([<span class="string">"Hello, world!"</span>], &#123;<span class="attr">type</span>: <span class="string">"text/plain;charset=utf-8"</span>&#125;);</span><br><span class="line">FileSaver.saveAs(blob, <span class="string">"hello world.txt"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 保存url的数据到文件中</span></span><br><span class="line">FileSaver.saveAs(<span class="string">"https://httpbin.org/image"</span>, <span class="string">"image.jpg"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 也可以保存Canvas的数据到图片文件中</span></span><br><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">'canvas'</span>) <span class="comment">// 一个canvas dom对象</span></span><br><span class="line">canvas.toBlob(<span class="function"><span class="keyword">function</span> (<span class="params">blob</span>) </span>&#123;</span><br><span class="line">  FileSaver.saveAs(blob, <span class="string">'filename.png'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script></p>
+]]></content>
+      <categories>
+        <category>web</category>
+      </categories>
+      <tags>
+        <tag>web</tag>
+        <tag>download</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>常见WEB安全防御</title>
+    <url>/2021/01/28/f97ef80c3fff95b1c02a4a937d666b66/</url>
+    <content><![CDATA[<h1 id="WEB安全"><a href="#WEB安全" class="headerlink" title="WEB安全"></a>WEB安全</h1><p>[TOC]</p>
+<h2 id="一、漏洞分类"><a href="#一、漏洞分类" class="headerlink" title="一、漏洞分类"></a>一、漏洞分类</h2><ul>
+<li>XSS漏洞</li>
+<li>CSRF漏洞</li>
+<li>SSRF漏洞</li>
+<li>SQL漏洞</li>
+</ul>
+<a id="more"></a>
+<p>二、各种漏洞介绍<br><strong>XSS漏洞</strong></p>
+<ol>
+<li><p>什么是XSS漏洞<br>XSS漏洞全称跨站脚本攻击，英文全称 Cross-site Scripting, 为了不和css名字重复，所以取名XSS. XSS漏洞主要是能够利用代码的漏洞，通过一些技巧在浏览器端执行非法的javascript脚本，这些非法的javascript脚本拥有当前登录用户的权限，可以执行一些非法操作，从而给用户或者企业带来损失。</p>
+</li>
+<li><p>XSS漏洞的种类</p>
+</li>
+</ol>
+<ul>
+<li>DOM型XSS</li>
+</ul>
+<p>这个是最常见的一个XSS漏洞了，在在浏览器端操作DOM时产生。比如，在一个input中输入一个字符串，并将字符串显示在页面中，如果没有对字符串做校验就可能会产生DOM型xss漏洞。<br>例子：</p>
+<p><a href="https://pastebin.com/C1inFY9n" target="_blank" rel="noopener">https://pastebin.com/C1inFY9n</a></p>
+<p><a href="https://pastebin.com/C1inFY9n" target="_blank" rel="noopener">https://pastebin.com/C1inFY9n</a></p>
+<ul>
+<li>反射型XSS</li>
+</ul>
+<p>反射型XSS是发送到服务端的数据没有做参数的校验和过滤，只是简单地把用户输入的数据”反射”给浏览器,导致在浏览器中渲染处理参数时引入了js脚本。反射型XSS也叫做”非持久型XSS” (Non-persistent XSS)</p>
+<ul>
+<li>存储型XSS .</li>
+</ul>
+<p>存储型XSS会把用户输入的数据”存储”在服务端, 这种XSS具有很强的稳定性.最常见的一种情况就是,在博客中写一段包含有恶意javascript代码发表, 这段恶意的代码就会随着博客内容存储到数据库中,如何人访问这篇博客都会受到攻击</p>
+<hr>
+<ol>
+<li>XSS漏洞的危害<br>a. 窃取cookie,登录别人账户<br>攻击者可以构造一个链接,当被攻击者点击了这个链接之后,会触发xss漏洞,就会执行一个js脚本,该js脚本会携带cookie信息通过img标签或者script标签等可以跨域访问的标签将信息发送给攻击者.<br>b. 构造GET和POST请求,删除或者篡改受害者信息<br>比如有个删除文章的接口: <a href="http://blog.abc.com/delete?id=post_idxxx" target="_blank" rel="noopener">http://blog.abc.com/delete?id=post_idxxx</a>, 当攻击者知道被攻击者的一篇文章的id的时候,就可以通过xss payload来请求删除文章的接口, 修改被攻击者信息同理.<br>c. XSS钓鱼<br>xss的攻击过程都是需要在浏览器中通过javascript自动执行的.如果在攻击的过程中存在和用户交互的情况就比较麻烦了,比如需要输入旧密码或者输入图片上的验证码,虽然比较麻烦,但是我们还是可以实施xss攻击的,比如把显示验证码的图片地址发送给攻击者,或者制作一个长得一模一样的输入帐号密码的界面欺骗被攻击者.这些攻击方法就是xss钓鱼.<br>d. 识别用户的浏览器,利用浏览器的漏洞对系统进行攻击<br>浏览器有漏洞,虽然浏览器会通过更新来解决这些漏洞,但是不能保证所有的人都更新到最新版本,当检测到有漏洞的浏览器版本,就可以通过浏览器漏洞对系统进行攻击.<br>e. 识别用户安装的软件执行挂马攻击<br>在IE中可以通过判断 ActieX空间的classid是否存在来判断用户是否安装了软件.黑客通过判断被攻击者安装的软件,选择对应的浏览器漏洞,最终达到植入木马的目的.<br>比如在IE中通过如下的代码就可以判断用户是否安装了迅雷:<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">var</span> obj = <span class="keyword">new</span> ActiveXObject(<span class="string">'XunLeiBHO.ThunderIEHelper'</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">  <span class="comment">// 异常, 没有安装此软件</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (obj) &#123;</span><br><span class="line">  <span class="comment">// 安装了迅雷</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>另外,可以通过flash的一个 system.capabilities对象来找出电脑的硬件信息,还可以通过判断特定的DOM来判断浏览器安装了哪些插件.</p>
+<p>通过xss攻击还可以知道被攻击者访问了哪些页面(通过 :visited 伪元素判断), 还可以在jre环境中通过调用Java Applete的接口获取客户端的本地ip地址.</p>
+<ol>
+<li>XSS的防御<br>a. HttpOnly<br>通过在cookie中设置HttpOnly这个属性,可以阻止javascript访问cookie内容.<br>b. 输入检查<br>对输入的值进行字符类型,字符长度检查,比如手机号码,不能出现字母,而且长度为11, 对一些特殊字符,比如尖括号进行转义编码,或者一些特殊的字符串进行过滤,比如 <code>&lt;script&gt;, javascript:</code>.<br>c. 输出检查<br>执行安全的编码函数, htmlEncode, javascriptEncode.<br>在html中输出变量$var,使用 htmlEncode对$var进行编码.<br>在html中的onclick等事件中输出,使用javascript对$var编码<br>在javascript中输出$var, 使用 javascript对$var编码<br>在css中,禁止变量输出,即不要在style中使用$var变量<br>在地址中输出,使用urlEncode<br>d. 处理富文本<br>通过htmlparser解析文本,过滤掉危险标签 <code>&lt;iframe&gt;, &lt;script&gt;, &lt;base&gt;, &lt;form&gt;</code>等, 在富文本中可选择的标签使用白名单,避免使用黑名单,即指定富文本中只能使用哪几种标签.<br>e.编写代码时,注意这些地方;<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">document.write();</span><br><span class="line">document.writeln();</span><br><span class="line">xxx.innerHTML();</span><br><span class="line">xxx.outerHTML();</span><br><span class="line">innerHTML.replace();</span><br><span class="line">document.attachEvent();</span><br><span class="line">window.attachEvent();</span><br><span class="line">document.location.replace();</span><br><span class="line">document.location.assign();</span><br><span class="line"></span><br><span class="line">// 页面中所有的input输入框</span><br><span class="line">window.location(href, hash, ...)</span><br><span class="line">window.name</span><br><span class="line">document.referrer</span><br><span class="line">document.cookie</span><br><span class="line">localstorage</span><br><span class="line">XMLHttpRequest // 主要是返回的数据</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>CSRF漏洞</strong><br>CSRF漏洞,全称Cross Site Request Forgery<a href="跨站请求伪造">/ˈfɔːdʒəri/ 伪造</a>, 比如存在一个转账的接口:<br><a href="http://bank.com/transform/?money=xxx&amp;to=zzz" target="_blank" rel="noopener">http://bank.com/transform/?money=xxx&amp;to=zzz</a>;  攻击者可以伪造一个链接 <a href="http://bank.com/transform/?money=1&amp;o=lisi" target="_blank" rel="noopener">http://bank.com/transform/?money=1&amp;o=lisi</a>, 诱惑用户点击这个链接,那么用户在神不知鬼不觉之下就转移了1元钱给李四, 这个伪造的链接可以放到一个网页的img标签中, 当用户点击这个网页的时候,钱就被神不知鬼不觉的转走了. 为什么伪造的请求会请求通过呢?因为用户的浏览器成功的发送了Cookie给服务器.</p>
+<p>防御方法: 增加一个随机的token, 每次转账的时候都要带上这个随机额token, 同事后台需要校验token的正确性,比如 <a href="http://bank.com/transform/?money=xxx&amp;to=zzz&amp;token=abcUx23Flzd" target="_blank" rel="noopener">http://bank.com/transform/?money=xxx&amp;to=zzz&amp;token=abcUx23Flzd</a>, 这样攻击者不知道token的情况下,构造的链接就会无效.</p>
+<p><strong>点击劫持(ClickJacking)</strong><br>点击劫持是一种视觉上的欺骗手段.攻击者使用一个透明的iframe,覆盖在一个网页上,然后诱使用户在网页上进行操作,通过调整iframe的位置,当用户点击一个按钮的时候,其实是点击在iframe上的一个功能按钮上.</p>
+<p>点击劫持有:</p>
+<ul>
+<li>Flash点击劫持</li>
+<li>图片覆盖攻击</li>
+<li>拖拽劫持与数据窃取</li>
+<li>触屏劫持</li>
+</ul>
+<p>防御:<br>禁止跨域的iframe来防御, 使用HTTP头  X-Frame-Options, X-Frame-Options有3个选项, DENY, SAMEORIGIN, ALLOW-FROM origin</p>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+]]></content>
+      <categories>
+        <category>web</category>
+      </categories>
+      <tags>
+        <tag>web</tag>
+        <tag>security</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Vue通过指令实现快速的网络请求</title>
     <url>/2021/01/29/vue%E6%8C%87%E4%BB%A4%E5%BF%AB%E9%80%9F%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/</url>
     <content><![CDATA[<h1 id="Vue通过指令实现快速的网络请求"><a href="#Vue通过指令实现快速的网络请求" class="headerlink" title="Vue通过指令实现快速的网络请求"></a>Vue通过指令实现快速的网络请求</h1><p>开发Vue应用，不可避免的会有很多的后台数据需要请求。传统的请求方式都是如下这种：</p>
@@ -331,60 +595,36 @@
       </tags>
   </entry>
   <entry>
-    <title>常见WEB安全防御</title>
-    <url>/2021/01/28/f97ef80c3fff95b1c02a4a937d666b66/</url>
-    <content><![CDATA[<h1 id="WEB安全"><a href="#WEB安全" class="headerlink" title="WEB安全"></a>WEB安全</h1><p>[TOC]</p>
-<h2 id="一、漏洞分类"><a href="#一、漏洞分类" class="headerlink" title="一、漏洞分类"></a>一、漏洞分类</h2><ul>
-<li>XSS漏洞</li>
-<li>CSRF漏洞</li>
-<li>SSRF漏洞</li>
-<li>SQL漏洞</li>
-</ul>
+    <title>Nodejs使用es module开发CLI</title>
+    <url>/2021/02/01/nodejs%E4%B8%AD%E4%BD%BF%E7%94%A8es%20module%E5%BC%80%E5%8F%91CLI/</url>
+    <content><![CDATA[<p>这里主要介绍的不是CLI的开发,而是node使用es module开发cli的工程配置和注意事项</p>
 <a id="more"></a>
-<p>二、各种漏洞介绍<br><strong>XSS漏洞</strong></p>
-<ol>
-<li><p>什么是XSS漏洞<br>XSS漏洞全称跨站脚本攻击，英文全称 Cross-site Scripting, 为了不和css名字重复，所以取名XSS. XSS漏洞主要是能够利用代码的漏洞，通过一些技巧在浏览器端执行非法的javascript脚本，这些非法的javascript脚本拥有当前登录用户的权限，可以执行一些非法操作，从而给用户或者企业带来损失。</p>
+<h2 id="一、-package-json的配置"><a href="#一、-package-json的配置" class="headerlink" title="一、 package.json的配置"></a>一、 package.json的配置</h2><ul>
+<li><p><strong>bin</strong><br>bin字段是指定cli的执行文件的. 比如我将bin指定为<code>{“sm-cli&quot;: &quot;index.js&quot;}</code>, 那么当用户安装了此工具之后，系统会安装sm-cli这个可执行文件并且加入到系统环境变量中，可以在终端执行<br><code>sm-cli</code>命令，当执行这个命令的时候，其实就是运行的index.js文件。</p>
+<p>bin字段可以跟上一个执行文件路径字符串，也可以跟上一个json对象，json对象中指定&lt;命令名：执行文件名&gt;。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 安装之后，执行命令就是package.json中的name字段的值</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"bin"</span>: <span class="string">"./index.js"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 安装之后，执行命令是"sm-cli"</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"bin"</span>: &#123;</span><br><span class="line">        <span class="string">"sm-cli"</span>: <span class="string">"./index.js"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>XSS漏洞的种类</p>
+</ul>
+<ul>
+<li><strong>type</strong><br>node默认的是cjs模块管理系统，我们可以通过设置type字段来开启使用es的模块管理系统。将type字段设置成”module”<br>e.g.</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"type"</span>: <span class="string">"module"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>preferGlobal</strong></p>
+<p>preferGloabl字段表示改工具模块更加倾向于全局安装，对与CLI工具来说，这个是需要设置成true的。</p>
+<p>e.g.</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"perferGlobal"</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-</ol>
-<ul>
-<li>DOM型XSS</li>
 </ul>
-<p>这个是最常见的一个XSS漏洞了，在在浏览器端操作DOM时产生。比如，在一个input中输入一个字符串，并将字符串显示在页面中，如果没有对字符串做校验就可能会产生DOM型xss漏洞。<br>例子：</p>
-<p><a href="https://pastebin.com/C1inFY9n" target="_blank" rel="noopener">https://pastebin.com/C1inFY9n</a></p>
-<p><a href="https://pastebin.com/C1inFY9n" target="_blank" rel="noopener">https://pastebin.com/C1inFY9n</a></p>
-<ul>
-<li>反射型XSS</li>
-</ul>
-<p>反射型XSS是发送到服务端的数据没有做参数的校验和过滤，只是简单地把用户输入的数据”反射”给浏览器,导致在浏览器中渲染处理参数时引入了js脚本。反射型XSS也叫做”非持久型XSS” (Non-persistent XSS)</p>
-<ul>
-<li>存储型XSS .</li>
-</ul>
-<p>存储型XSS会把用户输入的数据”存储”在服务端, 这种XSS具有很强的稳定性.最常见的一种情况就是,在博客中写一段包含有恶意javascript代码发表, 这段恶意的代码就会随着博客内容存储到数据库中,如何人访问这篇博客都会受到攻击</p>
-<hr>
-<ol>
-<li>XSS漏洞的危害<br>a. 窃取cookie,登录别人账户<br>攻击者可以构造一个链接,当被攻击者点击了这个链接之后,会触发xss漏洞,就会执行一个js脚本,该js脚本会携带cookie信息通过img标签或者script标签等可以跨域访问的标签将信息发送给攻击者.<br>b. 构造GET和POST请求,删除或者篡改受害者信息<br>比如有个删除文章的接口: <a href="http://blog.abc.com/delete?id=post_idxxx" target="_blank" rel="noopener">http://blog.abc.com/delete?id=post_idxxx</a>, 当攻击者知道被攻击者的一篇文章的id的时候,就可以通过xss payload来请求删除文章的接口, 修改被攻击者信息同理.<br>c. XSS钓鱼<br>xss的攻击过程都是需要在浏览器中通过javascript自动执行的.如果在攻击的过程中存在和用户交互的情况就比较麻烦了,比如需要输入旧密码或者输入图片上的验证码,虽然比较麻烦,但是我们还是可以实施xss攻击的,比如把显示验证码的图片地址发送给攻击者,或者制作一个长得一模一样的输入帐号密码的界面欺骗被攻击者.这些攻击方法就是xss钓鱼.<br>d. 识别用户的浏览器,利用浏览器的漏洞对系统进行攻击<br>浏览器有漏洞,虽然浏览器会通过更新来解决这些漏洞,但是不能保证所有的人都更新到最新版本,当检测到有漏洞的浏览器版本,就可以通过浏览器漏洞对系统进行攻击.<br>e. 识别用户安装的软件执行挂马攻击<br>在IE中可以通过判断 ActieX空间的classid是否存在来判断用户是否安装了软件.黑客通过判断被攻击者安装的软件,选择对应的浏览器漏洞,最终达到植入木马的目的.<br>比如在IE中通过如下的代码就可以判断用户是否安装了迅雷:<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">var</span> obj = <span class="keyword">new</span> ActiveXObject(<span class="string">'XunLeiBHO.ThunderIEHelper'</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">  <span class="comment">// 异常, 没有安装此软件</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (obj) &#123;</span><br><span class="line">  <span class="comment">// 安装了迅雷</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>另外,可以通过flash的一个 system.capabilities对象来找出电脑的硬件信息,还可以通过判断特定的DOM来判断浏览器安装了哪些插件.</p>
-<p>通过xss攻击还可以知道被攻击者访问了哪些页面(通过 :visited 伪元素判断), 还可以在jre环境中通过调用Java Applete的接口获取客户端的本地ip地址.</p>
-<ol>
-<li>XSS的防御<br>a. HttpOnly<br>通过在cookie中设置HttpOnly这个属性,可以阻止javascript访问cookie内容.<br>b. 输入检查<br>对输入的值进行字符类型,字符长度检查,比如手机号码,不能出现字母,而且长度为11, 对一些特殊字符,比如尖括号进行转义编码,或者一些特殊的字符串进行过滤,比如 <code>&lt;script&gt;, javascript:</code>.<br>c. 输出检查<br>执行安全的编码函数, htmlEncode, javascriptEncode.<br>在html中输出变量$var,使用 htmlEncode对$var进行编码.<br>在html中的onclick等事件中输出,使用javascript对$var编码<br>在javascript中输出$var, 使用 javascript对$var编码<br>在css中,禁止变量输出,即不要在style中使用$var变量<br>在地址中输出,使用urlEncode<br>d. 处理富文本<br>通过htmlparser解析文本,过滤掉危险标签 <code>&lt;iframe&gt;, &lt;script&gt;, &lt;base&gt;, &lt;form&gt;</code>等, 在富文本中可选择的标签使用白名单,避免使用黑名单,即指定富文本中只能使用哪几种标签.<br>e.编写代码时,注意这些地方;<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">document.write();</span><br><span class="line">document.writeln();</span><br><span class="line">xxx.innerHTML();</span><br><span class="line">xxx.outerHTML();</span><br><span class="line">innerHTML.replace();</span><br><span class="line">document.attachEvent();</span><br><span class="line">window.attachEvent();</span><br><span class="line">document.location.replace();</span><br><span class="line">document.location.assign();</span><br><span class="line"></span><br><span class="line">// 页面中所有的input输入框</span><br><span class="line">window.location(href, hash, ...)</span><br><span class="line">window.name</span><br><span class="line">document.referrer</span><br><span class="line">document.cookie</span><br><span class="line">localstorage</span><br><span class="line">XMLHttpRequest // 主要是返回的数据</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><strong>CSRF漏洞</strong><br>CSRF漏洞,全称Cross Site Request Forgery<a href="跨站请求伪造">/ˈfɔːdʒəri/ 伪造</a>, 比如存在一个转账的接口:<br><a href="http://bank.com/transform/?money=xxx&amp;to=zzz" target="_blank" rel="noopener">http://bank.com/transform/?money=xxx&amp;to=zzz</a>;  攻击者可以伪造一个链接 <a href="http://bank.com/transform/?money=1&amp;o=lisi" target="_blank" rel="noopener">http://bank.com/transform/?money=1&amp;o=lisi</a>, 诱惑用户点击这个链接,那么用户在神不知鬼不觉之下就转移了1元钱给李四, 这个伪造的链接可以放到一个网页的img标签中, 当用户点击这个网页的时候,钱就被神不知鬼不觉的转走了. 为什么伪造的请求会请求通过呢?因为用户的浏览器成功的发送了Cookie给服务器.</p>
-<p>防御方法: 增加一个随机的token, 每次转账的时候都要带上这个随机额token, 同事后台需要校验token的正确性,比如 <a href="http://bank.com/transform/?money=xxx&amp;to=zzz&amp;token=abcUx23Flzd" target="_blank" rel="noopener">http://bank.com/transform/?money=xxx&amp;to=zzz&amp;token=abcUx23Flzd</a>, 这样攻击者不知道token的情况下,构造的链接就会无效.</p>
-<p><strong>点击劫持(ClickJacking)</strong><br>点击劫持是一种视觉上的欺骗手段.攻击者使用一个透明的iframe,覆盖在一个网页上,然后诱使用户在网页上进行操作,通过调整iframe的位置,当用户点击一个按钮的时候,其实是点击在iframe上的一个功能按钮上.</p>
-<p>点击劫持有:</p>
-<ul>
-<li>Flash点击劫持</li>
-<li>图片覆盖攻击</li>
-<li>拖拽劫持与数据窃取</li>
-<li>触屏劫持</li>
-</ul>
-<p>防御:<br>禁止跨域的iframe来防御, 使用HTTP头  X-Frame-Options, X-Frame-Options有3个选项, DENY, SAMEORIGIN, ALLOW-FROM origin</p>
-<script>
+<h2 id="二、-入口文件的配置"><a href="#二、-入口文件的配置" class="headerlink" title="二、 入口文件的配置"></a>二、 入口文件的配置</h2><p>可执行文件的设置需要注意，因为我们选定了使用es module，但是在<code>npm install  -g</code>安装之后，node会使用commonjs的方式去执行文件，此时文件中的</p>
+<p><strong>import xxx from “xxxx”</strong>就会无法执行；解决方案是我们需要指定node的 <strong>—experimental-modules</strong>参数，—experimental-modules表示node的实验中的es 模块功能，指定了这个参数之后，node就可以执行es module文件代码了。</p>
+<p>如何指定—experimental-modules呢？</p>
+<p>需要在<code>bin</code>指定的文件中增加shebang(aka Hashbang)。shebang是一个由井号和感叹号构成的字符串序列，出现再文本的第一行，写过脚本语言的（比如python）一定对此不陌生。</p>
+<p>开启—experimental-modules的shebang:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env node --experimental-modules</span></span><br></pre></td></tr></table></figure>
+<p><img data-src="https://kodbox.zayfen.com/index.php?explorer/share/fileOut&amp;shareID=6MsdbC0Q&amp;path=%7BshareItemLink%3A6MsdbC0Q%7D%2F" alt="代码示范"></p>
+<h2 id="三、-编写你的代码"><a href="#三、-编写你的代码" class="headerlink" title="三、 编写你的代码"></a>三、 编写你的代码</h2><p>以上的配置完成之后，可以使用es module开发node程序，并且<code>npm install -g</code>之后也能正确的执行，剩下的就是你愉快的开发之旅了！</p>
+<p>##Happy Coding##<script>
 (function(){
     var bp = document.createElement('script');
     var curProtocol = window.location.protocol.split(':')[0];
@@ -397,47 +637,13 @@
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(bp, s);
 })();
-</script>
+</script></p>
 ]]></content>
       <categories>
-        <category>web</category>
+        <category>nodejs</category>
       </categories>
       <tags>
-        <tag>web</tag>
-        <tag>security</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解决JPEG图片显示方向不正确的问题</title>
-    <url>/2019/11/18/d3c4828a43569ce3ca593dc66b1eb668/</url>
-    <content><![CDATA[<p>背景： 一些jpeg图片，在pc中用图片查看器打开是正的，但是放到浏览器中，就横着了；有一个上传人脸的需求，用手机拍完人脸照片，在应用中显示所拍的照片总是横着的。今天，我们就来解决这个问题。</p>
-<h3 id="为什么JEPG图片会横着显示？"><a href="#为什么JEPG图片会横着显示？" class="headerlink" title="为什么JEPG图片会横着显示？"></a>为什么JEPG图片会横着显示？</h3><p>首先，我们看一个github上的一个关于此问题的issue：<br><a href="https://github.com/GoogleChromeLabs/squoosh/issues/299" target="_blank" rel="noopener">https://github.com/GoogleChromeLabs/squoosh/issues/299</a><br>这个问题讨论的是chrome显示jpeg图片，旋转了90度的问题。<br>为什么会旋转呢？因为JEPG图片的EXIF data中有一个控制旋转的属性<strong>Orientation</strong>，但是有一些应用程序显示图片的时候会忽略这个属性，就导致图片在一些应用程序中显示出来和原本的方向不一致。</p>
-<p>这里有一张JEPG图片的EXIF数据（可以看到第一个属性就是 Orientation）：<br><img data-src="https://res.cloudinary.com/zayfen/image/upload/v1570695926/img/ibvnab25sqxnz4ahapu6.png" alt="JPEG图片的EXIF数据"></p>
-<a id="more"></a>
-<h3 id="让图片永远都正着显示"><a href="#让图片永远都正着显示" class="headerlink" title="让图片永远都正着显示"></a>让图片永远都正着显示</h3><p>因为 JPEG的 <strong>Orientation</strong> 属性被忽略了，那么当检测到图片Orientation的值表示需要旋转的时候，我们就主动将JPEEG图片旋转，并且改正或者去掉新图片的<strong>Orientation</strong> 字段。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 使用exif-js 这个库去获取jpeg图片的EXIF元数据 (https://github.com/exif-js/exif-js)</span></span><br><span class="line"><span class="comment">// 旋转图片的工具,(旋转之后的图片的EXIF data被移除)</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">import</span> * <span class="keyword">as</span> EXIF <span class="keyword">from</span> <span class="string">'exif-js'</span>  <span class="comment">// npm install exif-js</span></span><br><span class="line"> </span><br><span class="line"> <span class="comment">// &lt;img id="show-image" /&gt;,用来显示旋转后的图像</span></span><br><span class="line"> <span class="keyword">var</span> image = <span class="built_in">document</span>.getElementById(<span class="string">'show-image'</span>) </span><br><span class="line"> </span><br><span class="line"> <span class="comment">// &lt;input id="image-input" type="file" name="imag" /&gt;</span></span><br><span class="line"> <span class="keyword">var</span> imageInput = <span class="built_in">document</span>.getElementById(<span class="string">'image-input'</span>) </span><br><span class="line"> imageInput.onchange = <span class="function"><span class="keyword">function</span> (<span class="params">evt</span>) </span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">"onchange: ..."</span>)</span><br><span class="line">   <span class="keyword">let</span> file = evt.target.files[<span class="number">0</span>]</span><br><span class="line">   rotateImage(file).then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">     image.src = data.base64</span><br><span class="line">   &#125;)</span><br><span class="line"> &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">fileToBinary</span> (<span class="params">file</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// 读取图片数据</span></span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> reader = <span class="keyword">new</span> FileReader()</span><br><span class="line">        reader.onload = <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">if</span> (<span class="keyword">this</span>.result <span class="keyword">instanceof</span> <span class="built_in">ArrayBuffer</span>) &#123;</span><br><span class="line">            <span class="comment">// resolve(new Uint8Array(reader.result))</span></span><br><span class="line">            resolve(<span class="keyword">this</span>.result)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        reader.readAsArrayBuffer(file)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将Blob 对象以fileName文件名下载下来</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">downloadBlob</span> (<span class="params">blob, fileName</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">const</span> url = <span class="built_in">window</span>.URL.createObjectURL(blob)</span><br><span class="line">      <span class="keyword">const</span> link = <span class="built_in">document</span>.createElement(<span class="string">'a'</span>)</span><br><span class="line">      link.href = url</span><br><span class="line">      link.setAttribute(<span class="string">'download'</span>, fileName)</span><br><span class="line">      <span class="built_in">document</span>.body.appendChild(link)</span><br><span class="line">      link.click()</span><br><span class="line">      <span class="built_in">document</span>.body.removeChild(link) <span class="comment">// 下载完成移除元素</span></span><br><span class="line">      <span class="built_in">window</span>.URL.revokeObjectURL(url) <span class="comment">// 释放掉blob对象      </span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">rotateImage</span>(<span class="params">file</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        fileToBinary(file).then(<span class="function">(<span class="params">binaryFile</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">let</span> meta = EXIF.readFromBinaryFile(binaryFile)</span><br><span class="line">          <span class="keyword">let</span> orientation = meta.Orientation</span><br><span class="line">          <span class="keyword">let</span> formData = <span class="keyword">new</span> FormData()</span><br><span class="line">          <span class="keyword">let</span> rotationMap = &#123; <span class="number">3</span>: <span class="number">180</span>, <span class="number">6</span>: <span class="number">90</span>, <span class="number">8</span>: <span class="number">270</span> &#125;</span><br><span class="line"></span><br><span class="line">          <span class="comment">// 不需要旋转</span></span><br><span class="line">          <span class="keyword">if</span> (meta === <span class="literal">false</span> || !rotationMap[orientation]) &#123;</span><br><span class="line">            formData.append(<span class="string">'file'</span>, file, <span class="string">'face.jpeg'</span>)</span><br><span class="line">            <span class="keyword">return</span> resolve(&#123; <span class="attr">base64</span>: <span class="string">''</span>, <span class="attr">formData</span>: formData, <span class="attr">rotated</span>: <span class="literal">false</span> &#125;)</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          <span class="keyword">let</span> rotationDegree = <span class="number">0</span></span><br><span class="line">          <span class="keyword">let</span> targetWidth = <span class="number">200</span></span><br><span class="line"></span><br><span class="line">          rotationDegree = rotationMap[orientation] || <span class="number">0</span></span><br><span class="line"></span><br><span class="line">          <span class="keyword">let</span> image = <span class="built_in">document</span>.createElement(<span class="string">'img'</span>)</span><br><span class="line">          image.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> canvas = <span class="built_in">document</span>.createElement(<span class="string">'canvas'</span>)</span><br><span class="line">            <span class="keyword">let</span> ctx = canvas.getContext(<span class="string">'2d'</span>)</span><br><span class="line">            </span><br><span class="line"></span><br><span class="line">            <span class="keyword">let</span> rate = <span class="built_in">Math</span>.min(targetWidth / image.width, <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">let</span> imageWidth = image.width * rate</span><br><span class="line">            <span class="keyword">let</span> imageHeight = image.height * rate</span><br><span class="line">            <span class="keyword">if</span> (rotationDegree === <span class="number">90</span> || rotationDegree === <span class="number">270</span>) &#123;</span><br><span class="line">              canvas.width = imageHeight</span><br><span class="line">              canvas.height = imageWidth</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">              canvas.width = image.width</span><br><span class="line">              canvas.height = image.height</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            ctx.fillStyle = <span class="string">'rgba(255, 255, 255, 0)'</span></span><br><span class="line"></span><br><span class="line">            ctx.clearRect(<span class="number">0</span>, <span class="number">0</span>, canvas.width, canvas.height)</span><br><span class="line"></span><br><span class="line">            ctx.save()</span><br><span class="line">            ctx.fillRect(<span class="number">0</span>, <span class="number">0</span>, canvas.width, canvas.height)</span><br><span class="line">            ctx.translate(canvas.width / <span class="number">2</span>, canvas.height / <span class="number">2</span>)</span><br><span class="line">            ctx.rotate(rotationDegree * <span class="built_in">Math</span>.PI / <span class="number">180</span>)</span><br><span class="line">            <span class="keyword">if</span> (rotationDegree === <span class="number">90</span> || rotationDegree === <span class="number">270</span>) &#123;</span><br><span class="line">              ctx.drawImage(image, -canvas.height / <span class="number">2</span>, -canvas.width / <span class="number">2</span> + (canvas.width - imageHeight) / <span class="number">2</span>, imageWidth, imageHeight)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">              ctx.drawImage(image, -canvas.width / <span class="number">2</span>, -canvas.height / <span class="number">2</span>, imageWidth, imageHeight)</span><br><span class="line">            &#125;</span><br><span class="line">            ctx.restore()</span><br><span class="line"></span><br><span class="line">            canvas.toBlob(<span class="function">(<span class="params">blob</span>) =&gt;</span> &#123;</span><br><span class="line">              formData.append(<span class="string">'file'</span>, blob, <span class="string">'face.jpeg'</span>)</span><br><span class="line">              <span class="keyword">let</span> base64 = canvas.toDataURL(<span class="string">'image/jpeg'</span>, <span class="number">0.8</span>)</span><br><span class="line">              <span class="built_in">console</span>.log(<span class="string">'rotated image  blob: '</span>, blob)</span><br><span class="line">              <span class="comment">// downloadBlob(blob, '123.jpg')  // 下载图片</span></span><br><span class="line">              resolve(&#123; <span class="attr">base64</span>: base64, <span class="attr">rotated</span>: <span class="literal">true</span>, <span class="attr">formData</span>: formData &#125;)</span><br><span class="line">            &#125;, <span class="string">'image/jpeg'</span>, <span class="number">0.8</span>)</span><br><span class="line">          &#125;</span><br><span class="line">          image.src = URL.createObjectURL(file)</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p><strong>例子效果：</strong><br><img data-src="https://res.cloudinary.com/zayfen/image/upload/v1571232577/img/y8zxcjibljhul5nr1cab.png" alt="旋转图片的例子"></p>
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-]]></content>
-      <categories>
-        <category>web</category>
-      </categories>
-      <tags>
-        <tag>jpg</tag>
-        <tag>image</tag>
+        <tag>nodejs</tag>
       </tags>
   </entry>
   <entry>

@@ -13,7 +13,7 @@ npm run generate
 #npm run deploy
 
 if [ -d "./public" ]; then
-  cp -r Assets ./public/Assets
+  cp -r MyAssets ./public/MyAssets
 fi
 
 if [ -d "./public" ];

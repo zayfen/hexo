@@ -40,10 +40,10 @@ custom_file_path:
 # ---------------------------------------------------------------
 
 favicon:
-  small: /images/favicon-16x16-next.png
-  medium: /images/favicon-32x32-next.png
-  apple_touch_icon: /images/apple-touch-icon-next.png
-  safari_pinned_tab: /images/logo.svg
+  small: /MyAssets/images/zayfen-com.jpg
+  medium: /MyAssets/images/zayfen-com.jpg
+  apple_touch_icon: /MyAssets/images/zayfen-com.jpg
+  safari_pinned_tab: /MyAssets/images/zayfen-com.jpg
   #android_manifest: /images/manifest.json
   #ms_browserconfig: /images/browserconfig.xml
 
@@ -163,9 +163,9 @@ sidebar:
 # Sidebar Avatar
 avatar:
   # Replace the default image and set the url here.
-  url: #/images/avatar.gif
+  url: /MyAssets/images/zayfen-com.jpg
   # If true, the avatar will be dispalyed in circle.
-  rounded: false
+  rounded: true
   # If true, the avatar will be rotated with the cursor.
   rotated: false
 
@@ -266,8 +266,8 @@ reward_settings:
   #comment: Donate comment here.
 
 reward:
-  wechatpay: /Assets/images/wechatpay.png
-  alipay: /Assets/images/alipay.jpg
+  wechatpay: /MyAssets/images/wechatpay.png
+  alipay: /MyAssets/images/alipay.jpg
   #paypal: /images/paypal.png
   #bitcoin: /images/bitcoin.png
 
@@ -348,7 +348,7 @@ mobile_layout_economy: false
 android_chrome_color: "#222"
 
 # Custom Logo (Do not support scheme Mist)
-custom_logo: #/uploads/custom-logo.jpg
+custom_logo: /MyAssets/images/zayfen-com.jpg
 
 codeblock:
   # Code Highlight theme
@@ -372,7 +372,7 @@ back2top:
 
 # Reading progress bar
 reading_progress:
-  enable: false
+  enable: true
   # Available values: top | bottom
   position: top
   color: "#37c6c0"
@@ -421,30 +421,30 @@ font:
   # Global font settings used for all elements inside <body>.
   global:
     external: true
-    family: Lato
-    size:
+    family: MHei PRC
+    size: 0.8
 
   # Font settings for site title (.site-title).
   title:
     external: true
-    family:
+    family: 
     size:
 
   # Font settings for headlines (<h1> to <h6>).
   headings:
     external: true
-    family:
+    family: 
     size:
 
   # Font settings for posts (.post-body).
   posts:
     external: true
-    family:
+    family: 
 
   # Font settings for <code> and code blocks.
   codes:
     external: true
-    family:
+    family: Code New Roman
 
 
 # ---------------------------------------------------------------
