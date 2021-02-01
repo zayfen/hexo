@@ -18,23 +18,23 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.zayfen.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"M3PLLO9TMX","apiKey":"a6accc6480b4a9053d9905fa81d61d9c","indexName":"zayfen.com","hits":{"per_page":10},"labels":{"input_placeholder":"搜索文章","hits_empty":"没有搜索到相关内容: ${query}","hits_stats":"${hits} 条搜索结果(${time} ms)"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"www.zayfen.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"M3PLLO9TMX","apiKey":"a6accc6480b4a9053d9905fa81d61d9c","indexName":"zayfen.com","hits":{"per_page":10},"labels":{"input_placeholder":"搜索文章","hits_empty":"没有搜索到相关内容: ${query}","hits_stats":"${hits} 条搜索结果(${time} ms)"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="通过网络获取内容既速度缓慢又开销巨大。较大的响应需要在客户端与服务器之间进行多次往返通信，这会延迟浏览器获得和处理内容的时间，还会增加访问者的流量费用。因此，缓存并重复利用之前获取的资源的能力成为性能优化的一个关键方面。好在每个浏览器都自带了 HTTP 缓存实现功能。您只需要确保每个服务器响应都提供正确的 HTTP 标头指令，以指示浏览器何时可以缓存响应以及可以缓存多久。注：如果您在应用中使用 W">
 <meta name="keywords" content="http,cache">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HTTP缓存（转载自developer.google.com）">
-<meta property="og:url" content="https://www.zayfen.com/2021/01/30/743319a28402c588d40d5708a261f586/index.html">
+<meta property="og:url" content="https://www.zayfen.com/2021/01/28/743319a28402c588d40d5708a261f586/index.html">
 <meta property="og:site_name" content="Z . A . Y . F . E . N">
 <meta property="og:description" content="通过网络获取内容既速度缓慢又开销巨大。较大的响应需要在客户端与服务器之间进行多次往返通信，这会延迟浏览器获得和处理内容的时间，还会增加访问者的流量费用。因此，缓存并重复利用之前获取的资源的能力成为性能优化的一个关键方面。好在每个浏览器都自带了 HTTP 缓存实现功能。您只需要确保每个服务器响应都提供正确的 HTTP 标头指令，以指示浏览器何时可以缓存响应以及可以缓存多久。注：如果您在应用中使用 W">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-01-30T03:32:58.957Z">
+<meta property="og:updated_time" content="2021-01-28T11:40:16.078Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTTP缓存（转载自developer.google.com）">
 <meta name="twitter:description" content="通过网络获取内容既速度缓慢又开销巨大。较大的响应需要在客户端与服务器之间进行多次往返通信，这会延迟浏览器获得和处理内容的时间，还会增加访问者的流量费用。因此，缓存并重复利用之前获取的资源的能力成为性能优化的一个关键方面。好在每个浏览器都自带了 HTTP 缓存实现功能。您只需要确保每个服务器响应都提供正确的 HTTP 标头指令，以指示浏览器何时可以缓存响应以及可以缓存多久。注：如果您在应用中使用 W">
 
-<link rel="canonical" href="https://www.zayfen.com/2021/01/30/743319a28402c588d40d5708a261f586/">
+<link rel="canonical" href="https://www.zayfen.com/2021/01/28/743319a28402c588d40d5708a261f586/">
 
 
 <script id="page-configurations">
@@ -161,18 +161,21 @@
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
-  <div class="search-input-container"></div>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div class="algolia-results">
-  <div id="algolia-stats"></div>
-  <div id="algolia-hits"></div>
-  <div id="algolia-pagination" class="algolia-pagination"></div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
 </div>
 
-      
     </div>
   </div>
 
@@ -201,12 +204,12 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.zayfen.com/2021/01/30/743319a28402c588d40d5708a261f586/">
+    <link itemprop="mainEntityOfPage" href="https://www.zayfen.com/2021/01/28/743319a28402c588d40d5708a261f586/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="zayfen">
-      <meta itemprop="description" content="For Better Life...">
+      <meta itemprop="description" content="happy coding, enjoy life!">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -224,7 +227,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-01-30 11:32:58" itemprop="dateCreated datePublished" datetime="2021-01-30T11:32:58+08:00">2021-01-30</time>
+              <time title="创建时间：2021-01-28 19:40:16" itemprop="dateCreated datePublished" datetime="2021-01-28T19:40:16+08:00">2021-01-28</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -351,12 +354,12 @@
   <div id="qr" style="display: none;">
       
       <div style="display: inline-block;">
-        <img src="/images/wechatpay.png" alt="zayfen 微信支付">
+        <img src="/Assets/images/wechatpay.png" alt="zayfen 微信支付">
         <p>微信支付</p>
       </div>
       
       <div style="display: inline-block;">
-        <img src="/images/alipay.png" alt="zayfen 支付宝">
+        <img src="/Assets/images/alipay.jpg" alt="zayfen 支付宝">
         <p>支付宝</p>
       </div>
 
@@ -377,12 +380,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/01/30/2394e091a7d27e6f0a6c11f035a47267/" rel="prev" title="IEEE 754  && 反码 && 补码  && 原码">
-      <i class="fa fa-chevron-left"></i> IEEE 754  && 反码 && 补码  && 原码
+    <a href="/2021/01/28/20197a10d04b8a4be9e5ef48897dee9c/" rel="prev" title="简单介绍 line-box、vertical-line、line-height 和 font">
+      <i class="fa fa-chevron-left"></i> 简单介绍 line-box、vertical-line、line-height 和 font
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/01/30/b7d273159f6becc31fc5174ea7582c5e/" rel="next" title="搜索算法">
-      搜索算法 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/01/28/f97ef80c3fff95b1c02a4a937d666b66/" rel="next" title="常见WEB安全防御">
+      常见WEB安全防御 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -454,7 +457,7 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">zayfen</p>
-  <div class="site-description" itemprop="description">For Better Life...</div>
+  <div class="site-description" itemprop="description">happy coding, enjoy life!</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -532,7 +535,7 @@
 
         
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
@@ -565,6 +568,7 @@
 
   
   <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
@@ -573,6 +577,65 @@
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
 
 
 
@@ -581,9 +644,7 @@
 
 
 
-  
-<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
-<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script><script src="/js/algolia-search.js"></script>
+  <script src="/js/local-search.js"></script>
 
 
 
@@ -596,7 +657,7 @@
 
 
 
-
+    <div id="pjax">
   
 
   
@@ -617,5 +678,6 @@ NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
 });
 </script>
 
+    </div>
 </body>
 </html>

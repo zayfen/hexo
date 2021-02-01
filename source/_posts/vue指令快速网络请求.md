@@ -3,6 +3,7 @@ title: Vue通过指令实现快速的网络请求
 author: zayfen
 date: 2021/01/29
 tags:
+
 - web
 - vue
 categories:
@@ -74,18 +75,82 @@ vue指令(directive)包含2部分的内容，一个是指令的名字（字符�
 ## V-API指令的实现代码
 
 ```javascript
+import Vue from 'vue'
+// Api对象中有所有的接口请求函数
+import * as Api from '../api/index'
+
+// <component  v-api:module.apiName="resultReceiver"
+// v-api:apiName="resultReceiver"
 Vue.directive('api', {
-    inserted (el, binding, vnode, oldVnode) {
-		
-	}
-})
+  inserted: function(el, binding, vnode, oldNode) {
 
-
-Vue.directive('api-param', {
-    inserted (el, binding, vnode, oldVnode) {
-        
+    let fields = []
+    const moduleName = binding.arg
+    if (moduleName) {
+      fields.push(moduleName)
     }
+
+    let methodName = ''
+    const modifiers = binding.modifiers
+    if (Object.keys(modifiers).length > 0) {
+      methodName = Object.keys(modifiers)[0] // first key as method name
+    }
+    if (methodName) {
+      fields.push(methodName)
+    }
+
+    const apiParamDirective = vnode.data.directives.find(item => item.name === 'api-param')
+    const param = apiParamDirective ? apiParamDirective.value : void 0
+
+    // resolve final request caller
+    // const Api = require('../api/index')
+    let fn = fields.length > 0 ? Api[fields.shift()] : void 0
+    while (fields.length > 0) {
+      let field = fields.shift()
+      fn = fn[field]
+    }
+    if (!fn) {
+      throw new Error(`Error On v-api.js: can't find method ${moduleName}.${methodName} in Api`)
+    }
+
+    // do request here
+    const vueInstance = vnode.context
+    fn(param)?.then(res => {
+      if (res.code === 0) {
+        // 请求成功 设置返回的数数据
+        vueInstance.$set(vueInstance.$data, binding.expression, res)
+      } else {
+        // error message
+        const errMsg = res.message
+        vueInstance.$message.error(errMsg)
+      }
+    })
+  }
 })
+
+
+// v-api-param=args
+Vue.directive('api-param', {
+  inserted: function (el, binding, vnode, oldNode) {
+    // watch args, if args update, then execute v-api.inserted function to request data again
+    const vueInstance = vnode.context
+    console.log('v-app.js watch ', binding.expression)
+    vueInstance.$watch(binding.expression, function (newVal, oldVal) {
+      // TODO: 增加节流  50ms
+      const apiDirective = vnode.data.directives.find(item => (item.name === 'api' || item.name === 'api-ex'))
+      const _binding = {
+        name: apiDirective.name,
+        arg: apiDirective.arg,
+        value: apiDirective.value,
+        expression: apiDirective.expression,
+        modifiers: apiDirective.modifiers
+      }
+      apiDirective.def.inserted(el, _binding, vnode, oldNode)
+    }, { deep: true })
+  },
+
+})
+
 ```
 
 
@@ -94,24 +159,22 @@ Vue.directive('api-param', {
 
 ```html
 <template>
-    <div 
-         v-api:fetUserList="users"
-         v-api-param="userListParam"
-    >
-		<ul v-for="(user, index) in users" :key="index">
-            <li>{{user}]</li>
-        </ul>
-    </div>
+  <div v-api:fetUserList="users" v-api-param="userListParam">
+    <ul v-for="(user, index) in users" :key="index">
+      <li>{{user}]</li>
+    </ul>
+  </div>
 </template>
 <script>
-    export default {
-        data () {
-            return {
-                users: [],
-                userListParam: { page: 1, pageSize: 100 }
-            }
+export default {
+    data () {
+        return {
+            users: [],
+            userListParam: { page: 1, pageSize: 100 }
         }
     }
+}
 </script>
+
 ```
 

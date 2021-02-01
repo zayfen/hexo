@@ -18,7 +18,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.zayfen.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"M3PLLO9TMX","apiKey":"a6accc6480b4a9053d9905fa81d61d9c","indexName":"zayfen.com","hits":{"per_page":10},"labels":{"input_placeholder":"搜索文章","hits_empty":"没有搜索到相关内容: ${query}","hits_stats":"${hits} 条搜索结果(${time} ms)"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"www.zayfen.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"M3PLLO9TMX","apiKey":"a6accc6480b4a9053d9905fa81d61d9c","indexName":"zayfen.com","hits":{"per_page":10},"labels":{"input_placeholder":"搜索文章","hits_empty":"没有搜索到相关内容: ${query}","hits_stats":"${hits} 条搜索结果(${time} ms)"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="背景： 一些jpeg图片，在pc中用图片查看器打开是正的，但是放到浏览器中，就横着了；有一个上传人脸的需求，用手机拍完人脸照片，在应用中显示所拍的照片总是横着的。今天，我们就来解决这个问题。 为什么JEPG图片会横着显示？首先，我们看一个github上的一个关于此问题的issue：https://github.com/GoogleChromeLabs/squoosh/issues/299这个问题讨">
@@ -29,7 +29,7 @@
 <meta property="og:site_name" content="Z . A . Y . F . E . N">
 <meta property="og:description" content="背景： 一些jpeg图片，在pc中用图片查看器打开是正的，但是放到浏览器中，就横着了；有一个上传人脸的需求，用手机拍完人脸照片，在应用中显示所拍的照片总是横着的。今天，我们就来解决这个问题。 为什么JEPG图片会横着显示？首先，我们看一个github上的一个关于此问题的issue：https://github.com/GoogleChromeLabs/squoosh/issues/299这个问题讨">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-01-30T03:32:58.960Z">
+<meta property="og:updated_time" content="2021-01-28T11:40:16.078Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="解决JPEG图片显示方向不正确的问题">
 <meta name="twitter:description" content="背景： 一些jpeg图片，在pc中用图片查看器打开是正的，但是放到浏览器中，就横着了；有一个上传人脸的需求，用手机拍完人脸照片，在应用中显示所拍的照片总是横着的。今天，我们就来解决这个问题。 为什么JEPG图片会横着显示？首先，我们看一个github上的一个关于此问题的issue：https://github.com/GoogleChromeLabs/squoosh/issues/299这个问题讨">
@@ -161,18 +161,21 @@
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
-  <div class="search-input-container"></div>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div class="algolia-results">
-  <div id="algolia-stats"></div>
-  <div id="algolia-hits"></div>
-  <div id="algolia-pagination" class="algolia-pagination"></div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
 </div>
 
-      
     </div>
   </div>
 
@@ -206,7 +209,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="zayfen">
-      <meta itemprop="description" content="For Better Life...">
+      <meta itemprop="description" content="happy coding, enjoy life!">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -231,7 +234,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-30 11:32:58" itemprop="dateModified" datetime="2021-01-30T11:32:58+08:00">2021-01-30</time>
+                <time title="修改时间：2021-01-28 19:40:16" itemprop="dateModified" datetime="2021-01-28T19:40:16+08:00">2021-01-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -311,12 +314,12 @@
   <div id="qr" style="display: none;">
       
       <div style="display: inline-block;">
-        <img src="/images/wechatpay.png" alt="zayfen 微信支付">
+        <img src="/Assets/images/wechatpay.png" alt="zayfen 微信支付">
         <p>微信支付</p>
       </div>
       
       <div style="display: inline-block;">
-        <img src="/images/alipay.png" alt="zayfen 支付宝">
+        <img src="/Assets/images/alipay.jpg" alt="zayfen 支付宝">
         <p>支付宝</p>
       </div>
 
@@ -414,7 +417,7 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">zayfen</p>
-  <div class="site-description" itemprop="description">For Better Life...</div>
+  <div class="site-description" itemprop="description">happy coding, enjoy life!</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -492,7 +495,7 @@
 
         
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
@@ -525,6 +528,7 @@
 
   
   <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
@@ -533,6 +537,65 @@
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
 <script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
 
 
 
@@ -541,9 +604,7 @@
 
 
 
-  
-<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
-<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script><script src="/js/algolia-search.js"></script>
+  <script src="/js/local-search.js"></script>
 
 
 
@@ -556,7 +617,7 @@
 
 
 
-
+    <div id="pjax">
   
 
   
@@ -577,5 +638,6 @@ NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
 });
 </script>
 
+    </div>
 </body>
 </html>
