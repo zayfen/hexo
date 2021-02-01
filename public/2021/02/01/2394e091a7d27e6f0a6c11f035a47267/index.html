@@ -21,20 +21,20 @@
     var CONFIG = {"hostname":"www.zayfen.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"M3PLLO9TMX","apiKey":"a6accc6480b4a9053d9905fa81d61d9c","indexName":"zayfen.com","hits":{"per_page":10},"labels":{"input_placeholder":"搜索文章","hits_empty":"没有搜索到相关内容: ${query}","hits_stats":"${hits} 条搜索结果(${time} ms)"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="假设一个二进制向量 $x = [xw, x{w-1}, x{w-2}, …, x{w1}, x{w_0}]$ 补码$V = -{xw} \cdot 2^w + \sum{i=0}^{w-1}(x_i \cdot 2^i)$ 反码$V = -1 \cdot {xw} \cdot (2^w - 1) + \sum{i=0}^{w-1}(x_i \cdot 2^i)$ 原码$V=(-1)^{xw} \c">
+  <meta name="description" content="假设一个二进制向量 x = [x_w, x_{w-1}, x_{w-2}, ..., x_{w_1}, x_{w_0}] 补码V = -{x_w} \cdot 2^w + \sum_{i=0}^{w-1}(x_i \cdot 2^i)">
 <meta name="keywords" content="IEEE754,补码,反码,原码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="IEEE 754  &amp;&amp; 反码 &amp;&amp; 补码  &amp;&amp; 原码">
-<meta property="og:url" content="https://www.zayfen.com/2021/01/28/2394e091a7d27e6f0a6c11f035a47267/index.html">
+<meta property="og:url" content="https://www.zayfen.com/2021/02/01/2394e091a7d27e6f0a6c11f035a47267/index.html">
 <meta property="og:site_name" content="Z . A . Y . F . E . N">
-<meta property="og:description" content="假设一个二进制向量 $x = [xw, x{w-1}, x{w-2}, …, x{w1}, x{w_0}]$ 补码$V = -{xw} \cdot 2^w + \sum{i=0}^{w-1}(x_i \cdot 2^i)$ 反码$V = -1 \cdot {xw} \cdot (2^w - 1) + \sum{i=0}^{w-1}(x_i \cdot 2^i)$ 原码$V=(-1)^{xw} \c">
+<meta property="og:description" content="假设一个二进制向量 x = [x_w, x_{w-1}, x_{w-2}, ..., x_{w_1}, x_{w_0}] 补码V = -{x_w} \cdot 2^w + \sum_{i=0}^{w-1}(x_i \cdot 2^i)">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-01-28T11:40:16.078Z">
+<meta property="og:updated_time" content="2021-02-01T03:21:45.529Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IEEE 754  &amp;&amp; 反码 &amp;&amp; 补码  &amp;&amp; 原码">
-<meta name="twitter:description" content="假设一个二进制向量 $x = [xw, x{w-1}, x{w-2}, …, x{w1}, x{w_0}]$ 补码$V = -{xw} \cdot 2^w + \sum{i=0}^{w-1}(x_i \cdot 2^i)$ 反码$V = -1 \cdot {xw} \cdot (2^w - 1) + \sum{i=0}^{w-1}(x_i \cdot 2^i)$ 原码$V=(-1)^{xw} \c">
+<meta name="twitter:description" content="假设一个二进制向量 x = [x_w, x_{w-1}, x_{w-2}, ..., x_{w_1}, x_{w_0}] 补码V = -{x_w} \cdot 2^w + \sum_{i=0}^{w-1}(x_i \cdot 2^i)">
 
-<link rel="canonical" href="https://www.zayfen.com/2021/01/28/2394e091a7d27e6f0a6c11f035a47267/">
+<link rel="canonical" href="https://www.zayfen.com/2021/02/01/2394e091a7d27e6f0a6c11f035a47267/">
 
 
 <script id="page-configurations">
@@ -204,7 +204,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.zayfen.com/2021/01/28/2394e091a7d27e6f0a6c11f035a47267/">
+    <link itemprop="mainEntityOfPage" href="https://www.zayfen.com/2021/02/01/2394e091a7d27e6f0a6c11f035a47267/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -226,8 +226,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-01-28 19:40:16" itemprop="dateCreated datePublished" datetime="2021-01-28T19:40:16+08:00">2021-01-28</time>
+              <time title="创建时间：2021-02-01 00:00:00 / 修改时间：11:21:45" itemprop="dateCreated datePublished" datetime="2021-02-01T00:00:00+08:00">2021-02-01</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -271,18 +272,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>假设一个二进制向量 $x = [x<em>w, x</em>{w-1}, x<em>{w-2}, …, x</em>{w<em>1}, x</em>{w_0}]$</p>
-<h2 id="补码"><a href="#补码" class="headerlink" title="补码"></a>补码</h2><p>$V = -{x<em>w} \cdot 2^w + \sum</em>{i=0}^{w-1}(x_i \cdot 2^i)$</p>
-<h2 id="反码"><a href="#反码" class="headerlink" title="反码"></a>反码</h2><p>$V = -1 \cdot {x<em>w} \cdot (2^w - 1) + \sum</em>{i=0}^{w-1}(x_i \cdot 2^i)$</p>
-<h2 id="原码"><a href="#原码" class="headerlink" title="原码"></a>原码</h2><p>$V=(-1)^{x<em>w} \cdot (\sum</em>{i = 0}^{w-1}x_i2^i)$</p>
-<h2 id="IEEE-754"><a href="#IEEE-754" class="headerlink" title="IEEE 754"></a>IEEE 754</h2><p>浮点表示法</p>
+        <p>假设一个二进制向量 <script type="math/tex">x = [x_w, x_{w-1}, x_{w-2}, ..., x_{w_1}, x_{w_0}]</script></p>
+<h2 id="补码"><a href="#补码" class="headerlink" title="补码"></a>补码</h2><script type="math/tex; mode=display">V = -{x_w} \cdot 2^w + \sum_{i=0}^{w-1}(x_i \cdot 2^i)</script><a id="more"></a>
+<h2 id="反码"><a href="#反码" class="headerlink" title="反码"></a>反码</h2><script type="math/tex; mode=display">V = -1 \cdot {x_w} \cdot (2^w - 1) + \sum_{i=0}^{w-1}(x_i \cdot 2^i)</script><h2 id="原码"><a href="#原码" class="headerlink" title="原码"></a>原码</h2><script type="math/tex; mode=display">V=(-1)^{x_w} \cdot (\sum_{i = 0}^{w-1}x_i2^i)</script><h2 id="IEEE-754"><a href="#IEEE-754" class="headerlink" title="IEEE 754"></a>IEEE 754</h2><p>浮点表示法</p>
 <h3 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h3><p>将浮点数的位表示划分为3部分，分别为符号位(<strong>S</strong>)，编码阶码(<strong>E</strong>)，和 编码尾码(<strong>M</strong>)。</p>
-<p>浮点数值 $V = -1 <em> S </em> 2^E * M$</p>
+<p>浮点数值 <script type="math/tex">V = -1 * S * 2^E * M</script></p>
 <ul>
 <li>$S$(sign) 表示符号，$0$表示正，$1$表示负</li>
 <li>$E$(exponent) 阶码，规格化格式中，取值为$e - bias$，非规格化格式中，取值为$1-bias$ ($e$为阶码的无符号值, $bias$为偏移值，假设阶码$k$位，则$bias=2^{k-1}-1$)</li>
 <li>$M$(significand) 尾数, 在规格化中，取值为$1 + fraction$, 非规格化中，取值为$fraction$（fraction为尾数的无符号值）</li>
 </ul>
+<!-- more -->
 <h3 id="规格化-amp-非规格化-amp-无穷大-amp-NaN-不是一个数"><a href="#规格化-amp-非规格化-amp-无穷大-amp-NaN-不是一个数" class="headerlink" title="规格化 &amp; 非规格化 &amp; 无穷大 &amp; NaN(不是一个数)"></a>规格化 &amp; 非规格化 &amp; 无穷大 &amp; NaN(不是一个数)</h3><p>假设阶码有$k$位，尾数有$n$位，则$bias=2^{k-1}-1$;</p>
 <h4 id="规格化"><a href="#规格化" class="headerlink" title="规格化"></a>规格化</h4><p>规格化 指阶码位既不是$0$ 也不是 $2^k-1$</p>
 <p><strong>计算E</strong></p>
@@ -368,13 +368,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/01/28/b7d273159f6becc31fc5174ea7582c5e/" rel="prev" title="搜索算法">
-      <i class="fa fa-chevron-left"></i> 搜索算法
+    <a href="/2021/01/29/vue指令快速网络请求/" rel="prev" title="Vue通过指令实现快速的网络请求">
+      <i class="fa fa-chevron-left"></i> Vue通过指令实现快速的网络请求
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/01/29/vue指令快速网络请求/" rel="next" title="Vue通过指令实现快速的网络请求">
-      Vue通过指令实现快速的网络请求 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -647,6 +644,63 @@ window.addEventListener('pjax:success', () => {
 
     <div id="pjax">
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

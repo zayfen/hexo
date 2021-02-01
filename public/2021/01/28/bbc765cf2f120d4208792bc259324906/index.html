@@ -21,18 +21,18 @@
     var CONFIG = {"hostname":"www.zayfen.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"M3PLLO9TMX","apiKey":"a6accc6480b4a9053d9905fa81d61d9c","indexName":"zayfen.com","hits":{"per_page":10},"labels":{"input_placeholder":"搜索文章","hits_empty":"没有搜索到相关内容: ${query}","hits_stats":"${hits} 条搜索结果(${time} ms)"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Bloom Filter1. 什么是布隆过滤？布隆过滤是应用于大数据中检测一个数据是否在一个集合中的搜索过滤算法。 2. 应用场景比如如何在成千上万的网址中快速地识别出恶意的网址，在成千上万的邮件中快速识别出恶意的邮件等 3. 算法简单描述布隆过滤是在一个bitmap中预先通过k个hash函数插入一些目标数据标记，表示为下图：假设这里的bitmap(所有的位都初始化为0)是有10个bits，有3个">
+  <meta name="description" content="Bloom Filter1. 什么是布隆过滤？布隆过滤是应用于大数据中检测一个数据是否在一个集合中的搜索过滤算法。 2. 应用场景比如如何在成千上万的网址中快速地识别出恶意的网址，在成千上万的邮件中快速识别出恶意的邮件等">
 <meta name="keywords" content="algorithm,bloom filter">
 <meta property="og:type" content="article">
 <meta property="og:title" content="布隆过滤（Bloom Filter）">
 <meta property="og:url" content="https://www.zayfen.com/2021/01/28/bbc765cf2f120d4208792bc259324906/index.html">
 <meta property="og:site_name" content="Z . A . Y . F . E . N">
-<meta property="og:description" content="Bloom Filter1. 什么是布隆过滤？布隆过滤是应用于大数据中检测一个数据是否在一个集合中的搜索过滤算法。 2. 应用场景比如如何在成千上万的网址中快速地识别出恶意的网址，在成千上万的邮件中快速识别出恶意的邮件等 3. 算法简单描述布隆过滤是在一个bitmap中预先通过k个hash函数插入一些目标数据标记，表示为下图：假设这里的bitmap(所有的位都初始化为0)是有10个bits，有3个">
+<meta property="og:description" content="Bloom Filter1. 什么是布隆过滤？布隆过滤是应用于大数据中检测一个数据是否在一个集合中的搜索过滤算法。 2. 应用场景比如如何在成千上万的网址中快速地识别出恶意的网址，在成千上万的邮件中快速识别出恶意的邮件等">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-01-28T11:40:16.078Z">
+<meta property="og:updated_time" content="2021-02-01T03:01:05.491Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="布隆过滤（Bloom Filter）">
-<meta name="twitter:description" content="Bloom Filter1. 什么是布隆过滤？布隆过滤是应用于大数据中检测一个数据是否在一个集合中的搜索过滤算法。 2. 应用场景比如如何在成千上万的网址中快速地识别出恶意的网址，在成千上万的邮件中快速识别出恶意的邮件等 3. 算法简单描述布隆过滤是在一个bitmap中预先通过k个hash函数插入一些目标数据标记，表示为下图：假设这里的bitmap(所有的位都初始化为0)是有10个bits，有3个">
+<meta name="twitter:description" content="Bloom Filter1. 什么是布隆过滤？布隆过滤是应用于大数据中检测一个数据是否在一个集合中的搜索过滤算法。 2. 应用场景比如如何在成千上万的网址中快速地识别出恶意的网址，在成千上万的邮件中快速识别出恶意的邮件等">
 
 <link rel="canonical" href="https://www.zayfen.com/2021/01/28/bbc765cf2f120d4208792bc259324906/">
 
@@ -229,6 +229,13 @@
 
               <time title="创建时间：2021-01-28 19:40:16" itemprop="dateCreated datePublished" datetime="2021-01-28T19:40:16+08:00">2021-01-28</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-02-01 11:01:05" itemprop="dateModified" datetime="2021-02-01T11:01:05+08:00">2021-02-01</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -273,6 +280,7 @@
       
         <h1 id="Bloom-Filter"><a href="#Bloom-Filter" class="headerlink" title="Bloom Filter"></a>Bloom Filter</h1><h1 id="1-什么是布隆过滤？"><a href="#1-什么是布隆过滤？" class="headerlink" title="1. 什么是布隆过滤？"></a>1. 什么是布隆过滤？</h1><p>布隆过滤是应用于大数据中检测一个数据是否在一个集合中的搜索过滤算法。</p>
 <h1 id="2-应用场景"><a href="#2-应用场景" class="headerlink" title="2. 应用场景"></a>2. 应用场景</h1><p>比如如何在成千上万的网址中快速地识别出恶意的网址，在成千上万的邮件中快速识别出恶意的邮件等</p>
+<a id="more"></a>
 <h1 id="3-算法简单描述"><a href="#3-算法简单描述" class="headerlink" title="3. 算法简单描述"></a>3. 算法简单描述</h1><p>布隆过滤是在一个bitmap中预先通过k个hash函数插入一些目标数据标记，表示为下图：<br>假设这里的bitmap(所有的位都初始化为0)是有10个bits，有3个hash 函数，有一个目标数据“cat”，那么将cat映射标记到bitmap就是通过3个hash函数分别计算cat的hash值，将hash值转换成bitmap的索引，并将对应索引位置的bit置为1，至此，我们就标记了一个目标数据，目前cat就是我们要过滤的数据，当在很多的数据中要识别出“cat”的时候，就可以通过建立好的这个bitmap来识别了。</p>
 <p><img data-src="http://cdncontribute.geeksforgeeks.org/wp-content/uploads/cat-300x109.png" alt="cat"></p>
 <p>比如，现在有3个数据来了，分别是 “dog”，“cat”，“pig”，我们需要从中识别出“cat”，怎么样识别呢？<br>“dog” =&gt; 映射到 bitmap[1], bitmap[2], bitmap[3], 发现都不是1，则‘dog‘就不是目标数据<br>“cat” =&gt; 映射到 bitmap[1], bitmap[3], bitmap[7],发现所有的都是1， 则 ‘cat’就是目标数据<br>“pig” =&gt; 映射到 bitmap[8], bitmap[9], bitmap[10]，发现都不是1， 则‘pig’就不是目标数据<br>这样通过重新计算hash来和bitmap中的对比就能过滤掉一些目标数据了<br>但是这里其实还有一个问题，存在一个不同的目标,比如“bird”，这个通过hash函数计算出来的结果可能在bitmap中都为1, 这种情况是无法避免的，我们称之为“误判”，这种识别错误的概率和目标数据，bitmap大小和hash函数的数据是相关联的</p>
@@ -353,12 +361,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/01/28/f97ef80c3fff95b1c02a4a937d666b66/" rel="prev" title="常见WEB安全防御">
-      <i class="fa fa-chevron-left"></i> 常见WEB安全防御
+    <a href="/2021/01/28/b7d273159f6becc31fc5174ea7582c5e/" rel="prev" title="搜索算法">
+      <i class="fa fa-chevron-left"></i> 搜索算法
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/01/28/b7d273159f6becc31fc5174ea7582c5e/" rel="next" title="搜索算法">
-      搜索算法 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/01/29/vue指令快速网络请求/" rel="next" title="Vue通过指令实现快速的网络请求">
+      Vue通过指令实现快速的网络请求 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -632,6 +640,63 @@ window.addEventListener('pjax:success', () => {
 
     <div id="pjax">
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

@@ -21,18 +21,18 @@
     var CONFIG = {"hostname":"www.zayfen.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"M3PLLO9TMX","apiKey":"a6accc6480b4a9053d9905fa81d61d9c","indexName":"zayfen.com","hits":{"per_page":10},"labels":{"input_placeholder":"搜索文章","hits_empty":"没有搜索到相关内容: ${query}","hits_stats":"${hits} 条搜索结果(${time} ms)"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="WEB安全[TOC] 一、漏洞分类 XSS漏洞 CSRF漏洞 SSRF漏洞 SQL漏洞  二、各种漏洞介绍XSS漏洞  什么是XSS漏洞XSS漏洞全称跨站脚本攻击，英文全称 Cross-site Scripting, 为了不和css名字重复，所以取名XSS. XSS漏洞主要是能够利用代码的漏洞，通过一些技巧在浏览器端执行非法的javascript脚本，这些非法的javascript脚本拥有当前登录">
+  <meta name="description" content="WEB安全[TOC] 一、漏洞分类 XSS漏洞 CSRF漏洞 SSRF漏洞 SQL漏洞">
 <meta name="keywords" content="web,security">
 <meta property="og:type" content="article">
 <meta property="og:title" content="常见WEB安全防御">
 <meta property="og:url" content="https://www.zayfen.com/2021/01/28/f97ef80c3fff95b1c02a4a937d666b66/index.html">
 <meta property="og:site_name" content="Z . A . Y . F . E . N">
-<meta property="og:description" content="WEB安全[TOC] 一、漏洞分类 XSS漏洞 CSRF漏洞 SSRF漏洞 SQL漏洞  二、各种漏洞介绍XSS漏洞  什么是XSS漏洞XSS漏洞全称跨站脚本攻击，英文全称 Cross-site Scripting, 为了不和css名字重复，所以取名XSS. XSS漏洞主要是能够利用代码的漏洞，通过一些技巧在浏览器端执行非法的javascript脚本，这些非法的javascript脚本拥有当前登录">
+<meta property="og:description" content="WEB安全[TOC] 一、漏洞分类 XSS漏洞 CSRF漏洞 SSRF漏洞 SQL漏洞">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-01-28T11:40:16.078Z">
+<meta property="og:updated_time" content="2021-02-01T03:01:54.185Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见WEB安全防御">
-<meta name="twitter:description" content="WEB安全[TOC] 一、漏洞分类 XSS漏洞 CSRF漏洞 SSRF漏洞 SQL漏洞  二、各种漏洞介绍XSS漏洞  什么是XSS漏洞XSS漏洞全称跨站脚本攻击，英文全称 Cross-site Scripting, 为了不和css名字重复，所以取名XSS. XSS漏洞主要是能够利用代码的漏洞，通过一些技巧在浏览器端执行非法的javascript脚本，这些非法的javascript脚本拥有当前登录">
+<meta name="twitter:description" content="WEB安全[TOC] 一、漏洞分类 XSS漏洞 CSRF漏洞 SSRF漏洞 SQL漏洞">
 
 <link rel="canonical" href="https://www.zayfen.com/2021/01/28/f97ef80c3fff95b1c02a4a937d666b66/">
 
@@ -229,6 +229,13 @@
 
               <time title="创建时间：2021-01-28 19:40:16" itemprop="dateCreated datePublished" datetime="2021-01-28T19:40:16+08:00">2021-01-28</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-02-01 11:01:54" itemprop="dateModified" datetime="2021-02-01T11:01:54+08:00">2021-02-01</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -278,6 +285,7 @@
 <li>SSRF漏洞</li>
 <li>SQL漏洞</li>
 </ul>
+<a id="more"></a>
 <p>二、各种漏洞介绍<br><strong>XSS漏洞</strong></p>
 <ol>
 <li><p>什么是XSS漏洞<br>XSS漏洞全称跨站脚本攻击，英文全称 Cross-site Scripting, 为了不和css名字重复，所以取名XSS. XSS漏洞主要是能够利用代码的漏洞，通过一些技巧在浏览器端执行非法的javascript脚本，这些非法的javascript脚本拥有当前登录用户的权限，可以执行一些非法操作，从而给用户或者企业带来损失。</p>
@@ -390,8 +398,8 @@
       <i class="fa fa-chevron-left"></i> HTTP缓存（转载自developer.google.com）
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/01/28/bbc765cf2f120d4208792bc259324906/" rel="next" title="布隆过滤（Bloom Filter）">
-      布隆过滤（Bloom Filter） <i class="fa fa-chevron-right"></i>
+    <a href="/2021/01/28/b7d273159f6becc31fc5174ea7582c5e/" rel="next" title="搜索算法">
+      搜索算法 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -665,6 +673,63 @@ window.addEventListener('pjax:success', () => {
 
     <div id="pjax">
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

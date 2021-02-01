@@ -21,18 +21,18 @@
     var CONFIG = {"hostname":"www.zayfen.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"M3PLLO9TMX","apiKey":"a6accc6480b4a9053d9905fa81d61d9c","indexName":"zayfen.com","hits":{"per_page":10},"labels":{"input_placeholder":"搜索文章","hits_empty":"没有搜索到相关内容: ${query}","hits_stats":"${hits} 条搜索结果(${time} ms)"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="漂亮打印git loggit log --graph --pretty=format:&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset&apos; --abbrev-commit --date=relative 添加修改或者新文件到待commit队列### add 的文件是支持正则匹配的git add &amp;lt;file(s)&amp;gt;##">
+  <meta name="description" content="漂亮打印git loggit log --graph --pretty=format:&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset&apos; --abbrev-commit --date=relative">
 <meta name="keywords" content="git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git 常用操作">
 <meta property="og:url" content="https://www.zayfen.com/2019/11/14/a43fd1c509d10e4d08fc1f789d58cb23/index.html">
 <meta property="og:site_name" content="Z . A . Y . F . E . N">
-<meta property="og:description" content="漂亮打印git loggit log --graph --pretty=format:&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset&apos; --abbrev-commit --date=relative 添加修改或者新文件到待commit队列### add 的文件是支持正则匹配的git add &amp;lt;file(s)&amp;gt;##">
+<meta property="og:description" content="漂亮打印git loggit log --graph --pretty=format:&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset&apos; --abbrev-commit --date=relative">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-01-28T11:40:16.078Z">
+<meta property="og:updated_time" content="2021-02-01T03:02:27.912Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git 常用操作">
-<meta name="twitter:description" content="漂亮打印git loggit log --graph --pretty=format:&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset&apos; --abbrev-commit --date=relative 添加修改或者新文件到待commit队列### add 的文件是支持正则匹配的git add &amp;lt;file(s)&amp;gt;##">
+<meta name="twitter:description" content="漂亮打印git loggit log --graph --pretty=format:&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset&apos; --abbrev-commit --date=relative">
 
 <link rel="canonical" href="https://www.zayfen.com/2019/11/14/a43fd1c509d10e4d08fc1f789d58cb23/">
 
@@ -234,7 +234,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-28 19:40:16" itemprop="dateModified" datetime="2021-01-28T19:40:16+08:00">2021-01-28</time>
+                <time title="修改时间：2021-02-01 11:02:27" itemprop="dateModified" datetime="2021-02-01T11:02:27+08:00">2021-02-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -280,6 +280,7 @@
       
         <p><img data-src="https://res.cloudinary.com/zayfen/image/upload/v1568171685/img/l8yeyxvtfw6kplg1ci67.png" alt="git flow"></p>
 <h3 id="漂亮打印git-log"><a href="#漂亮打印git-log" class="headerlink" title="漂亮打印git log"></a>漂亮打印git log</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">log</span> --graph --pretty=format:<span class="string">'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset'</span> --abbrev-commit --date=relative</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h3 id="添加修改或者新文件到待commit队列"><a href="#添加修改或者新文件到待commit队列" class="headerlink" title="添加修改或者新文件到待commit队列"></a>添加修改或者新文件到待commit队列</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment">### add 的文件是支持正则匹配的</span></span><br><span class="line">git add &lt;file(s)&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">### add all changes to commiter queue</span></span><br><span class="line">git add .</span><br><span class="line"></span><br><span class="line"><span class="comment">### 查看某个commit的修改内容</span></span><br><span class="line">git show &lt;commit-id&gt;</span><br><span class="line">git diff &lt;commit-id&gt;^!</span><br><span class="line"><span class="comment">##### e.g. git show d34ff657f5   git diff d34ff657f5^!</span></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line"><span class="comment">### 提交已添加的文件到本地仓库并创建一个新的版本</span></span><br><span class="line">```sh</span><br><span class="line">git commit -m <span class="string">"commit message"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### also can combine git add &amp; git commit in one command</span></span><br><span class="line">git commit -m <span class="string">"commit message"</span> -a</span><br></pre></td></tr></table></figure>
 <h3 id="推送到远程仓库"><a href="#推送到远程仓库" class="headerlink" title="推送到远程仓库"></a>推送到远程仓库</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment">### origin 是仓库名（默认就是origin），branch_name 是分支名</span></span><br><span class="line">git push origin &lt;branch-name&gt;</span><br></pre></td></tr></table></figure>
 <h2 id="仓库"><a href="#仓库" class="headerlink" title="仓库"></a>仓库</h2><h3 id="创建一个仓库"><a href="#创建一个仓库" class="headerlink" title="创建一个仓库"></a>创建一个仓库</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">### from existed repo </span></span><br><span class="line">git <span class="built_in">clone</span> &lt;repo-url&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">### create a new local repo</span></span><br><span class="line">git init [&lt;<span class="built_in">local</span>-directory&gt;]</span><br></pre></td></tr></table></figure>
@@ -622,6 +623,8 @@ window.addEventListener('pjax:success', () => {
 
 
     <div id="pjax">
+  
+
   
 
   

@@ -21,18 +21,18 @@
     var CONFIG = {"hostname":"www.zayfen.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"M3PLLO9TMX","apiKey":"a6accc6480b4a9053d9905fa81d61d9c","indexName":"zayfen.com","hits":{"per_page":10},"labels":{"input_placeholder":"搜索文章","hits_empty":"没有搜索到相关内容: ${query}","hits_stats":"${hits} 条搜索结果(${time} ms)"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="线性搜索线性搜索也是最简单的搜索算法，简单来说，就是对一个数组或者顺序容器，进行从头到尾的遍历，一个一个的找到目标元素// 简单的线性搜索算法实现template &amp;lt;typename T&amp;gt;int linear_search(const std::vector&amp;lt;T&amp;gt;&amp;amp; vec, const T&amp;amp; x)&amp;#123;  int index = -1;  for(c">
+  <meta name="description" content="线性搜索线性搜索也是最简单的搜索算法，简单来说，就是对一个数组或者顺序容器，进行从头到尾的遍历，一个一个的找到目标元素">
 <meta name="keywords" content="algorithm,search">
 <meta property="og:type" content="article">
 <meta property="og:title" content="搜索算法">
 <meta property="og:url" content="https://www.zayfen.com/2021/01/28/b7d273159f6becc31fc5174ea7582c5e/index.html">
 <meta property="og:site_name" content="Z . A . Y . F . E . N">
-<meta property="og:description" content="线性搜索线性搜索也是最简单的搜索算法，简单来说，就是对一个数组或者顺序容器，进行从头到尾的遍历，一个一个的找到目标元素// 简单的线性搜索算法实现template &amp;lt;typename T&amp;gt;int linear_search(const std::vector&amp;lt;T&amp;gt;&amp;amp; vec, const T&amp;amp; x)&amp;#123;  int index = -1;  for(c">
+<meta property="og:description" content="线性搜索线性搜索也是最简单的搜索算法，简单来说，就是对一个数组或者顺序容器，进行从头到尾的遍历，一个一个的找到目标元素">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-01-28T11:40:16.078Z">
+<meta property="og:updated_time" content="2021-02-01T03:08:19.555Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搜索算法">
-<meta name="twitter:description" content="线性搜索线性搜索也是最简单的搜索算法，简单来说，就是对一个数组或者顺序容器，进行从头到尾的遍历，一个一个的找到目标元素// 简单的线性搜索算法实现template &amp;lt;typename T&amp;gt;int linear_search(const std::vector&amp;lt;T&amp;gt;&amp;amp; vec, const T&amp;amp; x)&amp;#123;  int index = -1;  for(c">
+<meta name="twitter:description" content="线性搜索线性搜索也是最简单的搜索算法，简单来说，就是对一个数组或者顺序容器，进行从头到尾的遍历，一个一个的找到目标元素">
 
 <link rel="canonical" href="https://www.zayfen.com/2021/01/28/b7d273159f6becc31fc5174ea7582c5e/">
 
@@ -229,6 +229,13 @@
 
               <time title="创建时间：2021-01-28 19:40:16" itemprop="dateCreated datePublished" datetime="2021-01-28T19:40:16+08:00">2021-01-28</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-02-01 11:08:19" itemprop="dateModified" datetime="2021-02-01T11:08:19+08:00">2021-02-01</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -271,7 +278,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="线性搜索"><a href="#线性搜索" class="headerlink" title="线性搜索"></a>线性搜索</h3><p>线性搜索也是最简单的搜索算法，简单来说，就是对一个数组或者顺序容器，进行从头到尾的遍历，一个一个的找到目标元素<br><img data-src="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/Linear.png" alt="image"><br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 简单的线性搜索算法实现</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">linear_search</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&amp; vec, <span class="keyword">const</span> T&amp; x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> index = <span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; element : vec) &#123;</span><br><span class="line">    index++;</span><br><span class="line">    <span class="keyword">if</span>(element == x) &#123;</span><br><span class="line">      <span class="keyword">return</span> index;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <h3 id="线性搜索"><a href="#线性搜索" class="headerlink" title="线性搜索"></a>线性搜索</h3><p>线性搜索也是最简单的搜索算法，简单来说，就是对一个数组或者顺序容器，进行从头到尾的遍历，一个一个的找到目标元素  <a id="more"></a><br><img data-src="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/Linear.png" alt="image"><br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 简单的线性搜索算法实现</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">linear_search</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&amp; vec, <span class="keyword">const</span> T&amp; x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> index = <span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; element : vec) &#123;</span><br><span class="line">    index++;</span><br><span class="line">    <span class="keyword">if</span>(element == x) &#123;</span><br><span class="line">      <span class="keyword">return</span> index;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><strong>时间复杂度： O(N)</strong></p>
 <hr>
 <h3 id="二分查找（Binary-Search）"><a href="#二分查找（Binary-Search）" class="headerlink" title="二分查找（Binary Search）"></a>二分查找（Binary Search）</h3><p>二分查找，是给定一个有序的数组或者顺序容器，每次取容器的中间位置的元素和目标元素对比来缩短查找的范围。过程可以简单描述如下：<br><img data-src="https://www.geeksforgeeks.org/wp-content/uploads/gq/2014/01/binary-search1.png" alt="image"><br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 二分查找</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">binary_search</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&amp; vec, <span class="keyword">const</span> <span class="keyword">int</span> low, <span class="keyword">const</span> <span class="keyword">int</span> high, <span class="keyword">const</span> T&amp; x)</span> </span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"binary_search low "</span> &lt;&lt; low &lt;&lt; <span class="string">"  high "</span> &lt;&lt; high &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">if</span> (low &gt; high) &#123; <span class="comment">// 没有找到</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">int</span> middle = low + (high - low) / <span class="number">2</span>; <span class="comment">// 搜索区间缩短一半</span></span><br><span class="line">  <span class="keyword">if</span> (x == vec.at(middle)) &#123;</span><br><span class="line">    <span class="keyword">return</span> middle;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">int</span> low_ = vec.at(middle) &gt; x ? low : middle + <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">int</span> high_ = vec.at(middle) &gt; x ? middle - <span class="number">1</span> : high;</span><br><span class="line">  <span class="keyword">return</span> binary_search(vec, low_, high_, x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -353,12 +360,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/01/28/bbc765cf2f120d4208792bc259324906/" rel="prev" title="布隆过滤（Bloom Filter）">
-      <i class="fa fa-chevron-left"></i> 布隆过滤（Bloom Filter）
+    <a href="/2021/01/28/f97ef80c3fff95b1c02a4a937d666b66/" rel="prev" title="常见WEB安全防御">
+      <i class="fa fa-chevron-left"></i> 常见WEB安全防御
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/01/28/2394e091a7d27e6f0a6c11f035a47267/" rel="next" title="IEEE 754  && 反码 && 补码  && 原码">
-      IEEE 754  && 反码 && 补码  && 原码 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/01/28/bbc765cf2f120d4208792bc259324906/" rel="next" title="布隆过滤（Bloom Filter）">
+      布隆过滤（Bloom Filter） <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -631,6 +638,8 @@ window.addEventListener('pjax:success', () => {
 
 
     <div id="pjax">
+  
+
   
 
   
