@@ -1,0 +1,96 @@
+{
+  "main": {
+    "id": "d525a652f5e2c953",
+    "type": "split",
+    "children": [
+      {
+        "id": "6e77596b7775357c",
+        "type": "leaf",
+        "active": true,
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "compositionstart和compositionend事件.md",
+            "mode": "preview"
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "59643cb2b252b79d",
+    "type": "split",
+    "children": [
+      {
+        "id": "76f232247def1320",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a1b042397d9f1f89",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "5539eff4dee81e63",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "d1fdc0ee90c51733",
+    "type": "split",
+    "children": [
+      {
+        "id": "9af8bf99265e9d2e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f670e95d71807b84",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "compositionstart和compositionend事件.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "lastOpenFiles": [
+    "compositionstart和compositionend事件.md",
+    "f97ef80c3fff95b1c02a4a937d666b66.md",
+    "nodejs中使用es module开发CLI.md",
+    "vue指令快速网络请求.md",
+    "d3c4828a43569ce3ca593dc66b1eb668.md",
+    "a43fd1c509d10e4d08fc1f789d58cb23.md",
+    "前端文件下载方法汇总.md"
+  ]
+}
