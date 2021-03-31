@@ -1,7 +1,16 @@
-# 在Manjaro中安装DEB包
-
-Created: Mar 9, 2021 8:13 PM
-Tags: deb, linux, manjaro
+-----
+title: 在Manjaro中安装DEB包
+author: zayfen
+date: 2021/03/31
+tags:
+- linux
+- manjaro
+- deb
+categories:
+- linux
+archives:
+- linux
+-----
 
 ## 安装步骤
 
@@ -20,9 +29,7 @@ tar -xvf data.tar.xz
 2. 安装应用软件
 
 将解压出来的opt目录下的所有文件目录复制到系统的 `/opt` 目录下；
-
 将解压出来的usr目录下的所有文件复制到 `/usr` 目录下；
-
 运行 `/usr/bin/` 目录下对应的可执行文件即可。
 
 3. 以上已经安装完成，但是如果没有 `/usr`目录，那么就只能自己动手创建`desktop entry`文件了。
