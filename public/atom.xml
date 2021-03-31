@@ -77,6 +77,28 @@
   </entry>
   
   <entry>
+    <title>Nodejs使用es module开发CLI</title>
+    <link href="https://www.zayfen.com/2021/02/01/nodejs%E4%B8%AD%E4%BD%BF%E7%94%A8es%20module%E5%BC%80%E5%8F%91CLI/"/>
+    <id>https://www.zayfen.com/2021/02/01/nodejs中使用es module开发CLI/</id>
+    <published>2021-01-31T16:00:00.000Z</published>
+    <updated>2021-02-01T04:10:45.331Z</updated>
+    
+    <content type="html"><![CDATA[<p>这里主要介绍的不是CLI的开发,而是node使用es module开发cli的工程配置和注意事项</p><a id="more"></a><h2 id="一、-package-json的配置"><a href="#一、-package-json的配置" class="headerlink" title="一、 package.json的配置"></a>一、 package.json的配置</h2><ul><li><p><strong>bin</strong><br>bin字段是指定cli的执行文件的. 比如我将bin指定为<code>{“sm-cli&quot;: &quot;index.js&quot;}</code>, 那么当用户安装了此工具之后，系统会安装sm-cli这个可执行文件并且加入到系统环境变量中，可以在终端执行<br><code>sm-cli</code>命令，当执行这个命令的时候，其实就是运行的index.js文件。</p><p>bin字段可以跟上一个执行文件路径字符串，也可以跟上一个json对象，json对象中指定&lt;命令名：执行文件名&gt;。</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 安装之后，执行命令就是package.json中的name字段的值</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"bin"</span>: <span class="string">"./index.js"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 安装之后，执行命令是"sm-cli"</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"bin"</span>: &#123;</span><br><span class="line">        <span class="string">"sm-cli"</span>: <span class="string">"./index.js"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><ul><li><strong>type</strong><br>node默认的是cjs模块管理系统，我们可以通过设置type字段来开启使用es的模块管理系统。将type字段设置成”module”<br>e.g.</li></ul><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"type"</span>: <span class="string">"module"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li><p><strong>preferGlobal</strong></p><p>preferGloabl字段表示改工具模块更加倾向于全局安装，对与CLI工具来说，这个是需要设置成true的。</p><p>e.g.</p><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"perferGlobal"</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><h2 id="二、-入口文件的配置"><a href="#二、-入口文件的配置" class="headerlink" title="二、 入口文件的配置"></a>二、 入口文件的配置</h2><p>可执行文件的设置需要注意，因为我们选定了使用es module，但是在<code>npm install  -g</code>安装之后，node会使用commonjs的方式去执行文件，此时文件中的</p><p><strong>import xxx from “xxxx”</strong>就会无法执行；解决方案是我们需要指定node的 <strong>—experimental-modules</strong>参数，—experimental-modules表示node的实验中的es 模块功能，指定了这个参数之后，node就可以执行es module文件代码了。</p><p>如何指定—experimental-modules呢？</p><p>需要在<code>bin</code>指定的文件中增加shebang(aka Hashbang)。shebang是一个由井号和感叹号构成的字符串序列，出现再文本的第一行，写过脚本语言的（比如python）一定对此不陌生。</p><p>开启—experimental-modules的shebang:</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env node --experimental-modules</span></span><br></pre></td></tr></table></figure><p><img data-src="https://kodbox.zayfen.com/index.php?explorer/share/fileOut&amp;shareID=6MsdbC0Q&amp;path=%7BshareItemLink%3A6MsdbC0Q%7D%2F" alt="代码示范"></p><h2 id="三、-编写你的代码"><a href="#三、-编写你的代码" class="headerlink" title="三、 编写你的代码"></a>三、 编写你的代码</h2><p>以上的配置完成之后，可以使用es module开发node程序，并且<code>npm install -g</code>之后也能正确的执行，剩下的就是你愉快的开发之旅了！</p><p>##Happy Coding##<script>(function(){    var bp = document.createElement('script');    var curProtocol = window.location.protocol.split(':')[0];    if (curProtocol === 'https') {        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';            }    else {        bp.src = 'http://push.zhanzhang.baidu.com/push.js';    }    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(bp, s);})();</script></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这里主要介绍的不是CLI的开发,而是node使用es module开发cli的工程配置和注意事项&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="nodejs" scheme="https://www.zayfen.com/categories/nodejs/"/>
+    
+    
+      <category term="nodejs" scheme="https://www.zayfen.com/tags/nodejs/"/>
+    
+  </entry>
+  
+  <entry>
     <title>componentstart和componentend事件</title>
     <link href="https://www.zayfen.com/2021/02/01/compositionstart%E5%92%8Ccompositionend%E4%BA%8B%E4%BB%B6/"/>
     <id>https://www.zayfen.com/2021/02/01/compositionstart和compositionend事件/</id>
@@ -108,28 +130,6 @@
       <category term="componentstart" scheme="https://www.zayfen.com/tags/componentstart/"/>
     
       <category term="componentend" scheme="https://www.zayfen.com/tags/componentend/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Nodejs使用es module开发CLI</title>
-    <link href="https://www.zayfen.com/2021/02/01/nodejs%E4%B8%AD%E4%BD%BF%E7%94%A8es%20module%E5%BC%80%E5%8F%91CLI/"/>
-    <id>https://www.zayfen.com/2021/02/01/nodejs中使用es module开发CLI/</id>
-    <published>2021-01-31T16:00:00.000Z</published>
-    <updated>2021-02-01T04:10:45.331Z</updated>
-    
-    <content type="html"><![CDATA[<p>这里主要介绍的不是CLI的开发,而是node使用es module开发cli的工程配置和注意事项</p><a id="more"></a><h2 id="一、-package-json的配置"><a href="#一、-package-json的配置" class="headerlink" title="一、 package.json的配置"></a>一、 package.json的配置</h2><ul><li><p><strong>bin</strong><br>bin字段是指定cli的执行文件的. 比如我将bin指定为<code>{“sm-cli&quot;: &quot;index.js&quot;}</code>, 那么当用户安装了此工具之后，系统会安装sm-cli这个可执行文件并且加入到系统环境变量中，可以在终端执行<br><code>sm-cli</code>命令，当执行这个命令的时候，其实就是运行的index.js文件。</p><p>bin字段可以跟上一个执行文件路径字符串，也可以跟上一个json对象，json对象中指定&lt;命令名：执行文件名&gt;。</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 安装之后，执行命令就是package.json中的name字段的值</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"bin"</span>: <span class="string">"./index.js"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 安装之后，执行命令是"sm-cli"</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"bin"</span>: &#123;</span><br><span class="line">        <span class="string">"sm-cli"</span>: <span class="string">"./index.js"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><ul><li><strong>type</strong><br>node默认的是cjs模块管理系统，我们可以通过设置type字段来开启使用es的模块管理系统。将type字段设置成”module”<br>e.g.</li></ul><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"type"</span>: <span class="string">"module"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li><p><strong>preferGlobal</strong></p><p>preferGloabl字段表示改工具模块更加倾向于全局安装，对与CLI工具来说，这个是需要设置成true的。</p><p>e.g.</p><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"perferGlobal"</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><h2 id="二、-入口文件的配置"><a href="#二、-入口文件的配置" class="headerlink" title="二、 入口文件的配置"></a>二、 入口文件的配置</h2><p>可执行文件的设置需要注意，因为我们选定了使用es module，但是在<code>npm install  -g</code>安装之后，node会使用commonjs的方式去执行文件，此时文件中的</p><p><strong>import xxx from “xxxx”</strong>就会无法执行；解决方案是我们需要指定node的 <strong>—experimental-modules</strong>参数，—experimental-modules表示node的实验中的es 模块功能，指定了这个参数之后，node就可以执行es module文件代码了。</p><p>如何指定—experimental-modules呢？</p><p>需要在<code>bin</code>指定的文件中增加shebang(aka Hashbang)。shebang是一个由井号和感叹号构成的字符串序列，出现再文本的第一行，写过脚本语言的（比如python）一定对此不陌生。</p><p>开启—experimental-modules的shebang:</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env node --experimental-modules</span></span><br></pre></td></tr></table></figure><p><img data-src="https://kodbox.zayfen.com/index.php?explorer/share/fileOut&amp;shareID=6MsdbC0Q&amp;path=%7BshareItemLink%3A6MsdbC0Q%7D%2F" alt="代码示范"></p><h2 id="三、-编写你的代码"><a href="#三、-编写你的代码" class="headerlink" title="三、 编写你的代码"></a>三、 编写你的代码</h2><p>以上的配置完成之后，可以使用es module开发node程序，并且<code>npm install -g</code>之后也能正确的执行，剩下的就是你愉快的开发之旅了！</p><p>##Happy Coding##<script>(function(){    var bp = document.createElement('script');    var curProtocol = window.location.protocol.split(':')[0];    if (curProtocol === 'https') {        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';            }    else {        bp.src = 'http://push.zhanzhang.baidu.com/push.js';    }    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(bp, s);})();</script></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;这里主要介绍的不是CLI的开发,而是node使用es module开发cli的工程配置和注意事项&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="nodejs" scheme="https://www.zayfen.com/categories/nodejs/"/>
-    
-    
-      <category term="nodejs" scheme="https://www.zayfen.com/tags/nodejs/"/>
     
   </entry>
   
@@ -319,6 +319,34 @@
   </entry>
   
   <entry>
+    <title>Chrome调试微信web页面</title>
+    <link href="https://www.zayfen.com/2019/11/18/302d853864089ff3288321c00a69a043/"/>
+    <id>https://www.zayfen.com/2019/11/18/302d853864089ff3288321c00a69a043/</id>
+    <published>2019-11-17T16:00:00.000Z</published>
+    <updated>2021-02-01T03:05:08.062Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="如何用Chrome调试微信web页面"><a href="#如何用Chrome调试微信web页面" class="headerlink" title="如何用Chrome调试微信web页面"></a>如何用Chrome调试微信web页面</h2><blockquote><p>微信调试有官方的微信开发者工具，这个工具很方便，但是有一个不方便就是调试公众号页面的时候，需要公众号给你授予开发者权限，<br>但是有的时候，你仅仅只是想调试页面的样式和一些dom结构，这个时候直接用chrome调试微信web页面就显得特别方便了。</p></blockquote><a id="more"></a><h3 id="步骤（此处仅仅在android手机上做了测试）"><a href="#步骤（此处仅仅在android手机上做了测试）" class="headerlink" title="步骤（此处仅仅在android手机上做了测试）"></a>步骤（此处仅仅在android手机上做了测试）</h3><h4 id="1-打开android手机的开发者模式-和-usb调试"><a href="#1-打开android手机的开发者模式-和-usb调试" class="headerlink" title="1. 打开android手机的开发者模式 和 usb调试"></a>1. 打开android手机的开发者模式 和 usb调试</h4><blockquote><p>每个手机打开方式都不一样，请自行搜索解决方案</p></blockquote><h4 id="2-打开chrome的-Remote-Devices"><a href="#2-打开chrome的-Remote-Devices" class="headerlink" title="2. 打开chrome的 Remote Devices"></a>2. 打开chrome的 <code>Remote Devices</code></h4><p><img data-src="https://res.cloudinary.com/zayfen/image/upload/v1566456083/img/xfln0smfyyrmta2cgfbg.png" alt></p><h4 id="3-手机连接电脑"><a href="#3-手机连接电脑" class="headerlink" title="3. 手机连接电脑"></a>3. 手机连接电脑</h4><blockquote><p>手机连接电脑的时候，会弹出一个usb授权提示弹窗，点解<code>确定</code></p></blockquote><h4 id="4-在Chrome上的-Remote-Devices上查看链接的手机情况"><a href="#4-在Chrome上的-Remote-Devices上查看链接的手机情况" class="headerlink" title="4. 在Chrome上的 Remote Devices上查看链接的手机情况"></a>4. 在Chrome上的 <code>Remote Devices</code>上查看链接的手机情况</h4><p><img data-src="https://res.cloudinary.com/zayfen/image/upload/v1566456090/img/sebny1fdphicnkfmisgx.png" alt></p><h4 id="5-调试手机上的页面"><a href="#5-调试手机上的页面" class="headerlink" title="5. 调试手机上的页面"></a>5. 调试手机上的页面</h4><blockquote><p>点击要调试的页面的右边的 <code>Inspect</code>按钮，就可以打开进行调试了。 <strong>但是这个时候我们发现仅仅只能看到浏览器的页面，没有看到微信的web页面</strong></p></blockquote><h4 id="6-手机微信打开-http-debugx5-qq-com-并勾选-打开TBS内核Inspector调试功能"><a href="#6-手机微信打开-http-debugx5-qq-com-并勾选-打开TBS内核Inspector调试功能" class="headerlink" title="6. 手机微信打开 http://debugx5.qq.com, 并勾选 打开TBS内核Inspector调试功能"></a>6. 手机微信打开 <a href="http://debugx5.qq.com" target="_blank" rel="noopener">http://debugx5.qq.com</a>, 并勾选 <code>打开TBS内核Inspector调试功能</code></h4><p><img data-src="https://res.cloudinary.com/zayfen/image/upload/v1566456094/img/xa7exyod0yyavarj1w7f.jpg" alt></p><blockquote><p>勾选后会提示重启，点击确定就行</p></blockquote><h4 id="7-微信上打开要调试的web-页面，就可以在chrome中看到了"><a href="#7-微信上打开要调试的web-页面，就可以在chrome中看到了" class="headerlink" title="7. 微信上打开要调试的web 页面，就可以在chrome中看到了"></a>7. 微信上打开要调试的web 页面，就可以在chrome中看到了</h4><p><img data-src="https://res.cloudinary.com/zayfen/image/upload/v1566456098/img/nz3ismpqljduymsinjq0.jpg" alt><br><img data-src="https://res.cloudinary.com/zayfen/image/upload/v1566456100/img/fo5afmbyo4uvj7qgrgop.png" alt></p><h4 id="8-点击chrome中-inspect按钮及可以开始调试了"><a href="#8-点击chrome中-inspect按钮及可以开始调试了" class="headerlink" title="8. 点击chrome中 inspect按钮及可以开始调试了"></a>8. 点击chrome中 <code>inspect</code>按钮及可以开始调试了</h4><p><img data-src="https://res.cloudinary.com/zayfen/image/upload/v1566456105/img/irjrryrjdx9eq0rqg7pb.png" alt></p><script>(function(){    var bp = document.createElement('script');    var curProtocol = window.location.protocol.split(':')[0];    if (curProtocol === 'https') {        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';            }    else {        bp.src = 'http://push.zhanzhang.baidu.com/push.js';    }    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(bp, s);})();</script>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;如何用Chrome调试微信web页面&quot;&gt;&lt;a href=&quot;#如何用Chrome调试微信web页面&quot; class=&quot;headerlink&quot; title=&quot;如何用Chrome调试微信web页面&quot;&gt;&lt;/a&gt;如何用Chrome调试微信web页面&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;微信调试有官方的微信开发者工具，这个工具很方便，但是有一个不方便就是调试公众号页面的时候，需要公众号给你授予开发者权限，&lt;br&gt;但是有的时候，你仅仅只是想调试页面的样式和一些dom结构，这个时候直接用chrome调试微信web页面就显得特别方便了。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="web" scheme="https://www.zayfen.com/categories/web/"/>
+    
+    
+      <category term="wechat" scheme="https://www.zayfen.com/tags/wechat/"/>
+    
+      <category term="debugger" scheme="https://www.zayfen.com/tags/debugger/"/>
+    
+      <category term="web" scheme="https://www.zayfen.com/tags/web/"/>
+    
+  </entry>
+  
+  <entry>
     <title>解决JPEG图片显示方向不正确的问题</title>
     <link href="https://www.zayfen.com/2019/11/18/d3c4828a43569ce3ca593dc66b1eb668/"/>
     <id>https://www.zayfen.com/2019/11/18/d3c4828a43569ce3ca593dc66b1eb668/</id>
@@ -341,34 +369,6 @@
       <category term="jpg" scheme="https://www.zayfen.com/tags/jpg/"/>
     
       <category term="image" scheme="https://www.zayfen.com/tags/image/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Chrome调试微信web页面</title>
-    <link href="https://www.zayfen.com/2019/11/18/302d853864089ff3288321c00a69a043/"/>
-    <id>https://www.zayfen.com/2019/11/18/302d853864089ff3288321c00a69a043/</id>
-    <published>2019-11-17T16:00:00.000Z</published>
-    <updated>2021-02-01T03:05:08.062Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="如何用Chrome调试微信web页面"><a href="#如何用Chrome调试微信web页面" class="headerlink" title="如何用Chrome调试微信web页面"></a>如何用Chrome调试微信web页面</h2><blockquote><p>微信调试有官方的微信开发者工具，这个工具很方便，但是有一个不方便就是调试公众号页面的时候，需要公众号给你授予开发者权限，<br>但是有的时候，你仅仅只是想调试页面的样式和一些dom结构，这个时候直接用chrome调试微信web页面就显得特别方便了。</p></blockquote><a id="more"></a><h3 id="步骤（此处仅仅在android手机上做了测试）"><a href="#步骤（此处仅仅在android手机上做了测试）" class="headerlink" title="步骤（此处仅仅在android手机上做了测试）"></a>步骤（此处仅仅在android手机上做了测试）</h3><h4 id="1-打开android手机的开发者模式-和-usb调试"><a href="#1-打开android手机的开发者模式-和-usb调试" class="headerlink" title="1. 打开android手机的开发者模式 和 usb调试"></a>1. 打开android手机的开发者模式 和 usb调试</h4><blockquote><p>每个手机打开方式都不一样，请自行搜索解决方案</p></blockquote><h4 id="2-打开chrome的-Remote-Devices"><a href="#2-打开chrome的-Remote-Devices" class="headerlink" title="2. 打开chrome的 Remote Devices"></a>2. 打开chrome的 <code>Remote Devices</code></h4><p><img data-src="https://res.cloudinary.com/zayfen/image/upload/v1566456083/img/xfln0smfyyrmta2cgfbg.png" alt></p><h4 id="3-手机连接电脑"><a href="#3-手机连接电脑" class="headerlink" title="3. 手机连接电脑"></a>3. 手机连接电脑</h4><blockquote><p>手机连接电脑的时候，会弹出一个usb授权提示弹窗，点解<code>确定</code></p></blockquote><h4 id="4-在Chrome上的-Remote-Devices上查看链接的手机情况"><a href="#4-在Chrome上的-Remote-Devices上查看链接的手机情况" class="headerlink" title="4. 在Chrome上的 Remote Devices上查看链接的手机情况"></a>4. 在Chrome上的 <code>Remote Devices</code>上查看链接的手机情况</h4><p><img data-src="https://res.cloudinary.com/zayfen/image/upload/v1566456090/img/sebny1fdphicnkfmisgx.png" alt></p><h4 id="5-调试手机上的页面"><a href="#5-调试手机上的页面" class="headerlink" title="5. 调试手机上的页面"></a>5. 调试手机上的页面</h4><blockquote><p>点击要调试的页面的右边的 <code>Inspect</code>按钮，就可以打开进行调试了。 <strong>但是这个时候我们发现仅仅只能看到浏览器的页面，没有看到微信的web页面</strong></p></blockquote><h4 id="6-手机微信打开-http-debugx5-qq-com-并勾选-打开TBS内核Inspector调试功能"><a href="#6-手机微信打开-http-debugx5-qq-com-并勾选-打开TBS内核Inspector调试功能" class="headerlink" title="6. 手机微信打开 http://debugx5.qq.com, 并勾选 打开TBS内核Inspector调试功能"></a>6. 手机微信打开 <a href="http://debugx5.qq.com" target="_blank" rel="noopener">http://debugx5.qq.com</a>, 并勾选 <code>打开TBS内核Inspector调试功能</code></h4><p><img data-src="https://res.cloudinary.com/zayfen/image/upload/v1566456094/img/xa7exyod0yyavarj1w7f.jpg" alt></p><blockquote><p>勾选后会提示重启，点击确定就行</p></blockquote><h4 id="7-微信上打开要调试的web-页面，就可以在chrome中看到了"><a href="#7-微信上打开要调试的web-页面，就可以在chrome中看到了" class="headerlink" title="7. 微信上打开要调试的web 页面，就可以在chrome中看到了"></a>7. 微信上打开要调试的web 页面，就可以在chrome中看到了</h4><p><img data-src="https://res.cloudinary.com/zayfen/image/upload/v1566456098/img/nz3ismpqljduymsinjq0.jpg" alt><br><img data-src="https://res.cloudinary.com/zayfen/image/upload/v1566456100/img/fo5afmbyo4uvj7qgrgop.png" alt></p><h4 id="8-点击chrome中-inspect按钮及可以开始调试了"><a href="#8-点击chrome中-inspect按钮及可以开始调试了" class="headerlink" title="8. 点击chrome中 inspect按钮及可以开始调试了"></a>8. 点击chrome中 <code>inspect</code>按钮及可以开始调试了</h4><p><img data-src="https://res.cloudinary.com/zayfen/image/upload/v1566456105/img/irjrryrjdx9eq0rqg7pb.png" alt></p><script>(function(){    var bp = document.createElement('script');    var curProtocol = window.location.protocol.split(':')[0];    if (curProtocol === 'https') {        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';            }    else {        bp.src = 'http://push.zhanzhang.baidu.com/push.js';    }    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(bp, s);})();</script>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;如何用Chrome调试微信web页面&quot;&gt;&lt;a href=&quot;#如何用Chrome调试微信web页面&quot; class=&quot;headerlink&quot; title=&quot;如何用Chrome调试微信web页面&quot;&gt;&lt;/a&gt;如何用Chrome调试微信web页面&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;微信调试有官方的微信开发者工具，这个工具很方便，但是有一个不方便就是调试公众号页面的时候，需要公众号给你授予开发者权限，&lt;br&gt;但是有的时候，你仅仅只是想调试页面的样式和一些dom结构，这个时候直接用chrome调试微信web页面就显得特别方便了。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="web" scheme="https://www.zayfen.com/categories/web/"/>
-    
-    
-      <category term="web" scheme="https://www.zayfen.com/tags/web/"/>
-    
-      <category term="wechat" scheme="https://www.zayfen.com/tags/wechat/"/>
-    
-      <category term="debugger" scheme="https://www.zayfen.com/tags/debugger/"/>
     
   </entry>
   

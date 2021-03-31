@@ -303,105 +303,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.zayfen.com/2019/11/18/d3c4828a43569ce3ca593dc66b1eb668/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/MyAssets/images/zayfen-com.jpg">
-      <meta itemprop="name" content="zayfen">
-      <meta itemprop="description" content="happy coding, enjoy life!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Z . A . Y . F . E . N">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/18/d3c4828a43569ce3ca593dc66b1eb668/" class="post-title-link" itemprop="url">解决JPEG图片显示方向不正确的问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-18 00:00:00" itemprop="dateCreated datePublished" datetime="2019-11-18T00:00:00+08:00">2019-11-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-01 11:01:24" itemprop="dateModified" datetime="2021-02-01T11:01:24+08:00">2021-02-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.7k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>背景： 一些jpeg图片，在pc中用图片查看器打开是正的，但是放到浏览器中，就横着了；有一个上传人脸的需求，用手机拍完人脸照片，在应用中显示所拍的照片总是横着的。今天，我们就来解决这个问题。</p>
-<h3 id="为什么JEPG图片会横着显示？"><a href="#为什么JEPG图片会横着显示？" class="headerlink" title="为什么JEPG图片会横着显示？"></a>为什么JEPG图片会横着显示？</h3><p>首先，我们看一个github上的一个关于此问题的issue：<br><a href="https://github.com/GoogleChromeLabs/squoosh/issues/299" target="_blank" rel="noopener">https://github.com/GoogleChromeLabs/squoosh/issues/299</a><br>这个问题讨论的是chrome显示jpeg图片，旋转了90度的问题。<br>为什么会旋转呢？因为JEPG图片的EXIF data中有一个控制旋转的属性<strong>Orientation</strong>，但是有一些应用程序显示图片的时候会忽略这个属性，就导致图片在一些应用程序中显示出来和原本的方向不一致。</p>
-<p>这里有一张JEPG图片的EXIF数据（可以看到第一个属性就是 Orientation）：<br><img src="https://res.cloudinary.com/zayfen/image/upload/v1570695926/img/ibvnab25sqxnz4ahapu6.png" alt="JPEG图片的EXIF数据"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/18/d3c4828a43569ce3ca593dc66b1eb668/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      
-
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://www.zayfen.com/2019/11/18/302d853864089ff3288321c00a69a043/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -476,6 +377,105 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/11/18/302d853864089ff3288321c00a69a043/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      
+
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.zayfen.com/2019/11/18/d3c4828a43569ce3ca593dc66b1eb668/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/MyAssets/images/zayfen-com.jpg">
+      <meta itemprop="name" content="zayfen">
+      <meta itemprop="description" content="happy coding, enjoy life!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z . A . Y . F . E . N">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/18/d3c4828a43569ce3ca593dc66b1eb668/" class="post-title-link" itemprop="url">解决JPEG图片显示方向不正确的问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-18 00:00:00" itemprop="dateCreated datePublished" datetime="2019-11-18T00:00:00+08:00">2019-11-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-02-01 11:01:24" itemprop="dateModified" datetime="2021-02-01T11:01:24+08:00">2021-02-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>背景： 一些jpeg图片，在pc中用图片查看器打开是正的，但是放到浏览器中，就横着了；有一个上传人脸的需求，用手机拍完人脸照片，在应用中显示所拍的照片总是横着的。今天，我们就来解决这个问题。</p>
+<h3 id="为什么JEPG图片会横着显示？"><a href="#为什么JEPG图片会横着显示？" class="headerlink" title="为什么JEPG图片会横着显示？"></a>为什么JEPG图片会横着显示？</h3><p>首先，我们看一个github上的一个关于此问题的issue：<br><a href="https://github.com/GoogleChromeLabs/squoosh/issues/299" target="_blank" rel="noopener">https://github.com/GoogleChromeLabs/squoosh/issues/299</a><br>这个问题讨论的是chrome显示jpeg图片，旋转了90度的问题。<br>为什么会旋转呢？因为JEPG图片的EXIF data中有一个控制旋转的属性<strong>Orientation</strong>，但是有一些应用程序显示图片的时候会忽略这个属性，就导致图片在一些应用程序中显示出来和原本的方向不一致。</p>
+<p>这里有一张JEPG图片的EXIF数据（可以看到第一个属性就是 Orientation）：<br><img src="https://res.cloudinary.com/zayfen/image/upload/v1570695926/img/ibvnab25sqxnz4ahapu6.png" alt="JPEG图片的EXIF数据"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/18/d3c4828a43569ce3ca593dc66b1eb668/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
